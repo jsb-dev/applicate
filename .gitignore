@@ -1,0 +1,6 @@
+# Environment Variables
+.env
+
+# package.json
+package.json
+package-lock.json
