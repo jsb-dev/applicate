@@ -1,4 +1,4 @@
-// A MongoDB database model for a user including a username, password, and email address.
+// A MongoDB database model for a user including a password and email address.
 // The password is hashed using bcryptjs and the email address is validated using validator.
 // The model is exported as User.
 
@@ -13,19 +13,6 @@ const Schema = mongoose.Schema;
 // Define a schema for a user
 const userSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      minlength: 3,
-    },
-    password: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: 6,
-    },
     email: {
       type: String,
       required: true,
@@ -35,6 +22,12 @@ const userSchema = new Schema(
       validate: (value) => {
         return validator.isEmail(value);
       },
+    },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 6,
     },
   },
   {

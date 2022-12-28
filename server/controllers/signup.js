@@ -1,37 +1,27 @@
 // This is a controller for the signup router in order to handle the signup process
-
 import User from '../database/Models/user.js';
 
-// an async function to handle the signup process
+// a function to handle the signup process using email and password for the User model
+console.log('Controller loads');
 const signupController = async (req, res) => {
+  console.log('Signup Controller function starts');
+  const { email, password } = req.body;
+  console.log('Email and password are received');
   try {
-    // destructure the email and password from the request body
-    const { email, password } = req.body;
-    // find a user with the email address
-    const user = await User.findOne({
-      email,
-    });
-    // if a user is found, return an error
-    if (user) {
-      return res.status(400).json({
-        error: 'Email is already in use',
-      });
-    }
-    // create a new user with the email and password
-    const newUser = await User.create({
-      email,
-      password,
-    });
-    // return the new user
-    res.status(201).json({
-      user: newUser,
-    });
+    const user = new User({ email, password });
+    console.log('User is created');
+    await user.save();
+    console.log('User is saved');
+    const token = await user.generateAuthToken();
+    console.log('Token is generated');
+    res.status(201).send({ user, token });
+    console.log('User and token are sent');
   } catch (error) {
-    // if an error occurs, return an error
-    res.status(500).json({
-      error: 'Error registering new user please try again',
-    });
+    console.log('Error is caught');
+    res.status(400).send(error);
+    console.log('Error is sent');
   }
+  console.log('Signup Controller function ends');
 };
 
 export default signupController;
