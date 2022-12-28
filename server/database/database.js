@@ -9,7 +9,7 @@ dotenv.config();
 const MONGODB_URI = process.env.MONGODB_URI;
 
 // Set strictQuery to false to allow for partial matching
-mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', true);
 
 // Connect to MongoDB database
 mongoose.connect(MONGODB_URI, {

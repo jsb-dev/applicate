@@ -1,4 +1,6 @@
-// A MongoDB database model for a user including a username, password, and email address. The password is hashed using bcryptjs and the email address is validated using validator. The model is exported as User.
+// A MongoDB database model for a user including a username, password, and email address.
+// The password is hashed using bcryptjs and the email address is validated using validator.
+// The model is exported as User.
 
 // Import mongoose and bcryptjs
 import mongoose from 'mongoose';
