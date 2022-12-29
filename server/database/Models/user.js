@@ -1,65 +1,34 @@
-// A MongoDB database model for a user including a password and email address.
-// The password is hashed using bcryptjs and the email address is validated using validator.
-// The model is exported as User.
+// A MongoDB model for a user that accepts an email and password
+// The user has a method to generate an auth token using JWT
+// The user method will be exported as User
+// Password hashing and validation will be handled by controllers/signup.js
 
-// Import mongoose and bcryptjs
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
-import validator from 'validator';
+// Import mongoose
+import { mongoose, Schema } from 'mongoose';
+import jwt from 'jsonwebtoken';
 
-// Define a schema
-const Schema = mongoose.Schema;
-
-// Define a schema for a user
-const userSchema = new Schema(
-  {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
-      validate: (value) => {
-        return validator.isEmail(value);
-      },
-    },
-    password: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: 6,
-    },
+// Create a new schema for a user
+const UserSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    lowercase: true,
+    unique: true,
   },
-  {
-    timestamps: true,
-  }
-);
-
-// Define a pre-save hook for the user schema
-userSchema.pre('save', function (next) {
-  // Hash the password
-  bcrypt.hash(this.password, 10, (error, hash) => {
-    if (error) {
-      next(error);
-    }
-
-    // Replace the password with the hash
-    this.password = hash;
-    next();
-  });
+  password: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 7,
+  },
 });
 
-// Define a method for the user schema to compare a password with the hashed password
-userSchema.methods.isValidPassword = async function (password) {
-  try {
-    return await bcrypt.compare(password, this.password);
-  } catch (error) {
-    throw new Error(error);
-  }
+// Create a method to generate an auth token for the user
+UserSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign({ _id: this._id }, 'secret');
+  return token;
 };
 
-// Define a model
-const User = mongoose.model('user', userSchema);
-
-// Export the model
-export default User;
+//export the model
+export default mongoose.model('User', UserSchema);
