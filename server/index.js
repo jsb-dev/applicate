@@ -1,11 +1,15 @@
 import express from 'express';
-import signupRouter from './routers/signup.js';
 import connection from './database/database.js';
+import signupRouter from './routers/signup.js';
+import loginRouter from './routers/login.js';
+import logoutRouter from './routers/logout.js';
 
 const app = express();
 
 app.use(express.json());
 app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
@@ -25,29 +29,3 @@ async function testDatabaseConnection() {
 
 // Call the function to test the database connection
 testDatabaseConnection();
-
-/* Debugging
-
-// Send the POST request after the database connection has been established
-const body = {
-  email: 'jacob.booth.tkd99@gmail.com',
-  password: 'password',
-};
-
-request.post(
-  {
-    url: 'http://localhost:5000/signup',
-    json: true,
-    body,
-  },
-  (error, response, body) => {
-    if (error) {
-      console.error(error);
-    } else {
-      console.log(response.statusCode);
-      console.log(body);
-    }
-  }
-);
-
-*/
