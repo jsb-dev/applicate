@@ -21,6 +21,7 @@ const loginController = async (req, res) => {
 
   // If the email and password are valid, generate an auth token for the user
   const token = user.generateAuthToken();
+  user.tokens.push(token);
 
   // Send the user and token as the response
   res
@@ -30,6 +31,9 @@ const loginController = async (req, res) => {
     })
     .set('Authorization', `Bearer ${token}`) // Set the Authorization header in case cookies are off
     .send({ message: 'Successfully logged in', user, token });
+
+  console.log('Login POST request successful');
+  console.log('Current user email: ', user.email);
 };
 
 export default loginController;

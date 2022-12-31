@@ -50,11 +50,10 @@ const signupController = async (req, res) => {
       .send({ message: 'Successfully logged in', user, token });
 
     // Confirm that the POST request was successful
-    console.log('POST request successful');
-    console.log('User token: ' + user.tokens[0]);
+    console.log('Signup POST request successful');
 
-    // Log the user document
-    console.log(user);
+    // Log the user to the console
+    console.log('New user email: ', user.email);
   } catch (error) {
     // If there was an error saving the user, send a 400 error
     console.log(error);
