@@ -19,7 +19,7 @@ const authMiddleware = async (req, res, next) => {
 
     if (!token) {
       responseSent = true;
-      throw new Error('Access denied. No token provided');
+      throw new Error('No token provided, user is already logged out.');
     }
   } catch (error) {
     // If there is an error, return a 401 error if a response has not been sent yet
@@ -31,7 +31,9 @@ const authMiddleware = async (req, res, next) => {
 
   // If no token is provided, return a 401 error
   if (!token) {
-    return res.status(401).send({ error: 'Access denied. No token provided' });
+    return res
+      .status(401)
+      .send({ error: 'No token provided, user is already logged out.' });
   }
 
   // If a token is provided, try to decode and verify it
