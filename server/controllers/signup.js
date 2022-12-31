@@ -9,7 +9,11 @@ const signupController = async (req, res) => {
   // Check if the email address is already in use
   const user = await User.findOne({ email });
   if (user) {
-    return res.status(400).send({ error: 'Email already in use' });
+    return res
+      .status(400)
+      .send({
+        error: 'Email already in use, log in using original signup method',
+      });
   }
 
   // Validate the email address

@@ -1,10 +1,13 @@
 import express from 'express';
 import connection from './database/database.js';
+import dotenv from 'dotenv';
 import signupRouter from './routers/signup.js';
 import loginRouter from './routers/login.js';
 import logoutRouter from './routers/logout.js';
 
 const app = express();
+
+dotenv.config();
 
 app.use(express.json());
 app.use('/signup', signupRouter);

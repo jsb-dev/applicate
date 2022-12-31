@@ -1,5 +1,5 @@
 # Environment Variables
-.env
+/server/.env
 
 # package.json
 package.json
