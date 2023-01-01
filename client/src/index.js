@@ -1,5 +1,5 @@
+import { createRoot } from 'react-dom/client';
 import React from 'react';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import express from 'express';
-import mongoose from 'mongoose';
+import App from './App';
+
+createRoot(document.getElementById('root')).render(<App />);

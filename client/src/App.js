@@ -1,21 +1,12 @@
-// Create react App.js
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store';
+import React from 'react';
+import SignUp from './components/signup';
 
-const App = () => (
-  <Provider store={store}>
-    <Router>
-      <div className="App">
-        <Route exact path="/" component={Landing} />
-        <div className="container">
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-        </div>
-      </div>
-    </Router>
-  </Provider>
-);
+const App = () => {
+  return (
+    <div>
+      <SignUp />
+    </div>
+  );
+};
 
 export default App;
