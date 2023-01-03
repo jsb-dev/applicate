@@ -13,6 +13,7 @@ const LoginButton = ({ email, password }) => {
       .then((response) => {
         if (response.ok) {
           console.log('Log in successful');
+          window.location.href = '/dashboard';
           return response.json();
         }
         throw new Error('Log in failed');

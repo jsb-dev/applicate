@@ -3,7 +3,13 @@ import LoginForm from '../components/login/loginForm.js';
 
 const LoginPage = () => {
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <LoginForm />
     </div>
   );

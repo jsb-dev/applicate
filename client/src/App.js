@@ -1,18 +1,18 @@
 import React from 'react';
-// import { BrowserRouter } from 'react-router-dom';
-// import { Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/loginPage.js';
+import Dashboard from './pages/dashboard.js';
 
 const App = () => {
-  // set LoginPage as the root route
-  // users should come here by default
-  return <LoginPage />;
+  return (
+    // <LoginPage />
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<LoginPage />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
-
-/*
-<BrowserRouter>
-      <Route exact path="/" component={LoginPage} />
-    </BrowserRouter>
-*/

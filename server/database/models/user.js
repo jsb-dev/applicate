@@ -39,5 +39,9 @@ UserSchema.methods.generateAuthToken = function () {
   });
 };
 
+UserSchema.statics.findById = function (id, cb) {
+  return this.find({ _id: id }, cb);
+};
+
 //export the model
 export default mongoose.model('User', UserSchema);

@@ -13,6 +13,7 @@ const SignupButton = ({ email, password }) => {
       .then((response) => {
         if (response.ok) {
           console.log('Sign up successful');
+          window.location.href = '/dashboard';
           return response.json();
         }
         throw new Error('Sign up failed');
