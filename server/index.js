@@ -22,7 +22,14 @@ app.use(cors());
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
-app.use('/dashboard', dashboardRouter);
+app.use(
+  '/dashboard',
+  cors({
+    origin: 'http://localhost:3000',
+    allowedHeaders: ['Authorization'],
+  }),
+  dashboardRouter
+);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
