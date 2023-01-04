@@ -34,7 +34,7 @@ documentSchema.methods.deleteDocument = function () {
 
 documentSchema.methods.documentArraySave = function (userId) {
   User.findOne({ _id: userId }).then((user) => {
-    user.documents.push(this._id);
+    user.documentArray.push(this._id);
     return user.save();
   });
 };

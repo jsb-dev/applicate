@@ -24,6 +24,10 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  documentArray: {
+    type: Array,
+    default: [],
+  },
   tokens: [
     {
       type: String,
