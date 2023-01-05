@@ -12,12 +12,8 @@ const documentSchema = new Schema({
     required: true,
   },
   content: {
-    type: String,
-    default: '',
-  },
-  styles: {
-    type: String,
-    default: 'font-size: 14pt;',
+    type: Schema.Types.Mixed,
+    default: {},
   },
   collaborators: {
     type: Array,
