@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import RichTextEditor from '../components/editor/editor.jsx';
 
 const EditorPage = () => {
@@ -10,7 +11,11 @@ const EditorPage = () => {
         justifyContent: 'center',
       }}
     >
-      <RichTextEditor />
+      {content !== null ? (
+        <RichTextEditor content={content} />
+      ) : (
+        <RichTextEditor />
+      )}
     </div>
   );
 };

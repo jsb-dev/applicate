@@ -12,7 +12,16 @@ const documentSchema = new Schema({
   },
   content: {
     type: Schema.Types.Mixed,
-    default: {},
+    default: [
+      {
+        type: 'paragraph',
+        children: [
+          {
+            text: 'Start typing here...',
+          },
+        ],
+      },
+    ],
   },
   collaborators: {
     type: Array,

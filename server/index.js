@@ -7,6 +7,7 @@ import loginRouter from './routers/login.js';
 import logoutRouter from './routers/logout.js';
 import dashboardRouter from './routers/dashboard.js';
 import createRouter from './routers/create.js';
+import loadRouter from './routers/load.js';
 import passport from 'passport';
 
 dotenv.config();
@@ -32,6 +33,7 @@ app.use(
   dashboardRouter
 );
 app.use('/create', createRouter);
+app.use('/load/:documentId', loadRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

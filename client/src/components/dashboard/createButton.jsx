@@ -1,5 +1,7 @@
 import { Button, Modal, Form } from 'react-bootstrap';
 import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import DocLink from './docLink.jsx';
 
 function CreateButton() {
   const [show, setShow] = useState(false);
@@ -11,7 +13,6 @@ function CreateButton() {
   const handleSubmit = () => {
     // Get the user's token from local storage
     const token = localStorage.getItem('authToken');
-    console.log('token: ', token);
     // Send a request to the server to create a new Document
     fetch('/create', {
       method: 'POST',
@@ -23,8 +24,14 @@ function CreateButton() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Document was created successfully, redirect to the /editor directory
-          window.location.href = '/editor';
+          // Document was created successfully, get the documentId and fileName values from the response
+          const { documentId, fileName } = data;
+          // Create a new DocLink element with the documentId and fileName values
+          const docLink = <DocLink docId={documentId} fileName={fileName} />;
+          // Append the DocLink to the docList element
+          createRoot(document.getElementById('docList')).render(docLink);
+          // Close the popup
+          setShow(false);
         } else {
           // Document was not created, throw an error
           throw new Error('Document creation failed');
@@ -39,7 +46,7 @@ function CreateButton() {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Open Popup
+        CREATE
       </Button>
 
       <Modal show={show} onHide={handleClose}>

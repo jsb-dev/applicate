@@ -133,11 +133,10 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const RichTextEditor = () => {
+const RichTextEditor = ({ content }) => {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: `
-      Start typing here…`,
+    content,
   });
 
   return (

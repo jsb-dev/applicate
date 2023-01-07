@@ -20,6 +20,11 @@ const Dashboard = () => {
         <div>
           <h1>Dashboard</h1>
           <CreateButton />
+          <div>
+            <h2>My Documents</h2>
+            <p>Here are your documents</p>
+            <ul id="docList"></ul>
+          </div>
         </div>
       ) : (
         <LoginPage />

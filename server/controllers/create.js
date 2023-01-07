@@ -8,9 +8,7 @@ const createController = async (req, res) => {
 
   try {
     // Verify the user's token
-    console.log('Verifying with token: ', token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log('Verified');
 
     // Find the user in the database based on the decoded token
     const user = await User.findOne({ _id: decoded._id }).exec();
@@ -33,7 +31,7 @@ const createController = async (req, res) => {
     await user.save();
 
     // Send a response indicating that the document was created successfully
-    res.send({ success: true });
+    res.send({ success: true, documentId: document._id, fileName: value });
   } catch (error) {
     console.error(error);
     res.status(500).send({ success: false, error: error.message });
