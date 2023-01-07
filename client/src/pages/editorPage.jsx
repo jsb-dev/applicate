@@ -1,7 +1,7 @@
 import React from 'react';
-import LoginForm from '../components/login/loginForm.js';
+import RichTextEditor from '../components/editor/editor.jsx';
 
-const LoginPage = () => {
+const EditorPage = () => {
   return (
     <div
       style={{
@@ -10,9 +10,9 @@ const LoginPage = () => {
         justifyContent: 'center',
       }}
     >
-      <LoginForm />
+      <RichTextEditor />
     </div>
   );
 };
 
-export default LoginPage;
+export default EditorPage;

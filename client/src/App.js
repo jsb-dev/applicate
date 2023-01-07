@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from './pages/loginPage.js';
-import Dashboard from './pages/dashboard.js';
+import LoginPage from './pages/loginPage.jsx';
+import Dashboard from './pages/dashboard.jsx';
+import EditorPage from './pages/editorPage.jsx';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/editor" element={<EditorPage />} />
       </Routes>
     </BrowserRouter>
   );

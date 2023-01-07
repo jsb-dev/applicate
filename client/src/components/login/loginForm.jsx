@@ -4,8 +4,8 @@ import { EmailField, PasswordField } from './formFields';
 import { Card, CardContent } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Styled from '@emotion/styled';
-import LoginButton from './loginButton.js';
-import SignupButton from './signupButton.js';
+import LoginButton from './loginButton.jsx';
+import SignupButton from './signupButton.jsx';
 import LogoImg from '../../assets/images/applicateLogo.png';
 
 const FormContainer = Styled.div`

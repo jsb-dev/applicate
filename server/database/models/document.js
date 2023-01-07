@@ -1,6 +1,5 @@
 import { mongoose, Schema } from 'mongoose';
 import UniqueUrl from './uniqueUrl.js';
-import User from './user.js';
 
 const documentSchema = new Schema({
   userId: {
@@ -24,19 +23,8 @@ const documentSchema = new Schema({
   },
 });
 
-documentSchema.methods.deleteDocument = function () {
-  return this.delete();
-};
-
-documentSchema.methods.documentArraySave = function (userId) {
-  User.findOne({ _id: userId }).then((user) => {
-    user.documentArray.push(this._id);
-    return user.save();
-  });
-};
-
 documentSchema.methods.generateUrl = async function () {
-  if (this.fileName.trim().length === 0) {
+  if (this.fileName.trim().length === 0 || this.fileName === undefined) {
     throw new Error('Invalid fileName');
   }
 
@@ -45,7 +33,9 @@ documentSchema.methods.generateUrl = async function () {
   let urlFound = true;
   while (urlFound) {
     // Generate a new uniqueUrl using the fileName and a random string
-    uniqueUrl = `${this.fileName}-${randomString()}`;
+    uniqueUrl = `${this.fileName
+      .toLowerCase()
+      .replace(/ /g, '')}-${randomString()}`;
 
     // Use the countDocuments method to check if the uniqueUrl already exists in the database
     const count = await UniqueUrl.countDocuments({ url: uniqueUrl }).exec();
@@ -72,6 +62,4 @@ function randomString() {
   return Math.random().toString(36).substring(2, 15);
 }
 
-const Document = mongoose.model('Document', documentSchema);
-
-module.exports = Document;
+export default mongoose.model('Document', documentSchema);

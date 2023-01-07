@@ -8,4 +8,4 @@ const uniqueUrlSchema = new Schema({
   },
 });
 
-export default UniqueUrl = mongoose.model('UniqueUrl', uniqueUrlSchema);
+export default mongoose.model('UniqueUrl', uniqueUrlSchema);
