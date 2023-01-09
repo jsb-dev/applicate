@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import checkAuth from '../auth/checkAuth.js';
+import LoginPage from './loginPage.jsx';
 import RichTextEditor from '../components/editor/editor.jsx';
 
 const EditorPage = () => {
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [docId, setDocId] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     setDocId(searchParams.get('docId'));
-    console.log('Sending fetch request... ');
-    // Make a fetch request to the '/load' endpoint with the docId in the request body
-    fetch('/load', {
+
+    checkAuth().then((auth) => {
+      setIsAuthenticated(auth);
+    });
+
+    fetch('/document/load', {
       method: 'POST',
       body: JSON.stringify({ docId }),
       headers: {
@@ -33,11 +39,14 @@ const EditorPage = () => {
         justifyContent: 'center',
       }}
     >
-      {!loading ? (
-        <RichTextEditor content={content} docId={docId} />
+      {isAuthenticated ? (
+        !loading ? (
+          <RichTextEditor content={content} docId={docId} />
+        ) : (
+          <div>Loading...</div>
+        )
       ) : (
-        // You can render a loading indicator here while the data is being fetched
-        <div>Loading...</div>
+        <LoginPage />
       )}
     </div>
   );

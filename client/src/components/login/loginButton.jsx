@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 
 const LoginButton = ({ email, password }) => {
   const handleLogin = () => {
-    fetch('http://localhost:5000/login', {
+    fetch('/account/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,9 +19,7 @@ const LoginButton = ({ email, password }) => {
       })
       .then((data) => {
         console.log(data);
-        // Set the authToken in session storage
         localStorage.setItem('authToken', data.token);
-        // Redirect the user to the dashboard
         window.location.href = '/dashboard';
       })
       .catch((error) => {

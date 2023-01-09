@@ -11,10 +11,9 @@ function CreateButton() {
   const handleShow = () => setShow(true);
   const handleChange = (event) => setValue(event.target.value);
   const handleSubmit = () => {
-    // Get the user's token from local storage
     const token = localStorage.getItem('authToken');
-    // Send a request to the server to create a new Document
-    fetch('/create', {
+
+    fetch('/document/create', {
       method: 'POST',
       body: JSON.stringify({ value, token }),
       headers: {
@@ -24,22 +23,16 @@ function CreateButton() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Document was created successfully, get the documentId and fileName values from the response
           const { documentId, fileName } = data;
-          // Create a new DocLink element with the documentId and fileName values
           const docLink = <DocLink docId={documentId} fileName={fileName} />;
-          // Append the DocLink to the docList element
           createRoot(document.getElementById('docList')).render(docLink);
-          // Close the popup
           setShow(false);
         } else {
-          // Document was not created, throw an error
-          throw new Error('Document creation failed');
+          throw new Error('Could not create document, please try again.');
         }
       })
       .catch((error) => {
         console.error(error);
-        // Handle the error
       });
   };
 
@@ -48,7 +41,6 @@ function CreateButton() {
       <Button variant="primary" onClick={handleShow}>
         CREATE
       </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Enter a value</Modal.Title>

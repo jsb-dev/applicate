@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 
 const SignupButton = ({ email, password }) => {
   const handleSignup = () => {
-    fetch('http://localhost:5000/signup', {
+    fetch('/account/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

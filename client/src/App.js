@@ -6,7 +6,6 @@ import EditorPage from './pages/editorPage.jsx';
 
 const App = () => {
   return (
-    // <LoginPage />
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<LoginPage />} />

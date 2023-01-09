@@ -7,8 +7,3 @@
 # package.json
 package.json
 package-lock.json
-
-# google signup to implement later
-server/routers/googleSignup.js
-
-server/controllers/googleSignupController.js

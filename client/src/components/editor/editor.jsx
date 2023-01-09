@@ -140,7 +140,7 @@ const RichTextEditor = ({ content, docId }) => {
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
 
-      fetch('/save', {
+      fetch('/document/save', {
         method: 'POST',
         body: JSON.stringify({ docId, json }),
         headers: {

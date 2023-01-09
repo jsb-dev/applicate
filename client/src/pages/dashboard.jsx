@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import LoginPage from './loginPage.jsx';
-import checkAuth from '../auth/dashboard.js';
+import checkAuth from '../auth/checkAuth.js';
 import CreateButton from '../components/dashboard/createButton.jsx';
 
 const Dashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    console.log('Checking authentication status');
     checkAuth().then((auth) => {
       setIsAuthenticated(auth);
     });
@@ -15,7 +14,6 @@ const Dashboard = () => {
 
   return (
     <div>
-      {/* Render the dashboard if authenticated, or the login page if not */}
       {isAuthenticated ? (
         <div>
           <h1>Dashboard</h1>

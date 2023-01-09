@@ -21,7 +21,7 @@ const documentSchema = new Schema({
             content: [
               {
                 type: 'text',
-                text: 'Example Text',
+                text: 'Start typing here...',
               },
             ],
           },
@@ -43,28 +43,21 @@ documentSchema.methods.generateUrl = async function () {
     throw new Error('Invalid fileName');
   }
 
-  // Use a loop to keep generating a new uniqueUrl until it is not found in the database
   let uniqueUrl;
   let urlFound = true;
   while (urlFound) {
-    // Generate a new uniqueUrl using the fileName and a random string
     uniqueUrl = `${this.fileName
       .toLowerCase()
       .replace(/ /g, '')}-${randomString()}`;
 
-    // Use the countDocuments method to check if the uniqueUrl already exists in the database
     const count = await UniqueUrl.countDocuments({ url: uniqueUrl }).exec();
     if (count === 0) {
-      // If the uniqueUrl is not found, set urlFound to false to exit the loop
       urlFound = false;
     }
   }
 
   try {
-    // Save the uniqueUrl to the document
     this.uniqueUrl = uniqueUrl;
-
-    // Create a new UniqueUrl document with the uniqueUrl
     const newUrl = new UniqueUrl({ url: uniqueUrl });
     await newUrl.save();
   } catch (error) {
