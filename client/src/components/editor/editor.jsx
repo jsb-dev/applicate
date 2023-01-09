@@ -133,10 +133,23 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const RichTextEditor = ({ content }) => {
+const RichTextEditor = ({ content, docId }) => {
   const editor = useEditor({
     extensions: [StarterKit],
-    content,
+    content: content,
+    onUpdate: ({ editor }) => {
+      const json = editor.getJSON();
+
+      fetch('/save', {
+        method: 'POST',
+        body: JSON.stringify({ docId, json }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).catch((error) => {
+        console.error('Error:', error);
+      });
+    },
   });
 
   return (

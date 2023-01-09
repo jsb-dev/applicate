@@ -14,10 +14,16 @@ const documentSchema = new Schema({
     type: Schema.Types.Mixed,
     default: [
       {
-        type: 'paragraph',
-        children: [
+        type: 'doc',
+        content: [
           {
-            text: 'Start typing here...',
+            type: 'paragraph',
+            content: [
+              {
+                type: 'text',
+                text: 'Example Text',
+              },
+            ],
           },
         ],
       },

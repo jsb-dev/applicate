@@ -2,7 +2,7 @@ import React from 'react';
 
 function DocLink({ docId, fileName }) {
   const searchParams = new URLSearchParams();
-  searchParams.set('documentId', docId);
+  searchParams.set('docId', docId);
   const href = `/editor?${searchParams.toString()}`;
   return (
     <li>
