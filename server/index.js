@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import accountRouter from './routers/account.js';
 import documentRouter from './routers/document.js';
 import checkAuthRouter from './routers/auth.js';
+import apiRouter from './routers/api.js';
 dotenv.config();
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors());
 app.use('/account', accountRouter);
 app.use('/auth', checkAuthRouter);
 app.use('/document', documentRouter);
+app.use('/api', apiRouter);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

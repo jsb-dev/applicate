@@ -12,22 +12,20 @@ const documentSchema = new Schema({
   },
   content: {
     type: Schema.Types.Mixed,
-    default: [
-      {
-        type: 'doc',
-        content: [
-          {
-            type: 'paragraph',
-            content: [
-              {
-                type: 'text',
-                text: 'Start typing here...',
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    default: {
+      type: 'doc',
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'Start typing here...',
+            },
+          ],
+        },
+      ],
+    },
   },
   collaborators: {
     type: Array,

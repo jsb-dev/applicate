@@ -14,7 +14,11 @@ const loadController = async (req, res) => {
     }
 
     const documentId = req.body.docId;
-    const document = await Document.findOne({ documentId });
+    console.log('req.body.docId: ', req.body.docId);
+    console.log('documentId: ', documentId);
+    let document = await Document.findOne({ documentId });
+    console.log('Found document with id: ', document._id);
+    console.log('document: ', document);
 
     if (!document) {
       return res.status(400).send({
@@ -24,7 +28,14 @@ const loadController = async (req, res) => {
       });
     }
 
-    return res.status(200).send({ success: true, content: document.content });
+    console.log('Returning document content: ', document.content);
+    console.log('Returning document fileName: ', document.fileName);
+
+    return res.status(200).send({
+      success: true,
+      content: document.content,
+      fileName: document.fileName,
+    });
   } catch (error) {
     res.status(400).send({
       success: false,

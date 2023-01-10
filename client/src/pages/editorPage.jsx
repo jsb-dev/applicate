@@ -17,6 +17,7 @@ const EditorPage = () => {
       setIsAuthenticated(auth);
     });
 
+    console.log('Sending request to load document: ', docId);
     fetch('/document/load', {
       method: 'POST',
       body: JSON.stringify({ docId }),
@@ -26,7 +27,9 @@ const EditorPage = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setContent(data.content[0]);
+        console.log('Received content from docId: ', docId);
+        console.log('data.content: ', data.content);
+        setContent(data.content);
         setLoading(false);
       });
   }, [docId]);
