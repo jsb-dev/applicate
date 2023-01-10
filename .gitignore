@@ -1,9 +1,4 @@
-# Dependancies
-/node_modules
-
 # Environment Variables
 /server/.env
-
-# package.json
-package.json
-package-lock.json
+/server/database/.env
+node_modules
