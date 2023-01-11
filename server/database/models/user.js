@@ -31,7 +31,6 @@ const UserSchema = new Schema({
 });
 
 UserSchema.methods.generateAuthToken = function () {
-  console.log(process.env.JWT_SECRET);
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: '1 day',
   });

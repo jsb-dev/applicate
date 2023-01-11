@@ -23,16 +23,10 @@ const loginController = async (req, res) => {
   }
 
   try {
+    console.log(user);
     const token = user.generateAuthToken();
     user.tokens.push(token);
-
-    res
-      .cookie('authToken', token, {
-        maxAge: 86400 * 1000,
-        httpOnly: true,
-      })
-      .set('Authorization', `Bearer ${token}`)
-      .send({ success: true, message: 'Successfully logged in', user, token });
+    res.send({ success: true, message: 'Successfully logged in', user, token });
   } catch (error) {
     res.status(400).send({
       success: false,

@@ -50,11 +50,6 @@ const signupController = async (req, res) => {
 
     res
       .status(201)
-      .cookie('authToken', token, {
-        maxAge: 86400 * 1000,
-        httpOnly: true,
-      })
-      .set('Authorization', `Bearer ${token}`)
       .send({ success: true, message: 'Successfully logged in', user, token });
   } catch (error) {
     res.status(400).send({

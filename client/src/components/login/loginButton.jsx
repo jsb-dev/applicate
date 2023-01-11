@@ -20,6 +20,8 @@ const LoginButton = ({ email, password }) => {
       .then((data) => {
         console.log(data);
         localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userId', data.user._id);
+        console.log(data.user._id);
         window.location.href = '/dashboard';
       })
       .catch((error) => {

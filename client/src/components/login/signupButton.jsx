@@ -12,16 +12,13 @@ const SignupButton = ({ email, password }) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Sign up successful');
           return response.json();
         }
         throw new Error('Sign up failed');
       })
       .then((data) => {
-        console.log(data);
-
-        // Set the authToken in session storage
         localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userId', data.user._id);
         window.location.href = '/dashboard';
       })
       .catch((error) => {

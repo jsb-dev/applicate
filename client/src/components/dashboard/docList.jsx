@@ -3,6 +3,7 @@ import { List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import Styled from '@emotion/styled';
 import NewDocButton from './newDocButton.jsx';
 import DocLink from './docLink/docLink.jsx';
+import LogoutButton from './logoutButton.jsx';
 
 const StyledList = Styled(List)({
   minHeight: '50vh',
@@ -62,6 +63,7 @@ function DocList() {
     <StyledList>
       {docLinks}
       <NewDocButton addDocument={addDocument} />
+      <LogoutButton />
       {documents.map((document) => (
         <ListItem key={document.id}>
           <ListItemIcon>

@@ -10,29 +10,30 @@ const EditorPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    setDocId(searchParams.get('docId'));
-
-    checkAuth().then((auth) => {
+    async function fetchAndUpdate() {
+      const auth = await checkAuth();
       setIsAuthenticated(auth);
-    });
 
-    console.log('Sending request to load document: ', docId);
-    fetch('/document/load', {
-      method: 'POST',
-      body: JSON.stringify({ docId }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Received content from docId: ', docId);
-        console.log('data.content: ', data.content);
+      const searchParams = new URLSearchParams(window.location.search);
+      setDocId(searchParams.get('docId'));
+
+      if (docId !== null) {
+        const response = await fetch('/document/load', {
+          method: 'POST',
+          body: JSON.stringify({ docId }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const data = await response.json();
         setContent(data.content);
         setLoading(false);
-      });
-  }, [docId]);
+      }
+    }
+
+    fetchAndUpdate();
+  }, [docId, isAuthenticated]);
 
   return (
     <div
