@@ -1,16 +1,14 @@
 import React from 'react';
-import { TextField } from '@mui/material';
 import { useFormikContext } from 'formik';
-
-const fieldStyles = {
-  width: '100%',
-};
+import StyledTextField from '../styled/formFields';
+import { useMediaQuery } from '@mui/material';
 
 const EmailField = () => {
+  let isMobile = useMediaQuery('(max-width:480px)');
   const { values, handleChange, handleBlur } = useFormikContext();
 
   return (
-    <TextField
+    <StyledTextField
       id="email"
       label="Email"
       type="email"
@@ -18,15 +16,18 @@ const EmailField = () => {
       onBlur={handleBlur}
       value={values.email}
       variant="outlined"
+      size={isMobile ? 'small' : 'medium'}
+      style={{ width: isMobile ? '100%' : '150%' }}
     />
   );
 };
 
 const PasswordField = () => {
+  let isMobile = useMediaQuery('(max-width:480px)');
   const { values, handleChange, handleBlur } = useFormikContext();
 
   return (
-    <TextField
+    <StyledTextField
       id="password"
       label="Password"
       type="password"
@@ -34,7 +35,8 @@ const PasswordField = () => {
       onBlur={handleBlur}
       value={values.password}
       variant="outlined"
-      inputProps={{ className: fieldStyles }}
+      size={isMobile ? 'small' : 'medium'}
+      style={{ width: isMobile ? '100%' : '150%' }}
     />
   );
 };

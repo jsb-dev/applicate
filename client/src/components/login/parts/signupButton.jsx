@@ -1,9 +1,11 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
+import StyledButton from '../styled/formButtons';
 
-const LoginButton = ({ email, password }) => {
-  const handleLogin = () => {
-    fetch('/account/login', {
+const SignupButton = ({ email, password }) => {
+  let isMobile = useMediaQuery('(max-width:480px)');
+  const handleSignup = () => {
+    fetch('/account/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -12,16 +14,13 @@ const LoginButton = ({ email, password }) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Log in successful');
           return response.json();
         }
-        throw new Error('Log in failed');
+        throw new Error('Sign up failed');
       })
       .then((data) => {
-        console.log(data);
         localStorage.setItem('authToken', data.token);
         localStorage.setItem('userId', data.user._id);
-        console.log(data.user._id);
         window.location.href = '/dashboard';
       })
       .catch((error) => {
@@ -30,10 +29,15 @@ const LoginButton = ({ email, password }) => {
   };
 
   return (
-    <Button variant="contained" color="primary" onClick={handleLogin}>
-      Log in
-    </Button>
+    <StyledButton
+      variant="contained"
+      color="primary"
+      onClick={handleSignup}
+      style={{ width: isMobile ? '100%' : '150%' }}
+    >
+      Sign up
+    </StyledButton>
   );
 };
 
-export default LoginButton;
+export default SignupButton;
