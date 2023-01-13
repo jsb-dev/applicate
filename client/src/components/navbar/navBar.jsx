@@ -19,10 +19,16 @@ const PageLink = styled(Link)({
   },
 });
 
-const MyTypography = styled(Typography)({
+const BarTypography = styled(Typography)({
   flexGrow: 1,
   display: 'flex',
   justifyContent: 'space-between',
+});
+
+const LinksTypography = styled(Typography)({
+  flexGrow: 1,
+  display: 'flex',
+  justifyContent: 'space-around',
 });
 
 export default function Navbar() {
@@ -30,15 +36,15 @@ export default function Navbar() {
     <div>
       <StyledAppBar position="static">
         <Toolbar>
-          <MyTypography>
+          <BarTypography>
             <PageLink to="/">Home</PageLink>
-          </MyTypography>
-          <MyTypography>
+          </BarTypography>
+          <LinksTypography>
             <PageLink to="/about">About</PageLink>
             <PageLink to="/services">Services</PageLink>
             <PageLink to="/contact">Contact</PageLink>
             <PageLink to="/">Login</PageLink>
-          </MyTypography>
+          </LinksTypography>
         </Toolbar>
       </StyledAppBar>
     </div>
