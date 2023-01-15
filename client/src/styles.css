@@ -1,3 +1,19 @@
 body {
-    background-color: #182021;
-  }
+  margin: 0;
+  background-color: #182021;
+  font-family: 'Open Sans', sans-serif, 'Raleway', sans-serif, 'Roboto Serif', serif, 'Noto Sans', sans-serif, 'Arial', sans-serif, 'Calibri', sans-serif, 'Times New Roman', serif;
+}
+
+/*    --- FONTS ---   */
+
+/*    font-family: 'Roboto Serif', serif;    */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap');
+
+/*    font-family: 'Open Sans', sans-serif;    */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Serif:opsz@8..144&display=swap');
+
+/*    font-family: 'Raleway', sans-serif;    */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&family=Roboto+Serif:opsz@8..144&display=swap');
+
+/*    font-family: 'Noto Sans', sans-serif;   */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&family=Raleway&family=Roboto+Serif:opsz@8..144&display=swap');

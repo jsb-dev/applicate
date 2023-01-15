@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import LoginPage from './loginPage.jsx';
+import LoginPage from './login/loginPage.jsx';
 import checkAuth from '../auth/checkAuth.js';
 import DocList from '../components/dashboard/docList.jsx';
 
