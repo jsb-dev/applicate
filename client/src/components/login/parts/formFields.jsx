@@ -17,7 +17,7 @@ const EmailField = () => {
       value={values.email}
       variant="outlined"
       size={isMobile ? 'small' : 'medium'}
-      style={{ width: isMobile ? '100%' : '150%' }}
+      sx={{ width: isMobile ? '100%' : '150%' }}
     />
   );
 };
@@ -36,7 +36,7 @@ const PasswordField = () => {
       value={values.password}
       variant="outlined"
       size={isMobile ? 'small' : 'medium'}
-      style={{ width: isMobile ? '100%' : '150%' }}
+      sx={{ width: isMobile ? '100%' : '150%' }}
     />
   );
 };

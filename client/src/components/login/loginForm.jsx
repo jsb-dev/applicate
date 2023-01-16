@@ -15,7 +15,12 @@ import {
 } from './styled/form.jsx';
 
 const CardWrapper = Styled(({ className }) => (
-  <Card className={className}>
+  <Card
+    className={className}
+    sx={{
+      transform: useMediaQuery('(max-width:811px)') ? 'scale(1)' : 'scale(1.5)',
+    }}
+  >
     <img
       style={{ width: '30vh', maxWidth: '230px', marginTop: 'min(10%,5vh)' }}
       src={LogoImg}
@@ -31,16 +36,16 @@ const CardWrapper = Styled(({ className }) => (
   align-items: center;
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.5), 0 0 20px 0 rgba(255, 255, 255, 0.5);
   background: #222c30;
-  min-height: 650px;
+  height: 650px;
   max-height: 80vh;
-  min-width: 400px;
-  max-width: 30vw;
+  width: 400px;
+  max-width: 40vw;
   @media (max-width: 480px) {
+    border-radius: 15px;
     min-width: 90vw;
     min-height: 520px;
     max-height: 90vh;
   }
-  border-radius: 15px;
 `;
 
 const Form = ({ className }) => {
