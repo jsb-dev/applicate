@@ -34,7 +34,7 @@ const CardWrapper = Styled(({ className }) => (
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.5), 0 0 20px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 1);
   background: #222c30;
   height: 650px;
   max-height: 80vh;
