@@ -62,7 +62,13 @@ function NewDocButton({ addDocument }) {
           setShow(false);
           setError(null);
           setValue('');
-          addDocument({ documentId: data.documentId, fileName: data.fileName });
+          addDocument({
+            documentId: data.documentId,
+            fileName: data.fileName,
+            author: data.author,
+            dateCreated: data.dateCreated,
+            dateModified: data.dateModified,
+          });
         } else {
           throw new Error('Could not create document, please try again.');
         }

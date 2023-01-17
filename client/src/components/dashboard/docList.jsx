@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
+import { List } from '@mui/material';
 import Styled from '@emotion/styled';
 import NewDocButton from './newDocButton.jsx';
 import DocLink from './docLink/docLink.jsx';
-import LogoutButton from './logoutButton.jsx';
 
 const StyledList = Styled(List)({
   minHeight: '50vh',
@@ -55,6 +54,9 @@ function DocList() {
         key={document.id}
         docId={document.id}
         fileName={document.fileName}
+        author={document.author}
+        dateCreated={document.dateCreated}
+        dateModified={document.dateModified}
       />,
     ]);
   };
@@ -63,14 +65,16 @@ function DocList() {
     <StyledList>
       {docLinks}
       <NewDocButton addDocument={addDocument} />
-      <LogoutButton />
+
       {documents.map((document) => (
-        <ListItem key={document.id}>
-          <ListItemIcon>
-            <DocLink docId={document.id} fileName={document.fileName} />
-          </ListItemIcon>
-          <ListItemText primary={document.fileName} />
-        </ListItem>
+        <DocLink
+          key={document.id}
+          docId={document.id}
+          fileName={document.fileName}
+          author={document.author}
+          dateCreated={document.dateCreated}
+          dateModified={document.dateModified}
+        />
       ))}
     </StyledList>
   );

@@ -6,9 +6,19 @@ const documentSchema = new Schema({
     type: String,
     required: true,
   },
+  author: {
+    type: String,
+    required: true,
+  },
   fileName: {
     type: String,
     required: true,
+  },
+  dateCreated: {
+    type: Date,
+  },
+  dateModified: {
+    type: Date,
   },
   content: {
     type: Schema.Types.Mixed,
@@ -35,6 +45,17 @@ const documentSchema = new Schema({
     type: String,
   },
 });
+
+documentSchema.methods.currentDate = function () {
+  const date = new Date(Date.now());
+  const format = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  };
+  const dateString = date.toLocaleDateString('en-US', format);
+  return dateString;
+};
 
 documentSchema.methods.generateUrl = async function () {
   if (this.fileName.trim().length === 0 || this.fileName === undefined) {

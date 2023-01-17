@@ -19,6 +19,7 @@ const saveController = async (req, res) => {
       });
     }
     doc.content = json;
+    doc.dateModified = doc.currentDate();
     doc.save((error, updatedDoc) => {
       if (error) {
         return res.status(500).send({

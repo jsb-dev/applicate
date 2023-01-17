@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import checkAuth from '../auth/checkAuth.js';
+import checkAuth from '../utils/checkAuth.js';
 import LoginPage from './login/loginPage.jsx';
 import RichTextEditor from '../components/editor/editor.jsx';
 

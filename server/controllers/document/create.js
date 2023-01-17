@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import formatDate from '../../utils/formatDate.js';
 import Document from '../../database/models/document.js';
 import User from '../../database/models/user.js';
 
@@ -20,16 +21,35 @@ const createController = async (req, res) => {
 
     const document = new Document({
       userId: user._id,
+      author: user.email,
       fileName: value,
     });
 
     await document.generateUrl();
+    document.dateCreated = await document.currentDate();
+    document.dateModified = await document.currentDate();
     await document.save();
 
     user.documentArray.push(document._id);
     await user.save();
 
-    res.send({ success: true, documentId: document._id, fileName: value });
+    console.log('Document: ', document);
+    console.log(
+      'res: ',
+      document._id,
+      value,
+      document.author,
+      formatDate(document.currentDate())
+    );
+
+    res.send({
+      success: true,
+      documentId: document._id,
+      fileName: value,
+      author: document.author,
+      dateCreated: formatDate(document.currentDate()),
+      dateModified: formatDate(document.currentDate()),
+    });
   } catch (error) {
     res.status(400).send({
       success: false,

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import LoginPage from './login/loginPage.jsx';
-import checkAuth from '../auth/checkAuth.js';
+import checkAuth from '../utils/checkAuth.js';
 import DocList from '../components/dashboard/docList.jsx';
+import LogoutButton from '../components/dashboard/logoutButton.jsx';
 
 const Dashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,6 +17,7 @@ const Dashboard = () => {
     <div>
       {isAuthenticated ? (
         <div>
+          <LogoutButton />
           <DocList />
         </div>
       ) : (

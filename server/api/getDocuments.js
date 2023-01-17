@@ -1,3 +1,4 @@
+import formatDate from '../utils/formatDate.js';
 import Document from '../database/models/document.js';
 import User from '../database/models/user.js';
 
@@ -14,6 +15,9 @@ const getDocuments = async (req, res) => {
         const docs = results.map((doc) => ({
           fileName: doc.fileName,
           id: doc._id,
+          author: doc.author,
+          dateCreated: formatDate(doc.dateCreated),
+          dateModified: formatDate(doc.dateModified),
         }));
         res.send({ success: true, documents: docs });
       })
