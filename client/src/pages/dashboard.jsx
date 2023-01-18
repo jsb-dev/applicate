@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import LoginPage from './login/loginPage.jsx';
+import LoginPage from './loginPage.jsx';
 import checkAuth from '../utils/checkAuth.js';
-import DocList from '../components/dashboard/docList.jsx';
-import LogoutButton from '../components/dashboard/logoutButton.jsx';
+import DocList from '../components/dashboard/docList/docList.jsx';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import FullNavbar from '../components/navbar/fullNavbar.jsx';
+import MobileNavbar from '../components/navbar/mobileNavbar.jsx';
 
 const Dashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const ismobile = useMediaQuery('(max-width: 820px)');
 
   useEffect(() => {
     checkAuth().then((auth) => {
@@ -17,7 +21,7 @@ const Dashboard = () => {
     <div>
       {isAuthenticated ? (
         <div>
-          <LogoutButton />
+          {ismobile ? <MobileNavbar /> : <FullNavbar />}
           <DocList />
         </div>
       ) : (

@@ -1,11 +1,11 @@
 import React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import MobileNavbar from '../../components/navbar/mobileNavbar.jsx';
-import FullNavbar from '../../components/navbar/fullNavbar.jsx';
-import LoginForm from '../../components/login/loginForm.jsx';
-import GalaxyBg from '../../assets/images/Focus_ProductCard_DavidMonje_Aqua.jpg';
-import LaptopBg from '../../assets/images/WebDev_ProductCard_AlesNesetril.jpg';
-import SiteFooter from '../../components/global/footer.jsx';
+import MobileNavbar from '../components/navbar/mobileNavbar.jsx';
+import FullNavbar from '../components/navbar/fullNavbar.jsx';
+import LoginForm from '../components/login/loginForm.jsx';
+import GalaxyBg from '../assets/images/Focus_ProductCard_DavidMonje_Aqua.jpg';
+import LaptopBg from '../assets/images/WebDev_ProductCard_AlesNesetril.jpg';
+import SiteFooter from '../components/global/footer.jsx';
 
 const LoginPage = () => {
   let isMobile = useMediaQuery('(max-width: 820px)');

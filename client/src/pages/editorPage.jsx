@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import checkAuth from '../utils/checkAuth.js';
-import LoginPage from './login/loginPage.jsx';
+import LoginPage from './loginPage.jsx';
 import RichTextEditor from '../components/editor/editor.jsx';
 
 const EditorPage = () => {

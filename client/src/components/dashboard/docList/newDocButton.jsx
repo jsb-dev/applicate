@@ -8,21 +8,20 @@ import {
   TextField,
 } from '@mui/material';
 import React, { useState } from 'react';
-import Styled from '@emotion/styled';
+import CardContent from '@mui/material/CardContent';
+import styled from '@emotion/styled';
+import { Tooltip } from '@mui/material';
+import AddIcon from '../../../assets/images/add.png';
 
-const StyledButton = Styled(Button)({
-  background: 'linear-gradient(45deg, #39d0ff 30%, #00aec2 90%)',
-  border: 0,
-  borderRadius: 6,
-  boxShadow: '2px 4px 8px 0px rgba(40, 0, 0, .6)',
-  color: '#ffffff',
-  fontWeight: 'bold',
-  height: 48,
-  padding: '0 30px',
+const StyledButton = styled(Button)({
+  borderRadius: 20,
+  height: '100%',
+  border: 'solid 2px #2e393b',
+  boxShadow: '0px 0px 10px 4px #2e393b',
   '&:hover': {
-    background: '#00c486',
-    color: '#ffffff',
-    boxShadow: '2px 4px 8px 0px rgba(40, 0, 0, .6)',
+    boxShadow: '0px 0px 12px 5px #fff',
+    border: 'solid 2px #fff',
+    transition: 'all 0.4s ease-in-out',
   },
 });
 
@@ -80,8 +79,29 @@ function NewDocButton({ addDocument }) {
 
   return (
     <>
-      <StyledButton variant="contained" onClick={handleShow}>
-        Create
+      <StyledButton onClick={handleShow}>
+        <CardContent
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'white',
+            height: '70%',
+            width: '70%',
+            borderRadius: 20,
+          }}
+        >
+          <Tooltip title="Plus icons created by dmitri13 - Flaticon">
+            <img
+              src={AddIcon}
+              alt="Document icon"
+              style={{
+                display: 'block',
+                width: '60%',
+              }}
+            />
+          </Tooltip>
+        </CardContent>
       </StyledButton>
       <Dialog open={show} onClose={handleClose}>
         <DialogTitle>Enter a file name</DialogTitle>
