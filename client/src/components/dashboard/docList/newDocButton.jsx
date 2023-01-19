@@ -8,7 +8,6 @@ import {
   TextField,
 } from '@mui/material';
 import React, { useState } from 'react';
-import CardContent from '@mui/material/CardContent';
 import styled from '@emotion/styled';
 import { Tooltip } from '@mui/material';
 import AddIcon from '../../../assets/images/add.png';
@@ -50,14 +49,24 @@ function NewDocButton({ addDocument }) {
 
     fetch('/document/create', {
       method: 'POST',
-      body: JSON.stringify({ value, token }),
+      body: JSON.stringify({ value }),
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          console.log('Document created successfully');
+          console.log(
+            'Rendering document: ',
+            data.documentId,
+            data.fileName,
+            data.author,
+            data.dateCreated,
+            data.dateModified
+          );
           setShow(false);
           setError(null);
           setValue('');
@@ -80,14 +89,14 @@ function NewDocButton({ addDocument }) {
   return (
     <>
       <StyledButton onClick={handleShow}>
-        <CardContent
+        <div
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             background: 'white',
-            height: '70%',
-            width: '70%',
+            height: '90%',
+            width: '90%',
             borderRadius: 20,
           }}
         >
@@ -101,7 +110,7 @@ function NewDocButton({ addDocument }) {
               }}
             />
           </Tooltip>
-        </CardContent>
+        </div>
       </StyledButton>
       <Dialog open={show} onClose={handleClose}>
         <DialogTitle>Enter a file name</DialogTitle>

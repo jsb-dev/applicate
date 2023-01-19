@@ -1,5 +1,5 @@
 import express from 'express';
-import checkAuth from '../auth/checkAuth.js';
+import checkAuth from '../utils/checkAuth.js';
 
 const checkAuthRouter = express.Router();
 

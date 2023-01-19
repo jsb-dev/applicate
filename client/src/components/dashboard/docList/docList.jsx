@@ -5,10 +5,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import NewDocButton from './newDocButton.jsx';
 import DocLink from '../docLink/docLink.jsx';
 
-function DocList() {
+function DocList({ userId }) {
   const [documents, setDocuments] = useState([]);
-  const [docLinks, setDocLinks] = useState([]);
-
   const isMobile = useMediaQuery('(max-width: 820px)');
 
   const StyledGrid = Styled(Grid)({
@@ -19,12 +17,11 @@ function DocList() {
     minHeight: '50vh',
     margin: 0,
     padding: isMobile ? 0 : 15,
-    gridTemplateColumns: 'repeat(auto-fill, minmax(minCardWidth, 1fr))',
   });
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    fetch('/api/documents', {
+    fetch(`/api/documents`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -42,29 +39,14 @@ function DocList() {
       .catch((error) => {
         console.error(error);
       });
-    setDocLinks(
-      documents.map((document) => (
-        <DocLink
-          key={document.id}
-          docId={document.id}
-          fileName={document.fileName}
-        />
-      ))
-    );
-  }, [documents]);
+    // Add cleanup function
+    return () => {
+      setDocuments([]);
+    };
+  }, [userId]);
 
   const addDocument = (document) => {
-    setDocLinks([
-      ...docLinks,
-      <DocLink
-        key={document.id}
-        docId={document.id}
-        fileName={document.fileName}
-        author={document.author}
-        dateCreated={document.dateCreated}
-        dateModified={document.dateModified}
-      />,
-    ]);
+    setDocuments([document, ...documents]);
   };
 
   return (
@@ -96,7 +78,6 @@ function DocList() {
           >
             <NewDocButton addDocument={addDocument} />
           </Grid>
-
           {documents.map((document) => (
             <Grid
               item
@@ -104,7 +85,7 @@ function DocList() {
               sm={4}
               lg={3}
               xl={2}
-              key={document.id}
+              key={document._id}
               style={{
                 padding: isMobile ? 5 : 20,
               }}

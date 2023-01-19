@@ -79,10 +79,8 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
           },
         }}
       >
-        <div>
-          <p>Author: {author}</p>
-          <p>Date Created: {dateCreated}</p>
-        </div>
+        <p>Author: {author}</p>
+        <p>Date Created: {dateCreated}</p>
       </Menu>
       <a
         href={href}

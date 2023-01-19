@@ -20,12 +20,10 @@ const StyledButton = Styled(Button)({
 function LogoutButton() {
   function logout() {
     const token = localStorage.getItem('authToken');
-    const userId = localStorage.getItem('userId');
 
     try {
       fetch('/account/logout', {
         method: 'POST',
-        body: JSON.stringify({ userId }),
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

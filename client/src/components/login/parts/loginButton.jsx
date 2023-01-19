@@ -14,17 +14,17 @@ const LoginButton = ({ email, password }) => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Log in successful');
           return response.json();
         }
         throw new Error('Log in failed');
       })
       .then((data) => {
-        console.log(data);
         localStorage.setItem('authToken', data.token);
-        localStorage.setItem('userId', data.user._id);
-        console.log(data.user._id);
-        window.location.href = '/dashboard';
+        const userId = data.user._id;
+        const searchParams = new URLSearchParams();
+        searchParams.set('userId', userId);
+        const href = `/dashboard?${searchParams.toString()}`;
+        window.location.href = href;
       })
       .catch((error) => {
         console.error(error);

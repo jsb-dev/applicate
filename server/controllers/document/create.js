@@ -4,7 +4,8 @@ import Document from '../../database/models/document.js';
 import User from '../../database/models/user.js';
 
 const createController = async (req, res) => {
-  const { value, token } = req.body;
+  const value = req.body.value;
+  const token = req.headers.authorization.split(' ')[1];
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
