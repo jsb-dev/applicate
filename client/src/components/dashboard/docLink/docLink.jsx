@@ -13,6 +13,7 @@ import UserIcon from '../../../assets/images/user.png';
 
 const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+
   const searchParams = new URLSearchParams();
   searchParams.set('docId', docId);
   const href = `/editor?${searchParams.toString()}`;
@@ -52,10 +53,18 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
         style={{
           width: '100%',
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'space-evenly',
           backgroundColor: 'transparent',
         }}
       >
+        {/* eslint-disable-next-line */}
+        <a
+          href={href}
+          style={{
+            textDecoration: 'none',
+            width: '90%',
+          }}
+        ></a>
         <IconButton
           aria-label="more"
           aria-controls="long-menu"
@@ -64,24 +73,25 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
         >
           <MoreVertIcon fontSize="large" />
         </IconButton>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          PaperProps={{
+            style: {
+              padding: 10,
+              borderRadius: 20,
+              boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
+              display: 'block',
+            },
+          }}
+        >
+          <p>Author: {author}</p>
+          <p>Date Created: {dateCreated}</p>
+        </Menu>
       </div>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            padding: 10,
-            borderRadius: 20,
-            boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
-          },
-        }}
-      >
-        <p>Author: {author}</p>
-        <p>Date Created: {dateCreated}</p>
-      </Menu>
       <a
         href={href}
         style={{

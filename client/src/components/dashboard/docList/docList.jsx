@@ -39,7 +39,6 @@ function DocList({ userId }) {
       .catch((error) => {
         console.error(error);
       });
-    // Add cleanup function
     return () => {
       setDocuments([]);
     };
@@ -59,7 +58,8 @@ function DocList({ userId }) {
       }}
     >
       <StyledGrid container spacing={4}>
-        <div
+        <Grid
+          container
           style={{
             display: 'flex',
             justifyContent: 'center',
@@ -85,14 +85,13 @@ function DocList({ userId }) {
               sm={4}
               lg={3}
               xl={2}
-              key={document._id}
+              key={document.id || document.documentId}
               style={{
                 padding: isMobile ? 5 : 20,
               }}
             >
               <DocLink
-                key={document.id}
-                docId={document.id}
+                docId={document.id || document.documentId}
                 fileName={document.fileName}
                 author={document.author}
                 dateCreated={document.dateCreated}
@@ -100,7 +99,7 @@ function DocList({ userId }) {
               />
             </Grid>
           ))}
-        </div>
+        </Grid>
       </StyledGrid>
     </div>
   );

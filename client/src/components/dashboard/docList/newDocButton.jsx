@@ -58,24 +58,15 @@ function NewDocButton({ addDocument }) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          console.log('Document created successfully');
-          console.log(
-            'Rendering document: ',
-            data.documentId,
-            data.fileName,
-            data.author,
-            data.dateCreated,
-            data.dateModified
-          );
           setShow(false);
           setError(null);
           setValue('');
           addDocument({
-            documentId: data.documentId,
-            fileName: data.fileName,
             author: data.author,
             dateCreated: data.dateCreated,
             dateModified: data.dateModified,
+            fileName: data.fileName,
+            documentId: data.documentId,
           });
         } else {
           throw new Error('Could not create document, please try again.');
