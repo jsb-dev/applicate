@@ -1,8 +1,16 @@
-/* Basic editor styles */
 .ProseMirror {
-    
+
+    background-color: white;
+    border: 1px solid black;
+    width: 8.3in;
+    height: 11.7in;
+
     > * + * {
       margin-top: 0.75em;
+    }
+
+    p {
+     margin: 3%;
     }
   
     ul,
@@ -17,11 +25,15 @@
     h5,
     h6 {
       line-height: 1.1;
+      margin: 3%;
     }
   
     code {
-      background-color: rgba(#616161, 0.1);
-      color: #616161;
+      background-color: rgba(#616161, 0.8);
+      color: #fff;
+      font-family: 'JetBrainsMono', monospace;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
     }
   
     pre {

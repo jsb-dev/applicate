@@ -1,7 +1,3 @@
-import './styles.scss';
-
-import { EditorContent, useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
 import React from 'react';
 
 const MenuBar = ({ editor }) => {
@@ -133,31 +129,4 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const RichTextEditor = ({ content, docId }) => {
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: content,
-    onUpdate: ({ editor }) => {
-      const json = editor.getJSON();
-
-      fetch('/document/save', {
-        method: 'POST',
-        body: JSON.stringify({ docId, json }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).catch((error) => {
-        console.error('Error:', error);
-      });
-    },
-  });
-
-  return (
-    <div>
-      <MenuBar editor={editor} />
-      <EditorContent editor={editor} />
-    </div>
-  );
-};
-
-export default RichTextEditor;
+export default MenuBar;
