@@ -18,7 +18,7 @@ const CardWrapper = Styled(({ className }) => (
   <Card
     className={className}
     sx={{
-      transform: useMediaQuery('(max-width:811px)') ? 'scale(1)' : 'scale(1.5)',
+      transform: useMediaQuery('(max-width:811px)') ? 'scale(1)' : 'scale(1.1)',
     }}
   >
     <img
@@ -36,8 +36,7 @@ const CardWrapper = Styled(({ className }) => (
   align-items: center;
   box-shadow: 0 0 20px 10px rgba(255, 255, 255, 1);
   background: #222c30;
-  height: 650px;
-  max-height: 80vh;
+  min- height: 650px;
   width: 400px;
   max-width: 40vw;
   @media (max-width: 480px) {

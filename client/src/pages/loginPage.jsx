@@ -37,7 +37,6 @@ const LoginPage = () => {
               color: 'white',
               width: isMobile ? '90vw' : '40vw',
               margin: '3%',
-              fontSize: isMobile ? '1rem' : '1.5rem',
               letterSpacing: '0.1rem',
               wordSpacing: '0.2rem',
               textAlign: 'center',
@@ -46,7 +45,7 @@ const LoginPage = () => {
             <h1
               style={{
                 textAlign: 'left',
-                fontSize: isMobile ? '2rem' : '5rem',
+                fontSize: isMobile ? '14pt' : '18pt',
               }}
             >
               Welcome to Applicate
@@ -54,7 +53,7 @@ const LoginPage = () => {
             <p
               style={{
                 textAlign: 'left',
-                fontSize: isMobile ? '1.2rem' : '2rem',
+                fontSize: isMobile ? '12pt' : '16pt',
               }}
             >
               Applicate is the cloud-based, collaborative rich text editor
