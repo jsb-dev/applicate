@@ -10,7 +10,7 @@ import {
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Tooltip } from '@mui/material';
-import AddIcon from '../../../assets/images/add.png';
+import AddIcon from '../../../assets/icons/add.png';
 
 const StyledButton = styled(Button)({
   borderRadius: 20,
@@ -91,7 +91,7 @@ function NewDocButton({ addDocument }) {
             borderRadius: 20,
           }}
         >
-          <Tooltip title="Plus icons created by dmitri13 - Flaticon">
+          <Tooltip title="Create a new document">
             <img
               src={AddIcon}
               alt="Document icon"

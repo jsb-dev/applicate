@@ -8,8 +8,8 @@ import Menu from '@mui/material/Menu';
 import styled from '@emotion/styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Tooltip } from '@mui/material';
-import DocIcon from '../../../assets/images/docs.png';
-import UserIcon from '../../../assets/images/user.png';
+import DocIcon from '../../../assets/icons/docs.png';
+import UserIcon from '../../../assets/icons/user.png';
 
 const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -114,7 +114,7 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
               borderRadius: 20,
             }}
           >
-            <Tooltip title="Doc file icons created by Freepik - Flaticon">
+            <Tooltip title="Click to access this document">
               <img
                 src={DocIcon}
                 alt="Document icon"
@@ -124,7 +124,7 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
                 }}
               />
             </Tooltip>
-            <Tooltip title="User icons created by Freepik - Flaticon">
+            <Tooltip title="Only one person has access to this file">
               <img
                 src={UserIcon}
                 alt="User icon"

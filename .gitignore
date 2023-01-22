@@ -1,4 +1,5 @@
-# Environment Variables
 /server/.env
 /server/database/.env
 node_modules
+/client/node_modules
+/client/attributes.txt
