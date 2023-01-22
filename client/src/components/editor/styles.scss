@@ -5,6 +5,7 @@
     width: 8.3in;
     height: 'fit-content';
     margin-top: 13vh;
+    display: 'inline';
 
     > * + * {
       margin-top: 0.75em;
@@ -16,7 +17,7 @@
   
     ul,
     ol {
-      padding: 0 1rem;
+      padding: 0 5%;
     }
   
     h1,
@@ -86,3 +87,18 @@
     }
   }
 
+#format-menu-item-0 {
+  background-size: 70%;
+}
+
+#format-menu-item-1 {
+  background-size: 65%;
+}
+
+#format-menu-item-2 {
+  background-size: 110%;
+}
+
+#format-menu-item-3 {
+  background-size: 95%;
+}

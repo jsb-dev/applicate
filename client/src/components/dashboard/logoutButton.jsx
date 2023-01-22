@@ -37,7 +37,6 @@ function LogoutButton() {
           }
         });
     } catch (error) {
-      // window.location.href = '/';
       console.error(error);
     }
   }

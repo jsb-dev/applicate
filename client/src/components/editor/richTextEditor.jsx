@@ -2,7 +2,7 @@ import './styles.scss';
 import { BubbleMenu, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import React, { useRef } from 'react';
-import MenuBar from './menuBar.jsx';
+import MenuBar from './menuBar/menuBar.jsx';
 
 const TextEditor = ({ content, docId }) => {
   const editorRef = useRef(null);
