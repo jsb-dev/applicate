@@ -5,6 +5,8 @@ import { useMediaQuery } from '@mui/material';
 
 const EmailField = () => {
   let isMobile = useMediaQuery('(max-width:480px)');
+  let isTablet = useMediaQuery('(max-width:960px)');
+
   const { values, handleChange, handleBlur } = useFormikContext();
 
   return (
@@ -17,13 +19,14 @@ const EmailField = () => {
       value={values.email}
       variant="outlined"
       size={isMobile ? 'small' : 'medium'}
-      sx={{ width: isMobile ? '100%' : '150%' }}
+      sx={{ width: isMobile ? '120%' : isTablet ? '130%' : '150%' }}
     />
   );
 };
 
 const PasswordField = () => {
   let isMobile = useMediaQuery('(max-width:480px)');
+  let isTablet = useMediaQuery('(max-width:960px)');
   const { values, handleChange, handleBlur } = useFormikContext();
 
   return (
@@ -36,7 +39,7 @@ const PasswordField = () => {
       value={values.password}
       variant="outlined"
       size={isMobile ? 'small' : 'medium'}
-      sx={{ width: isMobile ? '100%' : '150%' }}
+      sx={{ width: isMobile ? '120%' : isTablet ? '130%' : '150%' }}
     />
   );
 };

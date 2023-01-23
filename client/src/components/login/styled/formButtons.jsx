@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+
 import { Button } from '@mui/material';
 
 const StyledButton = styled(Button)({
@@ -7,6 +8,7 @@ const StyledButton = styled(Button)({
   '&:hover': {
     background: '#098c9c',
     color: '#ffffff',
+    transform: 'scale(1.05)',
   },
   fontSize: '1rem',
   fontWeight: 'bold',

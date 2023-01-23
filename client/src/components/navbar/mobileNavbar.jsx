@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, IconButton, Drawer } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -15,6 +15,15 @@ const StyledAppBar = styled(AppBar)({
   width: '100%',
   borderBottomLeftRadius: '20px',
   borderBottomRightRadius: '20px',
+  display: 'flex',
+  justifyContent: 'center',
+  position: 'fixed',
+  top: '0',
+  left: '0',
+  right: '0',
+  zIndex: '1',
+  transition: 'transform 0.3s ease-in-out',
+  transform: 'translateY(0)',
 });
 
 const PageLink = styled(Link)({
@@ -34,6 +43,24 @@ const BarTypography = styled(Typography)({
 
 function MobileNavbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [transformValue, setTransformValue] = useState('translateY(0)');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop = window.scrollY;
+      if (currentScrollTop > lastScrollTop) {
+        setTransformValue('translateY(-100%)');
+      } else {
+        setTransformValue('translateY(0)');
+      }
+      setLastScrollTop(currentScrollTop);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollTop]);
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -47,20 +74,14 @@ function MobileNavbar() {
 
   return (
     <div>
-      <StyledAppBar
-        position="static"
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
+      <StyledAppBar style={{ transform: transformValue }}>
         <Toolbar>
           <BarTypography>
             <img
               src={LogoImg}
               alt="The applicate Logo"
               style={{
-                height: 'calc(100vh / 15)',
+                height: 'calc(100vh / 14)',
               }}
             />
           </BarTypography>

@@ -18,7 +18,10 @@ const CardWrapper = Styled(({ className }) => (
   <Card
     className={className}
     sx={{
-      transform: useMediaQuery('(max-width:811px)') ? 'scale(1)' : 'scale(1.1)',
+      transform: useMediaQuery('(max-width:960px)') ? '' : 'scale(1.2)',
+      marginTop: useMediaQuery('(max-width:960px)') ? '' : '10vh',
+      marginBottom: useMediaQuery('(max-width:960px)') ? '' : '15vh',
+      borderRadius: 10,
     }}
   >
     <img
@@ -36,11 +39,9 @@ const CardWrapper = Styled(({ className }) => (
   align-items: center;
   box-shadow: 0 0 20px 10px rgba(255, 255, 255, 1);
   background: #222c30;
-  min- height: 650px;
   width: 400px;
-  max-width: 40vw;
+  max-width: 50vw;
   @media (max-width: 480px) {
-    border-radius: 15px;
     min-width: 90vw;
     min-height: 520px;
     max-height: 90vh;
@@ -49,6 +50,7 @@ const CardWrapper = Styled(({ className }) => (
 
 const Form = ({ className }) => {
   const isMobile = useMediaQuery('(max-width:480px)');
+  const isTablet = useMediaQuery('(max-width:960px)');
 
   return (
     <Formik
@@ -60,7 +62,10 @@ const Form = ({ className }) => {
       {({ values }) => (
         <FormContainer
           className={className}
-          style={{ width: isMobile ? 'calc(100vw / 2)' : '52.5%' }}
+          style={{
+            width: isMobile ? '77.5%' : isTablet ? '67.5%' : '52.5%',
+            marginBottom: '10%',
+          }}
         >
           <FieldContainer>
             <EmailField value={values.email} />

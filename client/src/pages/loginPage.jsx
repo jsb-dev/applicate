@@ -5,10 +5,11 @@ import FullNavbar from '../components/navbar/fullNavbar.jsx';
 import LoginForm from '../components/login/loginForm.jsx';
 import GalaxyBg from '../assets/images/Focus_ProductCard_DavidMonje_Aqua.jpg';
 import LaptopBg from '../assets/images/WebDev_ProductCard_AlesNesetril.jpg';
+import OfficeBg from '../assets/images/OfficePic_Bg_NastuhAbootalebi.jpg';
 import SiteFooter from '../components/global/footer.jsx';
 
 const LoginPage = () => {
-  let isMobile = useMediaQuery('(max-width: 820px)');
+  let isMobile = useMediaQuery('(max-width: 960px)');
 
   return (
     <div style={{ maxWidth: '100vw' }}>
@@ -29,14 +30,15 @@ const LoginPage = () => {
             flexDirection: isMobile ? 'column' : 'row',
             width: '100%',
             backgroundColor: 'rgba(0, 0, 0, 0.6)',
-            padding: isMobile ? '3% 0 15% 0' : '3% 0 6% 0',
+            boxShadow: 'inset 0 0 40px 3px rgba(0, 0, 0, 1)',
           }}
         >
           <div
             style={{
               color: 'white',
               width: isMobile ? '90vw' : '40vw',
-              margin: '3%',
+              marginTop: isMobile ? '9vh' : '',
+              marginRight: isMobile ? '' : '10%',
               letterSpacing: '0.1rem',
               wordSpacing: '0.2rem',
               textAlign: 'center',
@@ -45,7 +47,7 @@ const LoginPage = () => {
             <h1
               style={{
                 textAlign: 'left',
-                fontSize: isMobile ? '14pt' : '18pt',
+                fontSize: isMobile ? '18pt' : '20pt',
               }}
             >
               Welcome to Applicate
@@ -53,21 +55,24 @@ const LoginPage = () => {
             <p
               style={{
                 textAlign: 'left',
-                fontSize: isMobile ? '12pt' : '16pt',
+                fontSize: isMobile ? '12pt' : '15pt',
               }}
             >
-              Applicate is the cloud-based, collaborative rich text editor
-              that's designed to make it easy for you to share ideas and create
-              something beyond the standard of expectation. Engage in seamless
-              rich text manipulation while embracing the importance of working
-              closely with your team. Featuring real-time collaborative editing
-              and automatic saving features, you can work with confidence using
-              our streamlined workflow - we'll take care of the heavy lifting.
-              Take hold of the possibilities through engaging with your peers on
-              your most valued projects, all in one place, at any time. Take the
-              first step towards effortless, syncronised collaboration. Sign up
-              for an account today and embrace the true potential of your next
-              project.
+              Applicate is the cloud-based, collaborative note-taking and
+              documenting platform that's designed to make it easy for you to
+              share ideas and create something beyond the standard of
+              expectation. Engage in seamless, simplified documenting while
+              embracing the importance of working closely with your team through
+              the most vital stage of your project; planning. Applicate features
+              real-time collaborative editing and automatic saving features. You
+              can work with confidence using our streamlined workflow while we
+              take care of preserving your ideas. Take hold of the possibilities
+              through engaging with your peers to bring life to your most valued
+              projects, all in one place. Applicate will adjust the document
+              view to your device so that it's always a painless task to update
+              your document from a mobile device. Take the first step towards
+              effortless, syncronised collaboration. Sign up for an account
+              today and embrace the true potential of your next project.
             </p>
           </div>
           <div
@@ -83,7 +88,7 @@ const LoginPage = () => {
           </div>
         </div>
       </section>
-      <section style={{ height: 540 }}>
+      <section>
         <div
           style={{
             backgroundImage: `url(${LaptopBg})`,
@@ -91,125 +96,164 @@ const LoginPage = () => {
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             height: 500,
-            boxShadow: '0 0 40px 3px rgba(0, 0, 0, 1)',
+            boxShadow: 'inset 0 0 40px 3px rgba(0, 0, 0, 1)',
           }}
-        ></div>
+        >
+          <div style={{ position: 'relative' }}>
+            <p
+              style={{
+                position: 'absolute',
+                left: '5%',
+                fontStyle: 'italic',
+                fontSize: isMobile ? '12pt' : '15pt',
+                color: 'white',
+                width: isMobile ? '60%' : '',
+              }}
+            >
+              Applicate embraces simplicity in the process of developing your
+              project
+            </p>
+          </div>
+          <div style={{ position: 'relative', height: '100%' }}>
+            <p
+              style={{
+                position: 'absolute',
+                bottom: '5%',
+                right: '5%',
+                fontStyle: 'italic',
+                fontSize: isMobile ? '12pt' : '15pt',
+                color: 'white',
+                width: isMobile ? '60%' : '',
+                textAlign: 'right',
+              }}
+            >
+              Discover the benefits of distinguishing your planning and
+              professional document environments
+            </p>
+          </div>
+        </div>
       </section>
       <section
         style={{
-          padding: '6% 0 1% 0',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          flexDirection: isMobile ? 'column' : 'row',
-          width: '100%',
+          backgroundImage: `url(${OfficeBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
           backgroundColor: '#182021',
-          color: 'white',
+          boxShadow: 'inset 0 0 20px 10px rgba(0, 0, 0, 1) ',
         }}
       >
         <div
           style={{
-            borderRadius: 30,
-            boxShadow: '0 0 20px 10px rgba(0, 171, 191, 1)',
-            maxWidth: isMobile ? '90vw' : '40%',
+            padding: '1% 0 1% 0',
             display: 'flex',
-            background: 'rgba(0, 171, 191, 0.5)',
-            flexDirection: 'column',
-            alignItems: isMobile ? '' : 'center',
-            justifyContent: 'center',
-            margin: isMobile ? '8%' : '3%',
-            padding: isMobile ? '5%' : '1%',
-            letterSpacing: '0.1rem',
-            wordSpacing: '0.2rem',
-            textAlign: 'center',
-            minHeight: isMobile ? 'auto' : 920,
-          }}
-        >
-          <h2
-            style={{
-              textAlign: isMobile ? 'left' : 'center',
-              fontSize: '2rem',
-            }}
-          >
-            Why Applicate?
-          </h2>
-          <p
-            style={{
-              padding: isMobile ? '0 1% ' : '0 5%',
-              textAlign: isMobile ? 'left' : 'center',
-              fontSize: isMobile ? '1.2rem' : '1.8rem',
-            }}
-          >
-            Our platform offers a variety of features that make it easy for you
-            to work with your team. We've designed Applicate to be intuitive and
-            easy to use, so you can focus on what matters most - your project.
-            It's also designed to be accessible from any device, so you can work
-            from whereever suits you. Applicate is securely designed to priotise
-            your privacy and data integrity, so you can work with confidence
-            knowing that your work environment is in good hands. Some key
-            features you'll find include:
-          </p>
-          <ul
-            style={{
-              textAlign: 'left',
-              fontSize: isMobile ? '1.2rem' : '1.8rem',
-            }}
-          >
-            <li>Rich text editing</li>
-            <li>A variety of format options</li>
-            <li>Real-time collaborative editing</li>
-            <li>Accessibility from any device</li>
-            <li>Automatic saving</li>
-          </ul>
-        </div>
-        <div
-          style={{
-            borderRadius: 30,
-            boxShadow: '0 0 20px 10px rgba(73, 90, 92, 1)',
-            maxWidth: isMobile ? '90vw' : '40%',
-            background: 'rgba(73, 90, 92, 0.5)',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            flexDirection: isMobile ? 'column' : 'row',
             color: 'white',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: isMobile ? '' : 'center',
-            justifyContent: 'center',
-            margin: isMobile ? '8%' : '3%',
-            padding: isMobile ? '5%' : '1%',
-            letterSpacing: '0.1rem',
-            wordSpacing: '0.2rem',
-            textAlign: 'center',
-            minHeight: isMobile ? 'auto' : 920,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
           }}
         >
-          <h2
+          <div
             style={{
-              textAlign: isMobile ? 'left' : 'center',
-              fontSize: '2rem',
+              borderRadius: 30,
+              boxShadow: '0 0 20px 10px rgba(0, 171, 191, 1)',
+              background: 'rgba(0, 171, 191, 0.9)',
+              maxWidth: '90vw',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              margin: isMobile ? '8%' : '3%',
+              padding: isMobile ? '5%' : '2.8%',
+              letterSpacing: '0.1rem',
+              wordSpacing: '0.2rem',
+              minHeight: isMobile ? '' : 600,
             }}
           >
-            How Applicate works
-          </h2>
-          <p
+            <h2
+              style={{
+                textAlign: 'left',
+                fontSize: isMobile ? '16pt' : '18pt',
+              }}
+            >
+              Why Applicate?
+            </h2>
+            <p
+              style={{
+                textAlign: 'left',
+                fontSize: isMobile ? '12pt' : '15pt',
+                minWidth: isMobile ? '80vw' : '40vw',
+              }}
+            >
+              At the core of Applicate's design is the fundamental concept of
+              seperating the work environment from planning and documenting. Our
+              platform offers a core arsenal of formatting and styling options
+              that are essential for these tasks. We've packaged the most
+              recognisable options to be available in a minimal, intuitive
+              interface. Applicate is designed to be easy to use and accessible
+              from any device, so you can focus on what matters most, your
+              project. Some key features you'll find include:
+            </p>
+            <ul
+              style={{
+                textAlign: 'left',
+                fontSize: isMobile ? '12pt' : '15pt',
+              }}
+            >
+              <li>Rich text editing</li>
+              <li>Essential format options</li>
+              <li>Real-time collaboration</li>
+              <li>Accessibility from any device</li>
+              <li>Automatic saving</li>
+            </ul>
+          </div>
+          <div
             style={{
-              padding: isMobile ? '0 1% ' : '0 5%',
-              textAlign: isMobile ? 'left' : 'center',
-              fontSize: isMobile ? '1.2rem' : '1.8rem',
+              borderRadius: 30,
+              boxShadow: '0 0 20px 10px rgba(73, 90, 92, 1)',
+              background: 'rgba(73, 90, 92, 0.9)',
+              maxWidth: '90vw',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              margin: isMobile ? '8%' : '3%',
+              padding: isMobile ? '5%' : '2.8%',
+              letterSpacing: '0.1rem',
+              wordSpacing: '0.2rem',
+              minHeight: isMobile ? '' : 600,
             }}
           >
-            Applicate is designed to be intuitive and easy to use. Once you've
-            signed up for an account, you'll be able to create a new document
-            and invite your team members to collaborate with you. You'll be able
-            to work on your project in real-time, and your team members will be
-            able to see your changes as you make them. You'll also be able to
-            see your team members' changes as they make them.
-            <br />
-            <br />
-            Your data is stored on our server, so there's no need to worry about
-            losing your work. We've included autosave functionality, in addition
-            to a traditional save button - You can never be too sure. You can
-            also download your document as a PDF, so you can share it with your
-            team members or anyone else.
-          </p>
+            <h2
+              style={{
+                textAlign: 'left',
+                fontSize: isMobile ? '16pt' : '18pt',
+              }}
+            >
+              How Applicate works
+            </h2>
+            <p
+              style={{
+                textAlign: 'left',
+                fontSize: isMobile ? '12pt' : '15pt',
+                minWidth: isMobile ? '80vw' : '40vw',
+              }}
+            >
+              Applicate is a MERN stack (MongoDB, Express, React, Node)
+              application. It harnesses the Tiptapjs library to deliver a
+              simplified alternative to most commercial text editors, while
+              still maintaining the core functionality users will expect. Your
+              data is stored in our database hosted on MongoDB Atlas, so there's
+              no need to worry about losing your work. This allows you to adopt
+              a set-and-forget approach to your project planning and
+              documentation. Forget about digging around on your desktop or
+              cloud drive for your planning and documentation files. Save those
+              environments for your professional work. Applicate is designed to
+              be a simple, intuitive tool that you can use to plan and document
+              your project, and then forget about it until you need it again.
+            </p>
+          </div>
         </div>
       </section>
       <section
@@ -217,7 +261,9 @@ const LoginPage = () => {
           height: 100,
         }}
       >
-        <SiteFooter />
+        <div>
+          <SiteFooter />
+        </div>
       </section>
     </div>
   );

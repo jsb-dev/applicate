@@ -4,6 +4,8 @@ import StyledButton from '../styled/formButtons';
 
 const LoginButton = ({ email, password }) => {
   let isMobile = useMediaQuery('(max-width:480px)');
+  let isTablet = useMediaQuery('(max-width:960px)');
+
   const handleLogin = () => {
     fetch('/account/login', {
       method: 'POST',
@@ -36,7 +38,10 @@ const LoginButton = ({ email, password }) => {
       variant="contained"
       color="primary"
       onClick={handleLogin}
-      style={{ width: isMobile ? '100%' : '150%' }}
+      style={{
+        width: isMobile ? '120%' : isTablet ? '130%' : '150%',
+        borderRadius: 15,
+      }}
     >
       Log in
     </StyledButton>

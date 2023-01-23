@@ -1,20 +1,40 @@
-import '../styles.scss';
-import React from 'react';
-import { useState } from 'react';
+import './styles.scss';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Menu from '@mui/material/Menu';
-import BoldIcon from '../../../assets/icons/bold.png';
-import ItalicIcon from '../../../assets/icons/italic.png';
-import StrikethroughIcon from '../../../assets/icons/strikethrough.png';
-import CodeIcon from '../../../assets/icons/code.png';
-import ClearStylesIcon from '../../../assets/icons/clearStyles.png';
-import BulletListIcon from '../../../assets/icons/bulletList.png';
-import OrderedListIcon from '../../../assets/icons/orderedList.png';
-import BlockQuoteIcon from '../../../assets/icons/blockQuote.png';
-import ClearFormatIcon from '../../../assets/icons/clearFormat.png';
-import HorizontalRuleIcon from '../../../assets/icons/horizontalRule.png';
-import HardBreakIcon from '../../../assets/icons/hardBreak.png';
-import UndoIcon from '../../../assets/icons/undo.png';
-import RedoIcon from '../../../assets/icons/redo.png';
+import BoldIcon from '../../assets/icons/bold.png';
+import ItalicIcon from '../../assets/icons/italic.png';
+import StrikethroughIcon from '../../assets/icons/strikethrough.png';
+import CodeIcon from '../../assets/icons/code.png';
+import ClearStylesIcon from '../../assets/icons/clearStyles.png';
+import HeaderSizeIcon from '../../assets/icons/heading.png';
+import BulletListIcon from '../../assets/icons/bulletList.png';
+import OrderedListIcon from '../../assets/icons/orderedList.png';
+import BlockQuoteIcon from '../../assets/icons/blockQuote.png';
+import ClearFormatIcon from '../../assets/icons/clearFormat.png';
+import HorizontalRuleIcon from '../../assets/icons/horizontalRule.png';
+import HardBreakIcon from '../../assets/icons/hardBreak.png';
+import UndoIcon from '../../assets/icons/undo.png';
+import RedoIcon from '../../assets/icons/redo.png';
+import ExitIcon from '../../assets/icons/exit.png';
+
+function BackToDashboardButton() {
+  return (
+    <Link to="/dashboard">
+      <button
+        style={{
+          backgroundImage: `url(${ExitIcon})`,
+          backgroundSize: '70%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          width: 30,
+          height: 30,
+        }}
+      ></button>
+    </Link>
+  );
+}
 
 const useMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -39,6 +59,9 @@ const menuStyles = {
 const MenuBar = ({ editor }) => {
   const stylesMenu = useMenu();
   const formatMenu = useMenu();
+  const headerSizeMenu = useMenu();
+
+  let isMobile = useMediaQuery('(max-width:960px)');
 
   if (!editor) {
     return null;
@@ -104,6 +127,40 @@ const MenuBar = ({ editor }) => {
     },
   ];
 
+  const headerSizeItems = [
+    {
+      title: '14pt',
+      action: editor.chain().focus().toggleHeading({ level: 6 }),
+      active: editor.isActive('heading', { level: 6 }),
+    },
+    {
+      title: '16pt',
+      action: editor.chain().focus().toggleHeading({ level: 5 }),
+      active: editor.isActive('heading', { level: 5 }),
+    },
+    {
+      title: '18pt',
+      action: editor.chain().focus().toggleHeading({ level: 4 }),
+      active: editor.isActive('heading', { level: 4 }),
+    },
+    {
+      title: '20pt',
+
+      action: editor.chain().focus().toggleHeading({ level: 3 }),
+      active: editor.isActive('heading', { level: 3 }),
+    },
+    {
+      title: '22pt',
+      action: editor.chain().focus().toggleHeading({ level: 2 }),
+      active: editor.isActive('heading', { level: 2 }),
+    },
+    {
+      title: '24pt',
+      action: editor.chain().focus().toggleHeading({ level: 1 }),
+      active: editor.isActive('heading', { level: 1 }),
+    },
+  ];
+
   return (
     <>
       <div
@@ -114,8 +171,8 @@ const MenuBar = ({ editor }) => {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: '100%',
-          height: 'fit-content',
+          width: isMobile ? '100%' : 'calc((100vw - 8.3in) / 2)',
+          height: isMobile ? 'fit-content' : '100%',
           zIndex: 100,
         }}
       >
@@ -128,6 +185,7 @@ const MenuBar = ({ editor }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            flexDirection: isMobile ? 'row' : 'column',
           }}
         >
           <button
@@ -194,6 +252,35 @@ const MenuBar = ({ editor }) => {
             </Menu>
           </button>
           <button
+            onClick={headerSizeMenu.handleOpen}
+            style={{
+              backgroundImage: `url(${HeaderSizeIcon})`,
+            }}
+          >
+            <Menu
+              id="styles-menu"
+              anchorEl={headerSizeMenu.anchorEl}
+              keepMounted
+              open={Boolean(headerSizeMenu.anchorEl)}
+              onClose={headerSizeMenu.handleClose}
+              PaperProps={{
+                style: menuStyles,
+              }}
+            >
+              {headerSizeItems.map((headerSizeItem, index) => (
+                <button
+                  key={index}
+                  onClick={() => headerSizeItem.action.run()}
+                  disabled={headerSizeItem.disabled}
+                  className={headerSizeItem.active ? 'is-active' : ''}
+                  title={headerSizeItem.title}
+                >
+                  {headerSizeItem.title}
+                </button>
+              ))}
+            </Menu>
+          </button>
+          <button
             onClick={() => editor.chain().focus().setHorizontalRule().run()}
             style={{
               backgroundImage: `url(${HorizontalRuleIcon})`,
@@ -223,6 +310,7 @@ const MenuBar = ({ editor }) => {
               backgroundSize: '60%',
             }}
           ></button>
+          <BackToDashboardButton />
         </div>
       </div>
     </>
@@ -230,3 +318,44 @@ const MenuBar = ({ editor }) => {
 };
 
 export default MenuBar;
+
+/*
+
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+        className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+      >
+        h1
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+        className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
+      >
+        h2
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+        className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}
+      >
+        h3
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
+        className={editor.isActive('heading', { level: 4 }) ? 'is-active' : ''}
+      >
+        h4
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
+        className={editor.isActive('heading', { level: 5 }) ? 'is-active' : ''}
+      >
+        h5
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
+        className={editor.isActive('heading', { level: 6 }) ? 'is-active' : ''}
+      >
+        h6
+      </button>
+
+*/

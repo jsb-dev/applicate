@@ -4,6 +4,8 @@ import StyledButton from '../styled/formButtons';
 
 const SignupButton = ({ email, password }) => {
   let isMobile = useMediaQuery('(max-width:480px)');
+  let isTablet = useMediaQuery('(max-width:960px)');
+
   const handleSignup = () => {
     fetch('/account/signup', {
       method: 'POST',
@@ -36,7 +38,10 @@ const SignupButton = ({ email, password }) => {
       variant="contained"
       color="primary"
       onClick={handleSignup}
-      style={{ width: isMobile ? '100%' : '150%' }}
+      style={{
+        width: isMobile ? '120%' : isTablet ? '130%' : '150%',
+        borderRadius: 15,
+      }}
     >
       Sign up
     </StyledButton>

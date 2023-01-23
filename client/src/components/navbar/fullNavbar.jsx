@@ -51,7 +51,7 @@ function FullNavbar() {
               src={LogoImg}
               alt="The applicate Logo"
               style={{
-                height: 'calc(100vh / 15)',
+                height: 'calc(100vh / 11)',
               }}
             />
           </BarTypography>
