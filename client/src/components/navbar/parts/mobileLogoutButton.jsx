@@ -10,7 +10,7 @@ const StyledLogoutButton = styled(Button)({
   boxShadow: '0 0 15px 2px rgba(255, 255, 255, .8)',
   width: '80%',
   height: 50,
-  margin: '10%',
+  margin: '6%',
   '&:hover': {
     color: '#ffffff',
     boxShadow: '0 0 5px 4px rgba(255, 255, 255, .4)',

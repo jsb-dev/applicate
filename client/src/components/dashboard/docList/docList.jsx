@@ -86,10 +86,10 @@ function DocList({ userId }) {
             <Grid container>
               <Grid
                 item
-                xs={5}
-                sm={4}
-                lg={3}
-                xl={2}
+                xs={6}
+                sm={6}
+                lg={4}
+                xl={4}
                 style={{
                   padding: isMobile ? 10 : 20,
                 }}
@@ -99,10 +99,10 @@ function DocList({ userId }) {
               {documents.map((document) => (
                 <Grid
                   item
-                  xs={5}
-                  sm={4}
-                  lg={3}
-                  xl={2}
+                  xs={6}
+                  sm={6}
+                  lg={4}
+                  xl={4}
                   key={document.id || document.documentId}
                   style={{
                     padding: isMobile ? 10 : 20,

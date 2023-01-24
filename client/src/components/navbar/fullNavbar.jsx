@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import checkAuth from '../../utils/checkAuth';
 import LogoutButton from './parts/logoutButton.jsx';
 import LinkButton from './parts/linkButton.jsx';
 import LogoImg from '../../assets/images/applicateLogo.png';
@@ -38,17 +39,15 @@ const LinksTypography = styled(Typography)({
 });
 
 function FullNavbar() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const CheckSignedIn = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const signedId = searchParams.get('userId');
-      if (signedId) {
-        setIsSignedIn(true);
-      }
+    const check = async () => {
+      await checkAuth().then((auth) => {
+        setIsAuthenticated(auth);
+      });
     };
-    CheckSignedIn();
+    check();
   }, []);
 
   return (
@@ -71,6 +70,11 @@ function FullNavbar() {
             />
           </BarTypography>
           <LinksTypography>
+            {isAuthenticated ? (
+              <PageLink to="/dashboard">
+                <LinkButton>Dashboard</LinkButton>
+              </PageLink>
+            ) : null}
             <PageLink to="/">
               <LinkButton>Home</LinkButton>
             </PageLink>
@@ -80,7 +84,7 @@ function FullNavbar() {
             <PageLink to="/contact">
               <LinkButton>Contact</LinkButton>
             </PageLink>
-            {isSignedIn ? <LogoutButton /> : null}
+            {isAuthenticated ? <LogoutButton /> : null}
           </LinksTypography>
         </Toolbar>
       </StyledAppBar>

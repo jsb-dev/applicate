@@ -25,6 +25,7 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
     borderRadius: 20,
     border: 'solid 2px #2e393b',
     boxShadow: '0px 0px 10px 4px #2e393b',
+    paddingTop: '5%',
     '&:hover': {
       boxShadow: '0px 0px 12px 5px #fff',
       border: 'solid 2px #fff',
@@ -37,10 +38,11 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
     fontFamily: 'Raleway, sans-serif',
     letterSpacing: '0.1rem',
     fontSize: isMobile ? '12pt' : '15pt',
+    width: '95%',
   });
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.target);
   };
 
   const handleClose = () => {
@@ -48,109 +50,107 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
   };
 
   return (
-    <StyledCard>
-      <div
+    <>
+      <IconButton
+        aria-label="more"
+        aria-controls="long-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
         style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          backgroundColor: 'transparent',
+          position: 'absolute',
+          marginLeft: 'min(1vw, 1%)',
+          marginTop: 'min(1vw, 1%)',
         }}
       >
-        {/* eslint-disable-next-line */}
+        <MoreVertIcon fontSize="large" />
+      </IconButton>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        PaperProps={{
+          style: {
+            borderRadius: 20,
+            boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
+            padding: '0 2%',
+          },
+        }}
+      >
+        <p>Author: {author}</p>
+        <p>Date Created: {dateCreated}</p>
+      </Menu>
+      <StyledCard>
+        <div>
+          {/* eslint-disable-next-line */}
+          <a
+            href={href}
+            style={{
+              textDecoration: 'none',
+              width: '100%',
+            }}
+          ></a>
+          <div
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginRight: '5%',
+              marginTop: '5%',
+            }}
+          ></div>
+        </div>
         <a
           href={href}
           style={{
             textDecoration: 'none',
-            width: '100%',
-          }}
-        ></a>
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginRight: '5%',
-            marginTop: '5%',
           }}
         >
-          <IconButton
-            aria-label="more"
-            aria-controls="long-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <MoreVertIcon fontSize="large" />
-          </IconButton>
-        </div>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          PaperProps={{
-            style: {
-              padding: 10,
-              borderRadius: 20,
-              boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
-              display: 'block',
-            },
-          }}
-        >
-          <p>Author: {author}</p>
-          <p>Date Created: {dateCreated}</p>
-        </Menu>
-      </div>
-      <a
-        href={href}
-        style={{
-          textDecoration: 'none',
-        }}
-      >
-        <CardContent
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <div
+          <CardContent
             style={{
               display: 'flex',
-              justifyContent: 'space-around',
-              background: 'white',
-              padding: '10%',
-              borderRadius: 20,
+              flexDirection: 'column',
+              alignItems: 'center',
             }}
           >
-            <Tooltip title="Click to access this document">
-              <img
-                src={DocIcon}
-                alt="Document icon"
-                style={{
-                  display: 'block',
-                  width: '30%',
-                }}
-              />
-            </Tooltip>
-            <Tooltip title="Only one person has access to this file">
-              <img
-                src={UserIcon}
-                alt="User icon"
-                style={{ display: 'block', width: '30%' }}
-              />
-            </Tooltip>
-          </div>
-          <StyledTypography variant="h5" component="h2">
-            <p>
-              <b>{fileName}</b>
-            </p>
-            <p>Modified: {dateModified}</p>
-          </StyledTypography>
-        </CardContent>
-      </a>
-    </StyledCard>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                background: 'white',
+                padding: '10%',
+                borderRadius: 20,
+              }}
+            >
+              <Tooltip title="Click to access this document">
+                <img
+                  src={DocIcon}
+                  alt="Document icon"
+                  style={{
+                    display: 'block',
+                    width: '30%',
+                  }}
+                />
+              </Tooltip>
+              <Tooltip title="Only one person has access to this file">
+                <img
+                  src={UserIcon}
+                  alt="User icon"
+                  style={{ display: 'block', width: '30%' }}
+                />
+              </Tooltip>
+            </div>
+            <StyledTypography variant="h5" component="h2">
+              <p>
+                <b>{fileName}</b>
+              </p>
+              <p>Modified: {dateModified}</p>
+            </StyledTypography>
+          </CardContent>
+        </a>
+      </StyledCard>
+    </>
   );
 };
 

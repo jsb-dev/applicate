@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, IconButton, Drawer } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import checkAuth from '../../utils/checkAuth';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import LogoImg from '../../assets/images/applicateLogo.png';
@@ -46,17 +47,15 @@ function MobileNavbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [transformValue, setTransformValue] = useState('translateY(0)');
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const CheckSignedIn = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      const signedId = searchParams.get('userId');
-      if (signedId) {
-        setIsSignedIn(true);
-      }
+    const check = async () => {
+      await checkAuth().then((auth) => {
+        setIsAuthenticated(auth);
+      });
     };
-    CheckSignedIn();
+    check();
 
     const handleScroll = () => {
       const currentScrollTop = window.scrollY;
@@ -120,8 +119,14 @@ function MobileNavbar() {
           <div
             style={{
               marginTop: 'calc(100vh / 20)',
+              paddingLeft: '10%',
             }}
           >
+            {isAuthenticated ? (
+              <PageLink to="/dashboard">
+                <MobileLinkButton>Dashboard</MobileLinkButton>
+              </PageLink>
+            ) : null}
             <PageLink to="/">
               <MobileLinkButton>Home</MobileLinkButton>
             </PageLink>
@@ -131,7 +136,7 @@ function MobileNavbar() {
             <PageLink to="/contact">
               <MobileLinkButton>Contact</MobileLinkButton>
             </PageLink>
-            {isSignedIn ? <MobileLogoutButton /> : null}
+            {isAuthenticated ? <MobileLogoutButton /> : null}
           </div>
         </div>
       </Drawer>
