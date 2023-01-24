@@ -62,17 +62,27 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
           href={href}
           style={{
             textDecoration: 'none',
-            width: '90%',
+            width: '100%',
           }}
         ></a>
-        <IconButton
-          aria-label="more"
-          aria-controls="long-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginRight: '5%',
+            marginTop: '5%',
+          }}
         >
-          <MoreVertIcon fontSize="large" />
-        </IconButton>
+          <IconButton
+            aria-label="more"
+            aria-controls="long-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            <MoreVertIcon fontSize="large" />
+          </IconButton>
+        </div>
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}

@@ -17,9 +17,11 @@ const StyledButton = styled(Button)({
   height: '100%',
   border: 'solid 2px #2e393b',
   boxShadow: '0px 0px 10px 4px #2e393b',
+  width: '100%',
   '&:hover': {
     boxShadow: '0px 0px 12px 5px #fff',
     border: 'solid 2px #fff',
+    transform: 'scale(1)',
     transition: 'all 0.4s ease-in-out',
   },
 });
@@ -69,7 +71,7 @@ function NewDocButton({ addDocument }) {
             documentId: data.documentId,
           });
         } else {
-          throw new Error('Could not create document, please try again.');
+          setError('Could not create document, please try again.');
         }
       })
       .catch((error) => {
@@ -78,7 +80,11 @@ function NewDocButton({ addDocument }) {
   };
 
   return (
-    <>
+    <div
+      style={{
+        height: '100%',
+      }}
+    >
       <StyledButton onClick={handleShow}>
         <div
           style={{
@@ -86,9 +92,9 @@ function NewDocButton({ addDocument }) {
             justifyContent: 'center',
             alignItems: 'center',
             background: 'white',
-            height: '90%',
             width: '90%',
             borderRadius: 20,
+            height: '90%',
           }}
         >
           <Tooltip title="Create a new document">
@@ -129,7 +135,7 @@ function NewDocButton({ addDocument }) {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 }
 

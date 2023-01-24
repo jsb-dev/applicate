@@ -6,6 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import LogoImg from '../../assets/images/applicateLogo.png';
 import MobileLinkButton from './parts/mobileLinkButton.jsx';
+import MobileLogoutButton from './parts/mobileLogoutButton.jsx';
 
 const StyledAppBar = styled(AppBar)({
   background: 'linear-gradient(45deg, #2e393b 30%, #0dc9de 90%)',
@@ -45,8 +46,18 @@ function MobileNavbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [transformValue, setTransformValue] = useState('translateY(0)');
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
+    const CheckSignedIn = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const signedId = searchParams.get('userId');
+      if (signedId) {
+        setIsSignedIn(true);
+      }
+    };
+    CheckSignedIn();
+
     const handleScroll = () => {
       const currentScrollTop = window.scrollY;
       if (currentScrollTop > lastScrollTop) {
@@ -101,7 +112,7 @@ function MobileNavbar() {
         >
           <IconButton
             onClick={toggleDrawer(false)}
-            style={{ position: 'absolute', right: 0, top: 0, color: 'white' }}
+            style={{ position: 'absolute', right: 15, top: 15, color: 'white' }}
           >
             <CloseIcon fontSize="large" />
           </IconButton>
@@ -120,9 +131,7 @@ function MobileNavbar() {
             <PageLink to="/contact">
               <MobileLinkButton>Contact</MobileLinkButton>
             </PageLink>
-            <PageLink to="/">
-              <MobileLinkButton>Login / Signup</MobileLinkButton>
-            </PageLink>
+            {isSignedIn ? <MobileLogoutButton /> : null}
           </div>
         </div>
       </Drawer>

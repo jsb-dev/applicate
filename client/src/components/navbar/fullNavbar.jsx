@@ -1,6 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import LogoutButton from './parts/logoutButton.jsx';
 import LinkButton from './parts/linkButton.jsx';
 import LogoImg from '../../assets/images/applicateLogo.png';
 
@@ -36,6 +38,19 @@ const LinksTypography = styled(Typography)({
 });
 
 function FullNavbar() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    const CheckSignedIn = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const signedId = searchParams.get('userId');
+      if (signedId) {
+        setIsSignedIn(true);
+      }
+    };
+    CheckSignedIn();
+  }, []);
+
   return (
     <div>
       <StyledAppBar
@@ -65,9 +80,7 @@ function FullNavbar() {
             <PageLink to="/contact">
               <LinkButton>Contact</LinkButton>
             </PageLink>
-            <PageLink to="/">
-              <LinkButton>Login / Signup</LinkButton>
-            </PageLink>
+            {isSignedIn ? <LogoutButton /> : null}
           </LinksTypography>
         </Toolbar>
       </StyledAppBar>

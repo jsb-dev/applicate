@@ -25,6 +25,7 @@ const LoginButton = ({ email, password }) => {
         const userId = data.user._id;
         const searchParams = new URLSearchParams();
         searchParams.set('userId', userId);
+        localStorage.setItem('userId', userId);
         const href = `/dashboard?${searchParams.toString()}`;
         window.location.href = href;
       })

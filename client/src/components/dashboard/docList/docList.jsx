@@ -10,13 +10,11 @@ function DocList({ userId }) {
   const isMobile = useMediaQuery('(max-width: 820px)');
 
   const StyledGrid = Styled(Grid)({
-    boxShadow: '0px 0px 30px 2px #0dc9de',
     background: '#0dc9de',
-    borderRadius: 20,
-    maxWidth: '95vw',
-    minHeight: '50vh',
     margin: 0,
-    padding: isMobile ? 0 : 15,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    minHeight: '50vh',
   });
 
   useEffect(() => {
@@ -49,59 +47,81 @@ function DocList({ userId }) {
   };
 
   return (
-    <div
-      style={{
-        margin: '5% 0 5% 0',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <StyledGrid container spacing={4}>
-        <Grid
-          container
+    <>
+      <div
+        style={{
+          margin: '5%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          boxShadow: '0px 0px 30px 2px #0dc9de',
+          borderRadius: 20,
+          maxWidth: '95vw',
+        }}
+      >
+        <div
           style={{
+            backgroundColor: '#182021',
             display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            width: '100%',
+            height: '15vh',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
           }}
         >
-          <Grid
-            item
-            xs={6}
-            sm={4}
-            lg={3}
-            xl={2}
-            style={{
-              padding: isMobile ? 5 : 20,
-            }}
-          >
-            <NewDocButton addDocument={addDocument} />
-          </Grid>
-          {documents.map((document) => (
-            <Grid
-              item
-              xs={6}
-              sm={4}
-              lg={3}
-              xl={2}
-              key={document.id || document.documentId}
-              style={{
-                padding: isMobile ? 5 : 20,
-              }}
-            >
-              <DocLink
-                docId={document.id || document.documentId}
-                fileName={document.fileName}
-                author={document.author}
-                dateCreated={document.dateCreated}
-                dateModified={document.dateModified}
-              />
+          <button>B1</button>
+          <button>B2</button>
+          <button>B3</button>
+          <button>B4</button>
+        </div>
+        <div
+          style={{
+            width: '100%',
+          }}
+        >
+          <StyledGrid container>
+            <Grid container>
+              <Grid
+                item
+                xs={5}
+                sm={4}
+                lg={3}
+                xl={2}
+                style={{
+                  padding: isMobile ? 10 : 20,
+                }}
+              >
+                <NewDocButton addDocument={addDocument} />
+              </Grid>
+              {documents.map((document) => (
+                <Grid
+                  item
+                  xs={5}
+                  sm={4}
+                  lg={3}
+                  xl={2}
+                  key={document.id || document.documentId}
+                  style={{
+                    padding: isMobile ? 10 : 20,
+                  }}
+                >
+                  <DocLink
+                    docId={document.id || document.documentId}
+                    fileName={document.fileName}
+                    author={document.author}
+                    dateCreated={document.dateCreated}
+                    dateModified={document.dateModified}
+                  />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </StyledGrid>
-    </div>
+          </StyledGrid>
+        </div>
+      </div>
+    </>
   );
 }
 

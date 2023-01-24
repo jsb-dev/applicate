@@ -4,7 +4,7 @@ import StarterKit from '@tiptap/starter-kit';
 import React, { useRef } from 'react';
 import MenuBar from './menuBar.jsx';
 
-const TextEditor = ({ content, docId }) => {
+const RichTextEditor = ({ content, docId }) => {
   const editorRef = useRef(null);
 
   const editor = new Editor({
@@ -55,4 +55,4 @@ const TextEditor = ({ content, docId }) => {
   );
 };
 
-export default TextEditor;
+export default RichTextEditor;

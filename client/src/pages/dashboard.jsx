@@ -5,35 +5,75 @@ import DocList from '../components/dashboard/docList/docList.jsx';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import FullNavbar from '../components/navbar/fullNavbar.jsx';
 import MobileNavbar from '../components/navbar/mobileNavbar.jsx';
-import LogoutButton from '../components/dashboard/logoutButton.jsx';
+import LoadingSpinner from '../components/global/loadingSpinner.jsx';
 
 const Dashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const ismobile = useMediaQuery('(max-width: 820px)');
+  const isMobile = useMediaQuery('(max-width: 820px)');
+  const searchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
-    checkAuth().then((auth) => {
-      setIsAuthenticated(auth);
-    });
-
-    const searchParams = new URLSearchParams(window.location.search);
+    const check = async () => {
+      await checkAuth().then((auth) => {
+        setIsAuthenticated(auth);
+        setIsLoading(false);
+      });
+    };
+    check();
     setUserId(searchParams.get('userId'));
   }, []);
 
+  if (
+    searchParams.get('userId') === null ||
+    searchParams.get('userId') === '' ||
+    searchParams.get('userId') === undefined
+  ) {
+    try {
+      const localStorageUserId = localStorage.getItem('userId');
+      if (localStorageUserId !== null || localStorageUserId !== undefined) {
+        return (window.location.href = `/dashboard?userId=${localStorageUserId}`);
+      }
+    } catch {
+      return (window.location.href = '/');
+    }
+  }
+
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
-    <div>
+    <>
       {isAuthenticated ? (
         <div>
-          {ismobile ? <MobileNavbar /> : <FullNavbar />}
-          <LogoutButton />
-          <DocList userId={userId} />
+          {isMobile ? <MobileNavbar /> : <FullNavbar />}
+          <div
+            style={{
+              marginTop: isMobile ? '15vh' : '',
+            }}
+          >
+            <DocList userId={userId} />
+          </div>
         </div>
       ) : (
         <LoginPage />
       )}
-    </div>
+    </>
   );
 };
 

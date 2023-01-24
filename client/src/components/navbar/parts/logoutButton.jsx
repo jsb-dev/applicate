@@ -1,19 +1,21 @@
 import { Button } from '@mui/material';
-import Styled from '@emotion/styled';
+import { styled } from '@mui/material/styles';
 
-const StyledButton = Styled(Button)({
-  background: 'linear-gradient(45deg, #39d0ff 30%, #00aec2 90%)',
-  border: 0,
-  borderRadius: 6,
-  boxShadow: '2px 4px 8px 0px rgba(40, 0, 0, .6)',
-  color: '#ffffff',
+const StyledLogoutButton = styled(Button)({
+  width: 150,
+  background: '#0dc9de',
+  color: '#263436',
+  fontSize: '1rem',
   fontWeight: 'bold',
-  height: 48,
-  padding: '0 30px',
+  borderRadius: 15,
+  boxShadow: '0 0 8px 2px rgba(0, 0, 0, .6)',
   '&:hover': {
-    background: '#00c486',
     color: '#ffffff',
-    boxShadow: '2px 4px 8px 0px rgba(40, 0, 0, .6)',
+    boxShadow: '0 0 5px 4px rgba(255, 255, 255, .4)',
+    transform: 'scale(1.2)',
+    background: '#2f5b61',
+    transition:
+      'transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out',
   },
 });
 
@@ -43,9 +45,9 @@ function LogoutButton() {
 
   return (
     <>
-      <StyledButton variant="contained" onClick={logout}>
+      <StyledLogoutButton variant="contained" onClick={logout}>
         Log out
-      </StyledButton>
+      </StyledLogoutButton>
     </>
   );
 }
