@@ -10,8 +10,16 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Tooltip } from '@mui/material';
 import DocIcon from '../../../assets/icons/docs.png';
 import UserIcon from '../../../assets/icons/user.png';
+import DeleteDocButton from './deleteDocButton.jsx';
 
-const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
+const DocLink = ({
+  docId,
+  fileName,
+  author,
+  dateCreated,
+  dateModified,
+  setDocuments,
+}) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const searchParams = new URLSearchParams();
@@ -26,6 +34,7 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
     border: 'solid 2px #2e393b',
     boxShadow: '0px 0px 10px 4px #2e393b',
     paddingTop: '5%',
+    height: '100%',
     '&:hover': {
       boxShadow: '0px 0px 12px 5px #fff',
       border: 'solid 2px #fff',
@@ -43,6 +52,7 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
 
   const handleClick = (event) => {
     setAnchorEl(event.target);
+    console.log(docId, fileName, author);
   };
 
   const handleClose = () => {
@@ -74,12 +84,20 @@ const DocLink = ({ docId, fileName, author, dateCreated, dateModified }) => {
           style: {
             borderRadius: 20,
             boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
-            padding: '0 2%',
+            padding: '0 2% 1% 2%',
+            width: 'fit-content',
+            overflow: 'hidden',
           },
         }}
       >
         <p>Author: {author}</p>
         <p>Date Created: {dateCreated}</p>
+        <DeleteDocButton
+          docId={docId}
+          fileName={fileName}
+          author={author}
+          setDocuments={setDocuments}
+        />
       </Menu>
       <StyledCard>
         <div>

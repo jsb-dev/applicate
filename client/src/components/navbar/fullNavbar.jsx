@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -41,12 +41,13 @@ const LinksTypography = styled(Typography)({
 function FullNavbar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const check = async () => {
+    await checkAuth().then((auth) => {
+      setIsAuthenticated(auth);
+    });
+  };
+
   useEffect(() => {
-    const check = async () => {
-      await checkAuth().then((auth) => {
-        setIsAuthenticated(auth);
-      });
-    };
     check();
   }, []);
 

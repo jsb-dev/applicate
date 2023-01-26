@@ -77,11 +77,7 @@ function DocList({ userId }) {
           <button>B3</button>
           <button>B4</button>
         </div>
-        <div
-          style={{
-            width: '100%',
-          }}
-        >
+        <div>
           <StyledGrid container>
             <Grid container>
               <Grid
@@ -106,6 +102,9 @@ function DocList({ userId }) {
                   key={document.id || document.documentId}
                   style={{
                     padding: isMobile ? 10 : 20,
+                    paddingBottom: isMobile
+                      ? 'min(4.35vw, 4.25vh)'
+                      : 'min(4.6vw, 6.5vh)',
                   }}
                 >
                   <DocLink
@@ -114,6 +113,7 @@ function DocList({ userId }) {
                     author={document.author}
                     dateCreated={document.dateCreated}
                     dateModified={document.dateModified}
+                    setDocuments={setDocuments}
                   />
                 </Grid>
               ))}

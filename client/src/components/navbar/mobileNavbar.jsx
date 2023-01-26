@@ -49,14 +49,14 @@ function MobileNavbar() {
   const [transformValue, setTransformValue] = useState('translateY(0)');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    const check = async () => {
-      await checkAuth().then((auth) => {
-        setIsAuthenticated(auth);
-      });
-    };
-    check();
+  const check = async () => {
+    await checkAuth().then((auth) => {
+      setIsAuthenticated(auth);
+    });
+  };
 
+  useEffect(() => {
+    check();
     const handleScroll = () => {
       const currentScrollTop = window.scrollY;
       if (currentScrollTop > lastScrollTop) {
