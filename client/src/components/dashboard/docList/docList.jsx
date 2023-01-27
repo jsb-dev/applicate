@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import Styled from '@emotion/styled';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import NewDocButton from './newDocButton.jsx';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import DocLink from '../docLink/docLink.jsx';
 
 function DocList({ userId }) {
@@ -14,7 +14,8 @@ function DocList({ userId }) {
     margin: 0,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    minHeight: '50vh',
+    minHeight: 410,
+    width: '100%',
   });
 
   useEffect(() => {
@@ -72,26 +73,33 @@ function DocList({ userId }) {
             borderTopRightRadius: 20,
           }}
         >
-          <button>B1</button>
+          <NewDocButton addDocument={addDocument} />
           <button>B2</button>
           <button>B3</button>
           <button>B4</button>
         </div>
-        <div>
+        <div
+          style={{
+            width: '100%',
+          }}
+        >
           <StyledGrid container>
             <Grid container>
-              <Grid
-                item
-                xs={6}
-                sm={6}
-                lg={4}
-                xl={4}
-                style={{
-                  padding: isMobile ? 10 : 20,
-                }}
-              >
-                <NewDocButton addDocument={addDocument} />
-              </Grid>
+              {documents.length === 0 && (
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                    width: '100%',
+                    fontSize: isMobile ? '12pt' : '15pt',
+                    color: 'white',
+                  }}
+                >
+                  Your documents will appear here
+                </div>
+              )}
               {documents.map((document) => (
                 <Grid
                   item
@@ -102,9 +110,6 @@ function DocList({ userId }) {
                   key={document.id || document.documentId}
                   style={{
                     padding: isMobile ? 10 : 20,
-                    paddingBottom: isMobile
-                      ? 'min(4.35vw, 4.25vh)'
-                      : 'min(4.6vw, 6.5vh)',
                   }}
                 >
                   <DocLink

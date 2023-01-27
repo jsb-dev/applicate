@@ -11,6 +11,7 @@ import { Tooltip } from '@mui/material';
 import DocIcon from '../../../assets/icons/docs.png';
 import UserIcon from '../../../assets/icons/user.png';
 import DeleteDocButton from './deleteDocButton.jsx';
+import RenameDocButton from './renameDocButton.jsx';
 
 const DocLink = ({
   docId,
@@ -33,8 +34,9 @@ const DocLink = ({
     borderRadius: 20,
     border: 'solid 2px #2e393b',
     boxShadow: '0px 0px 10px 4px #2e393b',
-    paddingTop: '5%',
-    height: '100%',
+    width: '100%',
+    height: 375,
+    maxHeight: '70vw',
     '&:hover': {
       boxShadow: '0px 0px 12px 5px #fff',
       border: 'solid 2px #fff',
@@ -68,8 +70,10 @@ const DocLink = ({
         onClick={handleClick}
         style={{
           position: 'absolute',
-          marginLeft: 'min(1vw, 1%)',
-          marginTop: 'min(1vw, 1%)',
+          marginLeft: isMobile ? '2%' : 'min(1vw, 1%)',
+          marginTop: isMobile ? '2%' : 'min(1vw, 1%)',
+          backgroundColor: 'rgba(255,255,255,0.5)',
+          padding: '2%',
         }}
       >
         <MoreVertIcon fontSize="large" />
@@ -92,12 +96,26 @@ const DocLink = ({
       >
         <p>Author: {author}</p>
         <p>Date Created: {dateCreated}</p>
-        <DeleteDocButton
-          docId={docId}
-          fileName={fileName}
-          author={author}
-          setDocuments={setDocuments}
-        />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-around',
+            width: '100%',
+          }}
+        >
+          <DeleteDocButton
+            docId={docId}
+            fileName={fileName}
+            author={author}
+            setDocuments={setDocuments}
+          />
+          <RenameDocButton
+            docId={docId}
+            author={author}
+            fileName={fileName}
+            setDocuments={setDocuments}
+          />
+        </div>
       </Menu>
       <StyledCard>
         <div>
@@ -115,7 +133,7 @@ const DocLink = ({
               display: 'flex',
               justifyContent: 'flex-end',
               marginRight: '5%',
-              marginTop: '5%',
+              marginTop: isMobile ? '15%' : '5%',
             }}
           ></div>
         </div>
@@ -130,6 +148,7 @@ const DocLink = ({
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              padding: '5%',
             }}
           >
             <div
@@ -138,6 +157,7 @@ const DocLink = ({
                 justifyContent: 'space-around',
                 background: 'white',
                 padding: '10%',
+                marginTop: isMobile ? 'min(8%, 2vh)' : 'min(6vw, 6vh)',
                 borderRadius: 20,
               }}
             >

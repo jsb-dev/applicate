@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import styled from '@emotion/styled';
-import DeleteIcon from '../../../assets/icons/delete.png';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
 
-const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
+const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const StyledButton = styled(Button)({
-    backgroundColor: '#ff0000',
-    backgroundImage: `url(${DeleteIcon})`,
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
+    backgroundColor: '#0767de',
     borderRadius: 10,
     boxShadow: '0px 0px 4px 2px #171717',
     color: '#182021',
@@ -23,7 +20,7 @@ const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
     minHeight: 40,
     '&:hover': {
       transform: 'scale(1.1)',
-      backgroundColor: '#ff6969',
+      backgroundColor: '#4089e6',
       boxShadow: '0px 0px 4px 2px rgba(#171717, 0.2)',
       transition: 'all 0.3s ease',
     },
@@ -38,22 +35,27 @@ const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
 
   const handleClick = () => {
     setConfirmOpen(true);
-    console.log(docId, fileName, author);
   };
 
   const handleConfirm = async () => {
     setConfirmOpen(false);
+
+    const value = document.getElementById('file-name').value;
+
     try {
-      const response = await fetch('/document/delete', {
+      const response = await fetch('/document/rename', {
         method: 'POST',
-        body: JSON.stringify({ docId, author }),
+        body: JSON.stringify({ docId, author, value }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
+
       if (response.ok) {
         setDocuments((prevDocuments) =>
-          prevDocuments.filter((doc) => doc.id !== docId)
+          prevDocuments.map((document) =>
+            document._id === docId ? { ...document, fileName: value } : document
+          )
         );
       }
     } catch (error) {
@@ -74,18 +76,24 @@ const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Delete Document'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{'Rename Document'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete "{fileName}"?
+            Please enter a new name for "{fileName}"
           </DialogContentText>
+          <TextField
+            id="file-name"
+            label="New File Name"
+            margin="normal"
+            fullWidth
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel} color="primary">
-            No
+            Cancel
           </Button>
           <Button onClick={handleConfirm} color="primary" autoFocus>
-            Yes
+            Rename
           </Button>
         </DialogActions>
       </StyledDialog>
@@ -93,4 +101,4 @@ const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
   );
 };
 
-export default DeleteDocButton;
+export default RenameDocButton;

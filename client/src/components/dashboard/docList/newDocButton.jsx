@@ -13,11 +13,12 @@ import { Tooltip } from '@mui/material';
 import AddIcon from '../../../assets/icons/add.png';
 
 const StyledButton = styled(Button)({
-  borderRadius: 20,
-  height: '100%',
+  borderRadius: 200,
   border: 'solid 2px #2e393b',
-  boxShadow: '0px 0px 10px 4px #2e393b',
-  width: '100%',
+  boxShadow: '0px 0px 10px 4px rgba(255, 255, 255, 0.8)',
+  width: 70,
+  height: 70,
+  maxHeight: '70vw',
   '&:hover': {
     boxShadow: '0px 0px 12px 5px #fff',
     border: 'solid 2px #fff',
@@ -83,6 +84,10 @@ function NewDocButton({ addDocument }) {
     <div
       style={{
         height: '100%',
+        maxHeight: 'min(50vh, 50vw)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <StyledButton onClick={handleShow}>
@@ -92,9 +97,9 @@ function NewDocButton({ addDocument }) {
             justifyContent: 'center',
             alignItems: 'center',
             background: 'white',
-            width: '90%',
-            borderRadius: 20,
-            height: '90%',
+            width: '70%',
+            borderRadius: 200,
+            height: '70%',
           }}
         >
           <Tooltip title="Create a new document">
