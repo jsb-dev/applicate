@@ -117,9 +117,6 @@ function NewDocButton({ addDocument }) {
       <Dialog open={show} onClose={handleClose}>
         <DialogTitle>Enter a file name</DialogTitle>
         <DialogContent>
-          {error && (
-            <DialogContentText color="error">{error}</DialogContentText>
-          )}
           <TextField
             autoFocus
             margin="dense"
@@ -130,6 +127,9 @@ function NewDocButton({ addDocument }) {
             value={value}
             onChange={handleChange}
           />
+          {error && (
+            <DialogContentText color="error">{error}</DialogContentText>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

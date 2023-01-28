@@ -8,33 +8,33 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+const StyledButton = styled(Button)({
+  backgroundColor: '#fff',
+  backgroundImage: `url(${DeleteIcon})`,
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  borderRadius: 10,
+  boxShadow: '0px 0px 4px 2px #ff0000',
+  color: '#182021',
+  minWidth: 40,
+  minHeight: 40,
+  '&:hover': {
+    transform: 'scale(1.1)',
+    backgroundColor: '#ff6969',
+    boxShadow: '0px 0px 4px 2px rgba(#171717, 0.2)',
+    transition: 'all 0.3s ease',
+  },
+});
+
+const StyledDialog = styled(Dialog)({
+  '& .MuiDialog-paper': {
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+});
+
 const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
-
-  const StyledButton = styled(Button)({
-    backgroundColor: '#ff0000',
-    backgroundImage: `url(${DeleteIcon})`,
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    borderRadius: 10,
-    boxShadow: '0px 0px 4px 2px #171717',
-    color: '#182021',
-    minWidth: 40,
-    minHeight: 40,
-    '&:hover': {
-      transform: 'scale(1.1)',
-      backgroundColor: '#ff6969',
-      boxShadow: '0px 0px 4px 2px rgba(#171717, 0.2)',
-      transition: 'all 0.3s ease',
-    },
-  });
-
-  const StyledDialog = styled(Dialog)({
-    '& .MuiDialog-paper': {
-      borderRadius: 20,
-      overflow: 'hidden',
-    },
-  });
 
   const handleClick = () => {
     setConfirmOpen(true);

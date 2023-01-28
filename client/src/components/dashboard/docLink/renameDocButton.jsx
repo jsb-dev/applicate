@@ -7,72 +7,89 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
+import RenameIcon from '../../../assets/icons/rename.png';
+
+const StyledButton = styled(Button)({
+  backgroundColor: '#fff',
+  backgroundImage: `url(${RenameIcon})`,
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  borderRadius: 10,
+  boxShadow: '0px 0px 4px 2px #0767de',
+  color: '#182021',
+  minWidth: 40,
+  minHeight: 40,
+  '&:hover': {
+    transform: 'scale(1.1)',
+    backgroundColor: '#4089e6',
+    boxShadow: '0px 0px 4px 2px rgba(#0767de, 0.2)',
+    transition: 'all 0.3s ease',
+  },
+});
+
+const StyledDialog = styled(Dialog)({
+  '& .MuiDialog-paper': {
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+});
 
 const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
-  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const [value, setValue] = useState('');
+  const [error, setError] = useState(null);
 
-  const StyledButton = styled(Button)({
-    backgroundColor: '#0767de',
-    borderRadius: 10,
-    boxShadow: '0px 0px 4px 2px #171717',
-    color: '#182021',
-    minWidth: 40,
-    minHeight: 40,
-    '&:hover': {
-      transform: 'scale(1.1)',
-      backgroundColor: '#4089e6',
-      boxShadow: '0px 0px 4px 2px rgba(#171717, 0.2)',
-      transition: 'all 0.3s ease',
-    },
-  });
+  const handleShow = () => setShow(true);
 
-  const StyledDialog = styled(Dialog)({
-    '& .MuiDialog-paper': {
-      borderRadius: 20,
-      overflow: 'hidden',
-    },
-  });
+  const handleChange = (event) => setValue(event.target.value);
 
-  const handleClick = () => {
-    setConfirmOpen(true);
+  const handleClose = () => {
+    setShow(false);
+    setValue('');
+    setError(null);
   };
 
-  const handleConfirm = async () => {
-    setConfirmOpen(false);
-
-    const value = document.getElementById('file-name').value;
-
-    try {
-      const response = await fetch('/document/rename', {
-        method: 'POST',
-        body: JSON.stringify({ docId, author, value }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        setDocuments((prevDocuments) =>
-          prevDocuments.map((document) =>
-            document._id === docId ? { ...document, fileName: value } : document
-          )
-        );
-      }
-    } catch (error) {
-      console.error(error);
+  const handleSubmit = () => {
+    if (!value) {
+      setError('Please enter a file name');
+      return;
     }
-  };
 
-  const handleCancel = () => {
-    setConfirmOpen(false);
+    fetch('/document/rename', {
+      method: 'POST',
+      body: JSON.stringify({ docId, author, value }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setShow(false);
+          setError(null);
+          setValue('');
+          setDocuments((prevDocuments) =>
+            prevDocuments.map((document) =>
+              document.id === docId || document.documentId === docId
+                ? { ...document, fileName: value }
+                : document
+            )
+          );
+        } else {
+          setError('Could not create document, please try again.');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <>
-      <StyledButton onClick={handleClick} />
+      <StyledButton onClick={handleShow} />
       <StyledDialog
-        open={confirmOpen}
-        onClose={handleCancel}
+        open={show}
+        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -82,18 +99,25 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
             Please enter a new name for "{fileName}"
           </DialogContentText>
           <TextField
+            autoFocus
+            margin="dense"
             id="file-name"
             label="New File Name"
-            margin="normal"
+            type="text"
             fullWidth
+            value={value}
+            onChange={handleChange}
           />
+          {error && (
+            <DialogContentText color="error">{error}</DialogContentText>
+          )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancel} color="primary">
+          <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleConfirm} color="primary" autoFocus>
-            Rename
+          <Button onClick={handleSubmit} color="primary" autoFocus>
+            Submit
           </Button>
         </DialogActions>
       </StyledDialog>

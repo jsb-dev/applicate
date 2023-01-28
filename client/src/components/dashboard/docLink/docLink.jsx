@@ -35,6 +35,7 @@ const DocLink = ({
     border: 'solid 2px #2e393b',
     boxShadow: '0px 0px 10px 4px #2e393b',
     width: '100%',
+    minHeight: 'fit-content',
     height: 375,
     maxHeight: '70vw',
     '&:hover': {
@@ -54,7 +55,6 @@ const DocLink = ({
 
   const handleClick = (event) => {
     setAnchorEl(event.target);
-    console.log(docId, fileName, author);
   };
 
   const handleClose = () => {
@@ -76,7 +76,7 @@ const DocLink = ({
           padding: '2%',
         }}
       >
-        <MoreVertIcon fontSize="large" />
+        <MoreVertIcon fontSize={isMobile ? 'medium' : 'large'} />
       </IconButton>
       <Menu
         id="simple-menu"
@@ -88,33 +88,66 @@ const DocLink = ({
           style: {
             borderRadius: 20,
             boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
-            padding: '0 2% 1% 2%',
             width: 'fit-content',
             overflow: 'hidden',
+            padding: isMobile ? '2% 5%' : '1% 2%',
           },
         }}
       >
-        <p>Author: {author}</p>
-        <p>Date Created: {dateCreated}</p>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-around',
-            width: '100%',
-          }}
-        >
-          <DeleteDocButton
-            docId={docId}
-            fileName={fileName}
-            author={author}
-            setDocuments={setDocuments}
-          />
-          <RenameDocButton
-            docId={docId}
-            author={author}
-            fileName={fileName}
-            setDocuments={setDocuments}
-          />
+        <div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              src={UserIcon}
+              alt="User icon"
+              style={{
+                width: 30,
+                marginRight: '5%',
+              }}
+            />
+            <p>{author}</p>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              src={DocIcon}
+              alt="User icon"
+              style={{
+                width: 30,
+                marginRight: '5%',
+              }}
+            />
+            <p>{dateCreated}</p>
+          </div>
+          <br />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <DeleteDocButton
+              docId={docId}
+              fileName={fileName}
+              author={author}
+              setDocuments={setDocuments}
+            />
+            <RenameDocButton
+              docId={docId}
+              author={author}
+              fileName={fileName}
+              setDocuments={setDocuments}
+            />
+          </div>
         </div>
       </Menu>
       <StyledCard>
@@ -133,7 +166,10 @@ const DocLink = ({
               display: 'flex',
               justifyContent: 'flex-end',
               marginRight: '5%',
-              marginTop: isMobile ? '15%' : '5%',
+              marginTop: '20%',
+              '@media (maxWidth: 800px)': {
+                marginTop: '25%',
+              },
             }}
           ></div>
         </div>
@@ -157,7 +193,6 @@ const DocLink = ({
                 justifyContent: 'space-around',
                 background: 'white',
                 padding: '10%',
-                marginTop: isMobile ? 'min(8%, 2vh)' : 'min(6vw, 6vh)',
                 borderRadius: 20,
               }}
             >
@@ -181,9 +216,26 @@ const DocLink = ({
             </div>
             <StyledTypography variant="h5" component="h2">
               <p>
-                <b>{fileName}</b>
+                <b
+                  style={{
+                    display: 'inline-block',
+                    width: '100%',
+                    overflowWrap: 'break-word',
+                    fontSize: isMobile ? '10pt' : '12pt',
+                  }}
+                >
+                  {fileName.length > 30
+                    ? fileName.substring(0, 30) + '...'
+                    : fileName}
+                </b>
               </p>
-              <p>Modified: {dateModified}</p>
+              <p
+                style={{
+                  fontSize: isMobile ? '10pt' : '12pt',
+                }}
+              >
+                Modified: {dateModified}
+              </p>
             </StyledTypography>
           </CardContent>
         </a>
