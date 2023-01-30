@@ -68,7 +68,7 @@ function DocList({ userId }) {
             justifyContent: 'space-around',
             alignItems: 'center',
             width: '100%',
-            height: '15vh',
+            height: isMobile ? '11vh' : '15vh',
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
           }}

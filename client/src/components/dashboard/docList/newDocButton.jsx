@@ -18,7 +18,8 @@ const StyledButton = styled(Button)({
   boxShadow: '0px 0px 10px 4px rgba(255, 255, 255, 0.8)',
   width: 70,
   height: 70,
-  maxHeight: '70vw',
+  maxHeight: '9vh',
+  maxWidth: '9vh',
   '&:hover': {
     boxShadow: '0px 0px 12px 5px #fff',
     border: 'solid 2px #fff',
@@ -97,9 +98,11 @@ function NewDocButton({ addDocument }) {
             justifyContent: 'center',
             alignItems: 'center',
             background: 'white',
-            width: '70%',
+            width: '60%',
             borderRadius: 200,
-            height: '70%',
+            height: '60%',
+            maxHeight: '6vh',
+            maxWidth: '6vh',
           }}
         >
           <Tooltip title="Create a new document">

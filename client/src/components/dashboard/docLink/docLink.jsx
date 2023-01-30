@@ -28,6 +28,7 @@ const DocLink = ({
   const href = `/editor?${searchParams.toString()}`;
 
   const isMobile = useMediaQuery('(max-width: 820px)');
+  const isXs = useMediaQuery('(max-width: 600px)');
 
   const StyledCard = styled(Card)({
     background: 'transparent',
@@ -36,8 +37,7 @@ const DocLink = ({
     boxShadow: '0px 0px 10px 4px #2e393b',
     width: '100%',
     minHeight: 'fit-content',
-    height: 375,
-    maxHeight: '70vw',
+    height: 'calc(100vw / 100vh)',
     '&:hover': {
       boxShadow: '0px 0px 12px 5px #fff',
       border: 'solid 2px #fff',
@@ -70,13 +70,12 @@ const DocLink = ({
         onClick={handleClick}
         style={{
           position: 'absolute',
-          marginLeft: isMobile ? '2%' : 'min(1vw, 1%)',
-          marginTop: isMobile ? '2%' : 'min(1vw, 1%)',
           backgroundColor: 'rgba(255,255,255,0.5)',
-          padding: '2%',
+          padding: isXs ? '5%' : isMobile ? '3%' : '2%',
+          margin: isXs ? '3%' : isMobile ? '2%' : '1%',
         }}
       >
-        <MoreVertIcon fontSize={isMobile ? 'medium' : 'large'} />
+        <MoreVertIcon fontSize={isXs ? 'medium' : 'large'} />
       </IconButton>
       <Menu
         id="simple-menu"
@@ -187,6 +186,11 @@ const DocLink = ({
               padding: '5%',
             }}
           >
+            <div
+              style={{
+                marginBottom: isXs ? '15%' : 0,
+              }}
+            />
             <div
               style={{
                 display: 'flex',
