@@ -10,13 +10,16 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Tooltip } from '@mui/material';
 import DocIcon from '../../../assets/icons/docs.png';
 import UserIcon from '../../../assets/icons/user.png';
+import UsersIcon from '../../../assets/icons/users.png';
 import DeleteDocButton from './parts/deleteDocButton.jsx';
 import RenameDocButton from './parts/renameDocButton.jsx';
+import CollabButton from './parts/collabButton.jsx';
 
 const DocLink = ({
   docId,
   fileName,
   author,
+  collaborators,
   dateCreated,
   dateModified,
   setDocuments,
@@ -108,7 +111,7 @@ const DocLink = ({
                 marginRight: '5%',
               }}
             />
-            <p>{author}</p>
+            <p>"{author}"</p>
           </div>
           <div
             style={{
@@ -124,7 +127,7 @@ const DocLink = ({
                 marginRight: '5%',
               }}
             />
-            <p>{dateCreated}</p>
+            <p> ({dateCreated})</p>
           </div>
           <br />
           <div
@@ -146,6 +149,7 @@ const DocLink = ({
               fileName={fileName}
               setDocuments={setDocuments}
             />
+            <CollabButton docId={docId} fileName={fileName} />
           </div>
         </div>
       </Menu>
@@ -210,13 +214,26 @@ const DocLink = ({
                   }}
                 />
               </Tooltip>
-              <Tooltip title="Only one person has access to this file">
-                <img
-                  src={UserIcon}
-                  alt="User icon"
-                  style={{ display: 'block', width: '30%' }}
-                />
-              </Tooltip>
+              {collaborators.length > 0 ? (
+                <Tooltip title="Multiple people have access to this file">
+                  <img
+                    src={UsersIcon}
+                    alt="Users icon"
+                    style={{
+                      display: 'block',
+                      width: '30%',
+                    }}
+                  />
+                </Tooltip>
+              ) : (
+                <Tooltip title="Only one person has access to this file">
+                  <img
+                    src={UserIcon}
+                    alt="User icon"
+                    style={{ display: 'block', width: '30%' }}
+                  />
+                </Tooltip>
+              )}
             </div>
             <StyledTypography variant="h5" component="h2">
               <p>

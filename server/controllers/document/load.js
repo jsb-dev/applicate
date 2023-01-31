@@ -30,6 +30,8 @@ const loadController = async (req, res) => {
       documentId: document._id,
       content: document.content,
       fileName: document.fileName,
+      userId: document.userId,
+      collaborators: document.collaborators,
     });
   } catch (error) {
     res.status(400).send({

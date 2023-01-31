@@ -7,21 +7,21 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import RenameIcon from '../../../../assets/icons/rename.png';
+import ShareIcon from '../../../../assets/icons/share.png';
 
 const StyledButton = styled(Button)({
   backgroundColor: '#fff',
-  backgroundImage: `url(${RenameIcon})`,
+  backgroundImage: `url(${ShareIcon})`,
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
   borderRadius: 10,
-  boxShadow: '0px 0px 4px 2px #0767de',
+  boxShadow: '0px 0px 4px 2px #d9a004',
   color: '#182021',
   minWidth: 40,
   minHeight: 40,
   '&:hover': {
     transform: 'scale(1.1)',
-    backgroundColor: '#4089e6',
+    backgroundColor: '#d9a004',
     boxShadow: '0px 0px 4px 2px rgba(#0767de, 0.2)',
     transition: 'all 0.3s ease',
   },
@@ -34,7 +34,7 @@ const StyledDialog = styled(Dialog)({
   },
 });
 
-const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
+const CollabButton = ({ docId, fileName }) => {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
@@ -51,13 +51,14 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
 
   const handleSubmit = () => {
     if (!value) {
-      setError('Please enter a file name');
+      setError('Please enter an email address');
       return;
     }
 
-    fetch('/document/rename', {
+    const user = localStorage.getItem('userId');
+    fetch('/document/share', {
       method: 'POST',
-      body: JSON.stringify({ docId, author, value }),
+      body: JSON.stringify({ docId, user, value }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -68,15 +69,10 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
           setShow(false);
           setError(null);
           setValue('');
-          setDocuments((prevDocuments) =>
-            prevDocuments.map((document) =>
-              document.id === docId || document.documentId === docId
-                ? { ...document, fileName: value }
-                : document
-            )
-          );
+        } else if (!data.success) {
+          setError(data.message);
         } else {
-          setError('Could not rename document, please try again.');
+          setError('Could not add collaborator, please try again.');
         }
       })
       .catch((error) => {
@@ -93,17 +89,18 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Rename Document'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{'Share Document'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Please enter a new name for "{fileName}"
+            Please enter an email address for someone to collaborate with you on
+            "{fileName}"
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            id="file-name"
-            label="New File Name"
-            type="text"
+            id="email"
+            label="Email Address"
+            type="email"
             fullWidth
             value={value}
             onChange={handleChange}
@@ -125,4 +122,4 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
   );
 };
 
-export default RenameDocButton;
+export default CollabButton;

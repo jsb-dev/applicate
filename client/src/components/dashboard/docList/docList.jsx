@@ -96,6 +96,7 @@ function DocList({ userId }) {
         dateModified={doc.dateModified}
         fileName={doc.fileName}
         author={doc.author}
+        collaborators={doc.collaborators}
       />
     ));
   };
@@ -134,10 +135,12 @@ function DocList({ userId }) {
     } else if (selectedFilter === 'dateModifiedOldest') {
       setDocuments(
         documents.sort((a, b) => {
-          if (a.dateModified < b.dateModified) {
+          const dateA = new Date(a.dateModified.split('-').reverse().join('/'));
+          const dateB = new Date(b.dateModified.split('-').reverse().join('/'));
+          if (dateA < dateB) {
             return -1;
           }
-          if (a.dateModified > b.dateModified) {
+          if (dateA > dateB) {
             return 1;
           }
           return 0;
@@ -146,16 +149,19 @@ function DocList({ userId }) {
     } else if (selectedFilter === 'dateModifiedNewest') {
       setDocuments(
         documents.sort((a, b) => {
-          if (a.dateModified < b.dateModified) {
+          const dateA = new Date(a.dateModified.split('-').reverse().join('/'));
+          const dateB = new Date(b.dateModified.split('-').reverse().join('/'));
+          if (dateA < dateB) {
             return 1;
           }
-          if (a.dateModified > b.dateModified) {
+          if (dateA > dateB) {
             return -1;
           }
           return 0;
         })
       );
     }
+
     documents.map((doc) => (
       <DocLink
         key={doc.documentId}
@@ -164,6 +170,7 @@ function DocList({ userId }) {
         dateModified={doc.dateModified}
         fileName={doc.fileName}
         author={doc.author}
+        collaborators={doc.collaborators}
       />
     ));
   };
@@ -270,6 +277,7 @@ function DocList({ userId }) {
                     docId={document.id || document.documentId}
                     fileName={document.fileName}
                     author={document.author}
+                    collaborators={document.collaborators}
                     dateCreated={document.dateCreated}
                     dateModified={document.dateModified}
                     setDocuments={setDocuments}

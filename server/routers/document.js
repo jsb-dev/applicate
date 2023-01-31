@@ -5,6 +5,7 @@ import loadController from '../controllers/document/load.js';
 import saveController from '../controllers/document/save.js';
 import deleteController from '../controllers/document/delete.js';
 import renameController from '../controllers/document/rename.js';
+import shareController from '../controllers/document/share.js';
 
 dotenv.config();
 
@@ -15,5 +16,6 @@ documentRouter.post('/load', loadController);
 documentRouter.post('/save', saveController);
 documentRouter.post('/delete', deleteController);
 documentRouter.post('/rename', renameController);
+documentRouter.post('/share', shareController);
 
 export default documentRouter;

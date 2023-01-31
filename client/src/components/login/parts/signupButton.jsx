@@ -22,6 +22,7 @@ const SignupButton = ({ email, password }) => {
       })
       .then((data) => {
         localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userId', data.user._id);
         const userId = data.user._id;
         const searchParams = new URLSearchParams();
         searchParams.set('userId', userId);

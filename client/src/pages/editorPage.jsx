@@ -26,9 +26,16 @@ const EditorPage = () => {
         });
 
         const data = await response.json();
+        const user = localStorage.getItem('userId');
         if (data.success) {
-          setContent(data.content);
-          setIsLoading(false);
+          if (user !== data.userId && data.collaborators.indexOf(user) === -1) {
+            console.log(user, data.userId, data.collaborators);
+
+            window.location.href = '/dashboard';
+          } else {
+            setContent(data.content);
+            setIsLoading(false);
+          }
         } else {
           window.location.href = '/dashboard';
         }

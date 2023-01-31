@@ -22,6 +22,10 @@ const UserSchema = new Schema({
     type: Array,
     default: [],
   },
+  sharedDocs: {
+    type: Array,
+    default: [],
+  },
   tokens: [
     {
       type: String,

@@ -6,8 +6,6 @@ import User from '../database/models/user.js';
 const getDocuments = async (req, res) => {
   const token = req.headers.authorization.split(' ')[1];
 
-  console.log('Request received');
-
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ _id: decoded._id }).exec();
@@ -23,10 +21,10 @@ const getDocuments = async (req, res) => {
             fileName: doc.fileName,
             id: doc._id,
             author: doc.author,
+            collaborators: doc.collaborators,
             dateCreated: formatDate(doc.dateCreated),
             dateModified: formatDate(doc.dateModified),
           }));
-          console.log(docs);
           res.send({ success: true, documents: docs });
         })
         .catch((error) => {
