@@ -10,8 +10,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Tooltip } from '@mui/material';
 import DocIcon from '../../../assets/icons/docs.png';
 import UserIcon from '../../../assets/icons/user.png';
-import DeleteDocButton from './deleteDocButton.jsx';
-import RenameDocButton from './renameDocButton.jsx';
+import DeleteDocButton from './parts/deleteDocButton.jsx';
+import RenameDocButton from './parts/renameDocButton.jsx';
 
 const DocLink = ({
   docId,

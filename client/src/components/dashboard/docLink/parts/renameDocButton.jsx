@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import RenameIcon from '../../../assets/icons/rename.png';
+import RenameIcon from '../../../../assets/icons/rename.png';
 
 const StyledButton = styled(Button)({
   backgroundColor: '#fff',

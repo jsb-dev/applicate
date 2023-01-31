@@ -24,6 +24,7 @@ const Dashboard = () => {
     };
     check();
     setUserId(searchParams.get('userId'));
+    // eslint-disable-next-line
   }, []);
 
   if (

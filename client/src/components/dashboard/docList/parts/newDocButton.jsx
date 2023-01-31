@@ -10,16 +10,12 @@ import {
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Tooltip } from '@mui/material';
-import AddIcon from '../../../assets/icons/add.png';
+import AddIcon from '../../../../assets/icons/add.png';
 
 const StyledButton = styled(Button)({
   borderRadius: 200,
   border: 'solid 2px #2e393b',
   boxShadow: '0px 0px 10px 4px rgba(255, 255, 255, 0.8)',
-  width: 70,
-  height: 70,
-  maxHeight: '9vh',
-  maxWidth: '9vh',
   '&:hover': {
     boxShadow: '0px 0px 12px 5px #fff',
     border: 'solid 2px #fff',
@@ -84,39 +80,33 @@ function NewDocButton({ addDocument }) {
   return (
     <div
       style={{
-        height: '100%',
-        maxHeight: 'min(50vh, 50vw)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
       }}
     >
-      <StyledButton onClick={handleShow}>
-        <div
+      <Tooltip title="Create a new document">
+        <StyledButton
+          onClick={handleShow}
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            background: 'white',
-            width: '60%',
-            borderRadius: 200,
-            height: '60%',
-            maxHeight: '6vh',
-            maxWidth: '6vh',
+            backgroundImage: `url(${AddIcon})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundColor: 'white',
           }}
         >
-          <Tooltip title="Create a new document">
-            <img
-              src={AddIcon}
-              alt="Document icon"
-              style={{
-                display: 'block',
-                width: '60%',
-              }}
-            />
-          </Tooltip>
-        </div>
-      </StyledButton>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 200,
+              width: '100%',
+              height: '100%',
+            }}
+          ></div>
+        </StyledButton>
+      </Tooltip>
       <Dialog open={show} onClose={handleClose}>
         <DialogTitle>Enter a file name</DialogTitle>
         <DialogContent>
