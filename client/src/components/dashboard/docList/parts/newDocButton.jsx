@@ -67,6 +67,7 @@ function NewDocButton({ addDocument }) {
             dateModified: data.dateModified,
             fileName: data.fileName,
             documentId: data.documentId,
+            collaborators: data.collaborators,
           });
         } else {
           setError('Could not create document, please try again.');

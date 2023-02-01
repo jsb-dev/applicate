@@ -6,9 +6,12 @@ import accountRouter from './routers/account.js';
 import documentRouter from './routers/document.js';
 import checkAuthRouter from './routers/auth.js';
 import apiRouter from './routers/api.js';
+import { createServer } from 'http';
+
 dotenv.config();
 
 const app = express();
+const httpServer = createServer(app);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,7 +22,7 @@ app.use('/document', documentRouter);
 app.use('/api', apiRouter);
 
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 

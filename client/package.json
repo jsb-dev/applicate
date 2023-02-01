@@ -12,6 +12,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.209",
+    "@tiptap/extension-collaboration": "^2.0.0-beta.209",
+    "@tiptap/extension-placeholder": "^2.0.0-beta.209",
     "@tiptap/react": "^2.0.0-beta.209",
     "@tiptap/starter-kit": "^2.0.0-beta.209",
     "cors": "^2.8.5",
@@ -26,8 +28,12 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "^5.0.1",
     "sass": "^1.57.1",
+    "socket.io-client": "^4.5.4",
     "ui": "^0.2.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "y-webrtc": "^10.2.4",
+    "y-websocket": "^1.4.5",
+    "yjs": "^13.5.45"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -50,6 +50,7 @@ const createController = async (req, res) => {
       author: document.author,
       dateCreated: formatDate(document.currentDate()),
       dateModified: formatDate(document.currentDate()),
+      collaborators: [],
     });
   } catch (error) {
     res.status(400).send({
