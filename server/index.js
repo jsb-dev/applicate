@@ -2,16 +2,15 @@ import express from 'express';
 import connection from './database/database.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { Server } from 'socket.io';
 import accountRouter from './routers/account.js';
 import documentRouter from './routers/document.js';
 import checkAuthRouter from './routers/auth.js';
 import apiRouter from './routers/api.js';
-import { createServer } from 'http';
 
 dotenv.config();
 
 const app = express();
-const httpServer = createServer(app);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,17 +21,30 @@ app.use('/document', documentRouter);
 app.use('/api', apiRouter);
 
 const PORT = process.env.PORT;
-httpServer.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 
-async function testDatabaseConnection() {
-  await new Promise((resolve, reject) => {
-    connection.on('open', resolve);
-    connection.on('error', reject);
+const io = new Server(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: 'http://localhost:3000',
+  },
+});
+
+io.on('connection', (socket) => {
+  socket.on('setup', (userId) => {
+    socket.join(userId);
+    socket.emit('connection');
+    console.log('user connected', userId);
   });
 
-  console.log('Database connection established');
-}
+  socket.on('access document', (userId, room) => {
+    socket.join(room);
+    console.log('user', userId, 'accessed document', room);
+  });
 
-testDatabaseConnection();
+  socket.on('document update', (docId, json) => {
+    socket.to(docId).emit('update broadcast', json);
+  });
+});

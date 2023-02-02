@@ -1,15 +1,32 @@
 import './styles.scss';
 import { BubbleMenu, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import React, { useRef } from 'react';
+import io from 'socket.io-client';
+import React, { useRef, useEffect, useState } from 'react';
 import MenuBar from './menuBar.jsx';
 
+const ENDPOINT = 'http://localhost:3000';
+const userId = localStorage.getItem('userId');
+const socket = io(ENDPOINT);
+
 const RichTextEditor = ({ content, docId }) => {
+  const [docContent, setDocContent] = useState(content);
   const editorRef = useRef(null);
+
+  useEffect(() => {
+    socket.emit('setup', userId);
+    socket.emit('access document', userId, docId);
+  });
+
+  useEffect(() => {
+    socket.on('update broadcast', (json) => {
+      editor.commands.setContent(json);
+    });
+  }, []);
 
   const editor = new Editor({
     extensions: [StarterKit],
-    content: content,
+    content: docContent,
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       fetch('/document/save', {
@@ -21,6 +38,7 @@ const RichTextEditor = ({ content, docId }) => {
       }).catch((error) => {
         console.error('Error:', error);
       });
+      socket.emit('document update', docId, json);
     },
   });
 
