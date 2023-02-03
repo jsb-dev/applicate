@@ -35,7 +35,6 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   socket.on('setup', (userId) => {
     socket.join(userId);
-    socket.emit('connection');
     console.log('user connected', userId);
   });
 
@@ -46,5 +45,10 @@ io.on('connection', (socket) => {
 
   socket.on('document update', (docId, json) => {
     socket.to(docId).emit('update broadcast', json);
+  });
+
+  socket.on('update position', (docId, userEmail, cursorColor, cursorPos) => {
+    user.cursorPos = cursorPos;
+    socket.to(docId).emit('position cursor', userEmail, cursorColor, cursorPos);
   });
 });

@@ -11,7 +11,8 @@ const getDocuments = async (req, res) => {
     const user = await User.findOne({ _id: decoded._id }).exec();
 
     if (user) {
-      const documents = user.documentArray;
+      let documents = user.documentArray;
+      documents = documents.concat(user.sharedDocs);
       const documentQueries = documents.map((id) => {
         return Document.findById(id);
       });

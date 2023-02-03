@@ -2,31 +2,40 @@ import './styles.scss';
 import { BubbleMenu, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import io from 'socket.io-client';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
+import Placeholder from '@tiptap/extension-placeholder';
 import MenuBar from './menuBar.jsx';
 
 const ENDPOINT = 'http://localhost:3000';
 const userId = localStorage.getItem('userId');
+const userEmail = localStorage.getItem('userEmail');
+
 const socket = io(ENDPOINT);
 
 const RichTextEditor = ({ content, docId }) => {
-  const [docContent, setDocContent] = useState(content);
   const editorRef = useRef(null);
 
   useEffect(() => {
-    socket.emit('setup', userId);
+    socket.emit('setup', userId, userEmail);
     socket.emit('access document', userId, docId);
   });
 
   useEffect(() => {
     socket.on('update broadcast', (json) => {
+      const cursorPos = editor.state.selection.$anchor.pos;
       editor.commands.setContent(json);
+      editor.chain().focus().setTextSelection(cursorPos).run();
     });
-  }, []);
+  });
 
   const editor = new Editor({
-    extensions: [StarterKit],
-    content: docContent,
+    extensions: [
+      StarterKit,
+      Placeholder.configure({
+        placeholder: 'Start typing here...',
+      }),
+    ],
+    content: content,
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       fetch('/document/save', {
@@ -41,6 +50,12 @@ const RichTextEditor = ({ content, docId }) => {
       socket.emit('document update', docId, json);
     },
   });
+
+  useEffect(() => {
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <div ref={editorRef} id="editor">

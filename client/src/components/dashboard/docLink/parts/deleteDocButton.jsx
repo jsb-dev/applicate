@@ -33,28 +33,33 @@ const StyledDialog = styled(Dialog)({
   },
 });
 
-const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
+const DeleteDocButton = ({ docId, fileName, setDocuments }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleClick = () => {
     setConfirmOpen(true);
-    console.log(docId, fileName, author);
   };
 
   const handleConfirm = async () => {
-    setConfirmOpen(false);
+    const userId = localStorage.getItem('userId');
     try {
       const response = await fetch('/document/delete', {
         method: 'POST',
-        body: JSON.stringify({ docId, author }),
+        body: JSON.stringify({ docId, userId }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      if (response.ok) {
+      const res = await response.json();
+      if (res.success === true) {
         setDocuments((prevDocuments) =>
           prevDocuments.filter((doc) => doc.id !== docId)
         );
+        setConfirmOpen(false);
+      }
+      if (res.success === false) {
+        setError(res.message);
       }
     } catch (error) {
       console.error(error);
@@ -63,6 +68,7 @@ const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
 
   const handleCancel = () => {
     setConfirmOpen(false);
+    setError(null);
   };
 
   return (
@@ -79,6 +85,9 @@ const DeleteDocButton = ({ docId, fileName, author, setDocuments }) => {
           <DialogContentText id="alert-dialog-description">
             Are you sure you want to delete "{fileName}"?
           </DialogContentText>
+          {error && (
+            <DialogContentText color="error">{error}</DialogContentText>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel} color="primary">
