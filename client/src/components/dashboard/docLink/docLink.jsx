@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import styled from '@emotion/styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Tooltip } from '@mui/material';
+import ShowCollaboratorsButton from './parts/showCollaboratorsButton.jsx';
 import DocIcon from '../../../assets/icons/docs.png';
 import UserIcon from '../../../assets/icons/user.png';
 import UsersIcon from '../../../assets/icons/users.png';
@@ -30,8 +31,8 @@ const DocLink = ({
   searchParams.set('docId', docId);
   const href = `/editor?${searchParams.toString()}`;
 
-  const isMobile = useMediaQuery('(max-width: 820px)');
-  const isXs = useMediaQuery('(max-width: 600px)');
+  const isTablet = useMediaQuery('(max-width: 820px)');
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const StyledCard = styled(Card)({
     background: 'transparent',
@@ -52,7 +53,7 @@ const DocLink = ({
     color: 'black',
     fontFamily: 'Raleway, sans-serif',
     letterSpacing: '0.1rem',
-    fontSize: isMobile ? '12pt' : '15pt',
+    fontSize: isTablet ? '12pt' : '15pt',
     width: '95%',
   });
 
@@ -74,11 +75,11 @@ const DocLink = ({
         style={{
           position: 'absolute',
           backgroundColor: 'rgba(255,255,255,0.5)',
-          padding: isXs ? '5%' : isMobile ? '3%' : '2%',
-          margin: isXs ? '3%' : isMobile ? '2%' : '1%',
+          padding: isMobile ? '5%' : isTablet ? '3%' : '2%',
+          margin: isMobile ? '3%' : isTablet ? '2%' : '1%',
         }}
       >
-        <MoreVertIcon fontSize={isXs ? 'medium' : 'large'} />
+        <MoreVertIcon fontSize={isMobile ? 'medium' : 'large'} />
       </IconButton>
       <Menu
         id="simple-menu"
@@ -92,7 +93,7 @@ const DocLink = ({
             boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
             width: 'fit-content',
             overflow: 'hidden',
-            padding: isMobile ? '2% 5%' : '1% 2%',
+            padding: isTablet ? '2% 5%' : '1% 2%',
           },
         }}
       >
@@ -150,6 +151,10 @@ const DocLink = ({
               setDocuments={setDocuments}
             />
             <CollabButton docId={docId} fileName={fileName} />
+            <ShowCollaboratorsButton
+              fileName={fileName}
+              collaborators={collaborators}
+            />
           </div>
         </div>
       </Menu>
@@ -192,7 +197,7 @@ const DocLink = ({
           >
             <div
               style={{
-                marginBottom: isXs ? '15%' : 0,
+                marginBottom: isMobile ? '15%' : 0,
               }}
             />
             <div
@@ -242,7 +247,7 @@ const DocLink = ({
                     display: 'inline-block',
                     width: '100%',
                     overflowWrap: 'break-word',
-                    fontSize: isMobile ? '10pt' : '12pt',
+                    fontSize: isTablet ? '10pt' : '12pt',
                   }}
                 >
                   {fileName.length > 30
@@ -252,7 +257,7 @@ const DocLink = ({
               </p>
               <p
                 style={{
-                  fontSize: isMobile ? '10pt' : '12pt',
+                  fontSize: isTablet ? '10pt' : '12pt',
                 }}
               >
                 Modified: {dateModified}

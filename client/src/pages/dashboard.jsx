@@ -12,7 +12,7 @@ const Dashboard = () => {
   const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const isMobile = useMediaQuery('(max-width: 820px)');
+  const isTablet = useMediaQuery('(max-width: 820px)');
   const searchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
@@ -62,10 +62,10 @@ const Dashboard = () => {
     <>
       {isAuthenticated ? (
         <div>
-          {isMobile ? <MobileNavbar /> : <FullNavbar />}
+          {isTablet ? <MobileNavbar /> : <FullNavbar />}
           <div
             style={{
-              marginTop: isMobile ? '15vh' : '',
+              marginTop: isTablet ? '15vh' : '',
             }}
           >
             <DocList userId={userId} />

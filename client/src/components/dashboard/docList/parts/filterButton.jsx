@@ -1,7 +1,7 @@
 import { Dialog, DialogActions, DialogTitle } from '@mui/material';
 import React from 'react';
 import { Tooltip } from '@mui/material';
-import StyledButton from '../styled/styledButton.jsx';
+import StyledButton from '../../shared/styledButton.jsx';
 import CalendarIcon from '../../../../assets/icons/calendar.png';
 
 function FilterButton({
@@ -20,34 +20,14 @@ function FilterButton({
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <>
       <Tooltip title="Filter documents">
         <StyledButton
           onClick={handleShow}
           style={{
             backgroundImage: `url(${CalendarIcon})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundColor: 'white',
           }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 200,
-              width: '100%',
-              height: '100%',
-            }}
-          ></div>
-        </StyledButton>
+        ></StyledButton>
       </Tooltip>
       <Dialog open={show} onClose={handleClose}>
         <DialogTitle>Select a filter</DialogTitle>
@@ -118,7 +98,7 @@ function FilterButton({
           </div>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
 

@@ -16,6 +16,7 @@ const getDocuments = async (req, res) => {
       const documentQueries = documents.map((id) => {
         return Document.findById(id);
       });
+      documentQueries.reverse();
       Promise.all(documentQueries)
         .then((results) => {
           const docs = results.map((doc) => ({

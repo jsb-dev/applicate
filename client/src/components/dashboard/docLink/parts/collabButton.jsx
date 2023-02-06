@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import styled from '@emotion/styled';
+import StyledButton from '../../shared/styledButton.jsx';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,24 +9,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import ShareIcon from '../../../../assets/icons/share.png';
-
-const StyledButton = styled(Button)({
-  backgroundColor: '#fff',
-  backgroundImage: `url(${ShareIcon})`,
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  borderRadius: 10,
-  boxShadow: '0px 0px 4px 2px #d9a004',
-  color: '#182021',
-  minWidth: 40,
-  minHeight: 40,
-  '&:hover': {
-    transform: 'scale(1.1)',
-    backgroundColor: '#d9a004',
-    boxShadow: '0px 0px 4px 2px rgba(#0767de, 0.2)',
-    transition: 'all 0.3s ease',
-  },
-});
 
 const StyledDialog = styled(Dialog)({
   '& .MuiDialog-paper': {
@@ -82,7 +65,12 @@ const CollabButton = ({ docId, fileName }) => {
 
   return (
     <>
-      <StyledButton onClick={handleShow} />
+      <StyledButton
+        onClick={handleShow}
+        style={{
+          backgroundImage: `url(${ShareIcon})`,
+        }}
+      />
       <StyledDialog
         open={show}
         onClose={handleClose}

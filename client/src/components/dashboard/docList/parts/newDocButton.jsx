@@ -8,21 +8,9 @@ import {
   TextField,
 } from '@mui/material';
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
 import { Tooltip } from '@mui/material';
 import AddIcon from '../../../../assets/icons/add.png';
-
-const StyledButton = styled(Button)({
-  borderRadius: 200,
-  border: 'solid 2px #2e393b',
-  boxShadow: '0px 0px 10px 4px rgba(255, 255, 255, 0.8)',
-  '&:hover': {
-    boxShadow: '0px 0px 12px 5px #fff',
-    border: 'solid 2px #fff',
-    transform: 'scale(1)',
-    transition: 'all 0.4s ease-in-out',
-  },
-});
+import StyledButton from '../../shared/styledButton.jsx';
 
 function NewDocButton({ addDocument }) {
   const [show, setShow] = useState(false);
@@ -79,34 +67,14 @@ function NewDocButton({ addDocument }) {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <>
       <Tooltip title="Create a new document">
         <StyledButton
           onClick={handleShow}
           style={{
             backgroundImage: `url(${AddIcon})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundColor: 'white',
           }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 200,
-              width: '100%',
-              height: '100%',
-            }}
-          ></div>
-        </StyledButton>
+        />
       </Tooltip>
       <Dialog open={show} onClose={handleClose}>
         <DialogTitle>Enter a file name</DialogTitle>
@@ -134,7 +102,7 @@ function NewDocButton({ addDocument }) {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
 
