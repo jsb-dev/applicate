@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
 import StyledButton from '../../../shared/styledButton.jsx';
-import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import RemoveCollaboratorButton from './removeCollaboratorButton.jsx';
 import UsersIcon from '../../../../assets/icons/users.png';
-
-const StyledDialog = styled(Dialog)({
-  '& .MuiDialog-paper': {
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-});
+import StyledDialog from '../../../shared/styledDialog.jsx';
 
 const ShowCollaboratorsButton = ({ fileName, collaborators, docId }) => {
   const [show, setShow] = useState(false);
@@ -45,7 +37,7 @@ const ShowCollaboratorsButton = ({ fileName, collaborators, docId }) => {
           console.error(error);
         }
       });
-  }, []);
+  }, [collaborators]);
 
   return (
     <>

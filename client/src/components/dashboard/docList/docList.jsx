@@ -168,6 +168,7 @@ function DocList({ userId }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-evenly',
+          alignItems: 'center',
           backgroundColor: '#182021',
           width: '100%',
           height: '25vh',
@@ -179,9 +180,11 @@ function DocList({ userId }) {
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            width: '90%',
             alignItems: 'center',
-            padding: '0 5%',
+            width: '90%',
+            padding: '0 3% 1.5% 3%',
+            border: '1px solid #fff',
+            borderRadius: 10,
           }}
         >
           <StyledTextField
@@ -200,6 +203,7 @@ function DocList({ userId }) {
           <StyledButton
             style={{
               backgroundImage: `url(${SearchIcon})`,
+              height: 50,
             }}
             onClick={handleSearch}
           />
@@ -307,25 +311,37 @@ function DocList({ userId }) {
             borderTopRightRadius: 20,
           }}
         >
-          <StyledTextField
-            autoFocus
-            margin="dense"
-            id="search"
-            label="Search"
-            type="text"
-            fullWidth
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
+          <div
             style={{
-              width: '50%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '0 1% 0.5% 1%',
+              border: '1px solid #fff',
+              borderRadius: 10,
+              width: '60%',
             }}
-          />
-          <StyledButton
-            style={{
-              backgroundImage: `url(${SearchIcon})`,
-            }}
-            onClick={handleSearch}
-          />
+          >
+            <StyledTextField
+              autoFocus
+              margin="dense"
+              id="search"
+              label="Search"
+              type="text"
+              fullWidth
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              style={{
+                width: '83%',
+              }}
+            />
+            <StyledButton
+              style={{
+                backgroundImage: `url(${SearchIcon})`,
+              }}
+              onClick={handleSearch}
+            />
+          </div>
           <FilterButton
             handleSubmit={handleSubmit}
             show={show}

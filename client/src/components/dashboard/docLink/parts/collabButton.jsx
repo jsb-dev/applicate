@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
-import styled from '@emotion/styled';
 import StyledButton from '../../../shared/styledButton.jsx';
-import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import ShareIcon from '../../../../assets/icons/share.png';
-
-const StyledDialog = styled(Dialog)({
-  '& .MuiDialog-paper': {
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-});
+import StyledDialog from '../../../shared/styledDialog.jsx';
 
 const CollabButton = ({ docId, fileName }) => {
   const [show, setShow] = useState(false);

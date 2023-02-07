@@ -23,9 +23,8 @@ const StyledAppBar = styled(AppBar)({
   top: '0',
   left: '0',
   right: '0',
-  zIndex: '1',
   transition: 'transform 0.3s ease-in-out',
-  transform: 'translateY(0)',
+  zIndex: '999',
 });
 
 const PageLink = styled(Link)({

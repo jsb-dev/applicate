@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import StyledButton from '../styled/formButtons';
-import Dialog from '@mui/material/Dialog';
+import StyledDialog from '../../shared/styledDialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -67,7 +67,7 @@ const LoginButton = ({ email, password }) => {
       >
         Log in
       </StyledButton>
-      <Dialog
+      <StyledDialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -84,7 +84,7 @@ const LoginButton = ({ email, password }) => {
             Close
           </Button>
         </DialogActions>
-      </Dialog>
+      </StyledDialog>
     </>
   );
 };

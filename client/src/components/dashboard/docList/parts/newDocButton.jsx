@@ -1,6 +1,5 @@
 import {
   Button,
-  Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -11,6 +10,7 @@ import React, { useState } from 'react';
 import { Tooltip } from '@mui/material';
 import AddIcon from '../../../../assets/icons/add.png';
 import StyledButton from '../../../shared/styledButton.jsx';
+import StyledDialog from '../../../shared/styledDialog.jsx';
 
 function NewDocButton({ addDocument }) {
   const [show, setShow] = useState(false);
@@ -76,7 +76,7 @@ function NewDocButton({ addDocument }) {
           }}
         />
       </Tooltip>
-      <Dialog open={show} onClose={handleClose}>
+      <StyledDialog open={show} onClose={handleClose}>
         <DialogTitle>Enter a file name</DialogTitle>
         <DialogContent>
           <TextField
@@ -101,7 +101,7 @@ function NewDocButton({ addDocument }) {
             Submit
           </Button>
         </DialogActions>
-      </Dialog>
+      </StyledDialog>
     </>
   );
 }

@@ -1,7 +1,8 @@
-import { Dialog, DialogActions, DialogTitle } from '@mui/material';
+import { DialogActions, DialogTitle } from '@mui/material';
 import React from 'react';
 import { Tooltip } from '@mui/material';
 import StyledButton from '../../../shared/styledButton.jsx';
+import StyledDialog from '../../../shared/styledDialog.jsx';
 import CalendarIcon from '../../../../assets/icons/calendar.png';
 
 function FilterButton({
@@ -29,7 +30,7 @@ function FilterButton({
           }}
         ></StyledButton>
       </Tooltip>
-      <Dialog open={show} onClose={handleClose}>
+      <StyledDialog open={show} onClose={handleClose}>
         <DialogTitle>Select a filter</DialogTitle>
         <DialogActions>
           <div
@@ -97,7 +98,7 @@ function FilterButton({
             </StyledButton>
           </div>
         </DialogActions>
-      </Dialog>
+      </StyledDialog>
     </>
   );
 }
