@@ -154,6 +154,7 @@ const DocLink = ({
             <ShowCollaboratorsButton
               fileName={fileName}
               collaborators={collaborators}
+              docId={docId}
             />
           </div>
         </div>

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import StyledButton from '../../shared/styledButton.jsx';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import RemoveCollaboratorButton from './removeCollaboratorButton.jsx';
 import UsersIcon from '../../../../assets/icons/users.png';
 
 const StyledDialog = styled(Dialog)({
@@ -14,8 +15,9 @@ const StyledDialog = styled(Dialog)({
   },
 });
 
-const ShowCollaboratorsButton = ({ collaborators, fileName }) => {
+const ShowCollaboratorsButton = ({ fileName, collaborators, docId }) => {
   const [show, setShow] = useState(false);
+  const [collaboratorEmails, setCollaboratorEmails] = useState([]);
 
   const handleShow = () => {
     setShow(true);
@@ -25,12 +27,33 @@ const ShowCollaboratorsButton = ({ collaborators, fileName }) => {
     setShow(false);
   };
 
+  useEffect(() => {
+    fetch('api/collaborators', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        collaborators: collaborators,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        try {
+          setCollaboratorEmails(res.collaborators);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+  }, []);
+
   return (
     <>
       <StyledButton
         onClick={handleShow}
         style={{
           backgroundImage: `url(${UsersIcon})`,
+          backgroundSize: 'max(3.5vw, 4.5vh)',
         }}
       />
       <StyledDialog
@@ -41,19 +64,35 @@ const ShowCollaboratorsButton = ({ collaborators, fileName }) => {
       >
         <DialogTitle id="alert-dialog-title">{'Collaborators'}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            The current collaborators with access to {fileName}:
-          </DialogContentText>
-          {/*
-
-        Make a fetch request before this to find the emails for each collaborator id
-
-          {collaboratorEmails.map((collaborator) => (
-            <DialogContentText key={collaborator}>
-              {collaborator}
+          <br />
+          {collaboratorEmails.length === 0 ? (
+            <DialogContentText id="alert-dialog-description">
+              Collaborators you add to {fileName} will appear here.
             </DialogContentText>
-          ))}
-          */}
+          ) : (
+            <>
+              <DialogContentText id="alert-dialog-description">
+                The current collaborators with access to {fileName}:
+              </DialogContentText>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  padding: 0,
+                }}
+              >
+                {collaboratorEmails.map((collaborator) => (
+                  <li key={collaborator}>
+                    {collaborator}
+                    <RemoveCollaboratorButton
+                      setCollaboratorEmails={setCollaboratorEmails}
+                      email={collaborator}
+                      docId={docId}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </DialogContent>
       </StyledDialog>
     </>

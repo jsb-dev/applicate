@@ -15,7 +15,7 @@ function DocList({ userId }) {
   const [searchValue, setSearchValue] = useState('');
   const [allDocs, setAllDocs] = useState([]);
   const [show, setShow] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState('fileNameAsc');
+  const [selectedFilter, setSelectedFilter] = useState('dateModifiedNewest');
 
   const isMobile = UseMediaQuery('(max-width: 600px)');
 
@@ -84,25 +84,15 @@ function DocList({ userId }) {
 
   const handleSubmit = () => {
     setShow(false);
-    if (selectedFilter === 'fileNameAsc') {
+    if (selectedFilter === 'dateModifiedNewest') {
       setDocuments(
         documents.sort((a, b) => {
-          if (a.fileName < b.fileName) {
-            return -1;
-          }
-          if (a.fileName > b.fileName) {
+          const dateA = new Date(a.dateModified.split('-').reverse().join('/'));
+          const dateB = new Date(b.dateModified.split('-').reverse().join('/'));
+          if (dateA < dateB) {
             return 1;
           }
-          return 0;
-        })
-      );
-    } else if (selectedFilter === 'fileNameDesc') {
-      setDocuments(
-        documents.sort((a, b) => {
-          if (a.fileName < b.fileName) {
-            return 1;
-          }
-          if (a.fileName > b.fileName) {
+          if (dateA > dateB) {
             return -1;
           }
           return 0;
@@ -122,15 +112,25 @@ function DocList({ userId }) {
           return 0;
         })
       );
-    } else if (selectedFilter === 'dateModifiedNewest') {
+    } else if (selectedFilter === 'fileNameAsc') {
       setDocuments(
         documents.sort((a, b) => {
-          const dateA = new Date(a.dateModified.split('-').reverse().join('/'));
-          const dateB = new Date(b.dateModified.split('-').reverse().join('/'));
-          if (dateA < dateB) {
+          if (a.fileName < b.fileName) {
+            return -1;
+          }
+          if (a.fileName > b.fileName) {
             return 1;
           }
-          if (dateA > dateB) {
+          return 0;
+        })
+      );
+    } else if (selectedFilter === 'fileNameDesc') {
+      setDocuments(
+        documents.sort((a, b) => {
+          if (a.fileName < b.fileName) {
+            return 1;
+          }
+          if (a.fileName > b.fileName) {
             return -1;
           }
           return 0;

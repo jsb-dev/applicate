@@ -43,25 +43,15 @@ function FilterButton({
             <div>
               <input
                 type="radio"
-                id="fileNameAsc"
+                id="dateModifiedNewest"
                 name="filter"
-                value="fileNameAsc"
-                checked={selectedFilter === 'fileNameAsc'}
+                value="dateModifiedNewest"
+                checked={selectedFilter === 'dateModifiedNewest'}
                 onChange={(e) => setSelectedFilter(e.target.value)}
               />
-              <label htmlFor="fileNameAsc">File Name (A-Z)</label>
-            </div>
-
-            <div>
-              <input
-                type="radio"
-                id="fileNameDesc"
-                name="filter"
-                value="fileNameDesc"
-                checked={selectedFilter === 'fileNameDesc'}
-                onChange={(e) => setSelectedFilter(e.target.value)}
-              />
-              <label htmlFor="fileNameDesc">File Name (Z-A)</label>
+              <label htmlFor="dateModifiedNewest">
+                Date Modified (Newest to Oldest)
+              </label>
             </div>
 
             <div>
@@ -81,15 +71,25 @@ function FilterButton({
             <div>
               <input
                 type="radio"
-                id="dateModifiedNewest"
+                id="fileNameAsc"
                 name="filter"
-                value="dateModifiedNewest"
-                checked={selectedFilter === 'dateModifiedNewest'}
+                value="fileNameAsc"
+                checked={selectedFilter === 'fileNameAsc'}
                 onChange={(e) => setSelectedFilter(e.target.value)}
               />
-              <label htmlFor="dateModifiedNewest">
-                Date Modified (Newest to Oldest)
-              </label>
+              <label htmlFor="fileNameAsc">File Name (A-Z)</label>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                id="fileNameDesc"
+                name="filter"
+                value="fileNameDesc"
+                checked={selectedFilter === 'fileNameDesc'}
+                onChange={(e) => setSelectedFilter(e.target.value)}
+              />
+              <label htmlFor="fileNameDesc">File Name (Z-A)</label>
             </div>
 
             <StyledButton onClick={handleSubmit}>

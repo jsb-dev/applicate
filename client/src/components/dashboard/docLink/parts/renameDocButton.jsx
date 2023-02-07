@@ -73,6 +73,7 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
         onClick={handleShow}
         style={{
           backgroundImage: `url(${RenameIcon})`,
+          backgroundSize: 'max(2.5vw, 3.5vh)',
         }}
       />
       <StyledDialog
