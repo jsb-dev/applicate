@@ -31,8 +31,8 @@ const DocLink = ({
   searchParams.set('docId', docId);
   const href = `/editor?${searchParams.toString()}`;
 
-  const isTablet = useMediaQuery('(max-width: 820px)');
   const isMobile = useMediaQuery('(max-width: 600px)');
+  const isTablet = useMediaQuery('(max-width: 960px)');
 
   const StyledCard = styled(Card)({
     background: 'transparent',
@@ -112,7 +112,7 @@ const DocLink = ({
                 marginRight: '5%',
               }}
             />
-            <p>"{author}"</p>
+            <p>'{author}'</p>
           </div>
           <div
             style={{
@@ -128,7 +128,7 @@ const DocLink = ({
                 marginRight: '5%',
               }}
             />
-            <p> ({dateCreated})</p>
+            <p>'{dateCreated}'</p>
           </div>
           <br />
           <div
@@ -175,10 +175,7 @@ const DocLink = ({
               display: 'flex',
               justifyContent: 'flex-end',
               marginRight: '5%',
-              marginTop: '20%',
-              '@media (maxWidth: 800px)': {
-                marginTop: '25%',
-              },
+              marginTop: isTablet ? '25%' : '20%',
             }}
           ></div>
         </div>

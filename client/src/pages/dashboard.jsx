@@ -12,7 +12,7 @@ const Dashboard = () => {
   const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const isTablet = useMediaQuery('(max-width: 820px)');
+  const isTablet = useMediaQuery('(max-width: 960px)');
   const searchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import StyledTextField from '../styled/formFields';
 import { useMediaQuery } from '@mui/material';
 
 const EmailField = () => {
-  let isMobile = useMediaQuery('(max-width:480px)');
+  let isMobile = useMediaQuery('(max-width:600px)');
   let isTablet = useMediaQuery('(max-width:960px)');
 
   const { values, handleChange, handleBlur } = useFormikContext();

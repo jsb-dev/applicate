@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import UseMediaQuery from '@mui/material/useMediaQuery';
 import NewDocButton from './parts/newDocButton.jsx';
-import StyledButton from '../shared/styledButton.jsx';
+import StyledButton from '../../shared/styledButton.jsx';
 import StyledGrid from './styled/styledGrid.jsx';
 import StyledTextField from './styled/styledTextField.jsx';
 import DocLink from '../docLink/docLink.jsx';

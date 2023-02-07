@@ -1,7 +1,7 @@
 import { Dialog, DialogActions, DialogTitle } from '@mui/material';
 import React from 'react';
 import { Tooltip } from '@mui/material';
-import StyledButton from '../../shared/styledButton.jsx';
+import StyledButton from '../../../shared/styledButton.jsx';
 import CalendarIcon from '../../../../assets/icons/calendar.png';
 
 function FilterButton({

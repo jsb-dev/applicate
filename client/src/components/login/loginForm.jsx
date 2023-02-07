@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import { EmailField, PasswordField } from './parts/formFields';
 import { Card, CardContent } from '@mui/material';
@@ -41,7 +41,7 @@ const CardWrapper = Styled(({ className }) => (
   background: #222c30;
   width: 400px;
   max-width: 50vw;
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     min-width: 90vw;
     min-height: 520px;
     max-height: 90vh;
@@ -49,7 +49,7 @@ const CardWrapper = Styled(({ className }) => (
 `;
 
 const Form = ({ className }) => {
-  const isMobile = useMediaQuery('(max-width:480px)');
+  const isMobile = useMediaQuery('(max-width:600px)');
   const isTablet = useMediaQuery('(max-width:960px)');
 
   return (

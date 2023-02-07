@@ -10,7 +10,7 @@ import {
 import React, { useState } from 'react';
 import { Tooltip } from '@mui/material';
 import AddIcon from '../../../../assets/icons/add.png';
-import StyledButton from '../../shared/styledButton.jsx';
+import StyledButton from '../../../shared/styledButton.jsx';
 
 function NewDocButton({ addDocument }) {
   const [show, setShow] = useState(false);

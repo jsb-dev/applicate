@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StyledButton from '../../shared/styledButton.jsx';
+import StyledButton from '../../../shared/styledButton.jsx';
 import DeleteIcon from '../../../../assets/icons/delete.png';
 
 const DeleteDocButton = ({ setCollaboratorEmails, email, docId }) => {

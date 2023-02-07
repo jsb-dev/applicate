@@ -118,7 +118,7 @@ function MobileNavbar() {
 
           <div
             style={{
-              marginTop: 'calc(100vh / 20)',
+              marginTop: 'calc(100vh / 13)',
               paddingLeft: '10%',
             }}
           >

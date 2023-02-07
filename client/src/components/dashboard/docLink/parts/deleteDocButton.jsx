@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import styled from '@emotion/styled';
-import StyledButton from '../../shared/styledButton.jsx';
+import StyledButton from '../../../shared/styledButton.jsx';
 import DeleteIcon from '../../../../assets/icons/delete.png';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';

@@ -19,7 +19,7 @@ import UndoIcon from '../../assets/icons/undo.png';
 import RedoIcon from '../../assets/icons/redo.png';
 import ExitIcon from '../../assets/icons/exit.png';
 
-function BackToDashboardButton() {
+const BackToDashboardButton = () => {
   return (
     <Link to="/dashboard">
       <button
@@ -34,7 +34,7 @@ function BackToDashboardButton() {
       ></button>
     </Link>
   );
-}
+};
 
 const useMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -61,7 +61,7 @@ const MenuBar = ({ editor }) => {
   const formatMenu = useMenu();
   const headerSizeMenu = useMenu();
 
-  let isMobile = useMediaQuery('(max-width:960px)');
+  const isTablet = useMediaQuery('(max-width:960px)');
 
   if (!editor) {
     return null;
@@ -171,8 +171,8 @@ const MenuBar = ({ editor }) => {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: isMobile ? '100%' : 'calc((100vw - 8.3in) / 2)',
-          height: isMobile ? 'fit-content' : '100%',
+          width: isTablet ? '100%' : 'calc((100vw - 8.3in) / 2)',
+          height: isTablet ? 'fit-content' : '100%',
           zIndex: 100,
         }}
       >
@@ -185,7 +185,7 @@ const MenuBar = ({ editor }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flexDirection: isMobile ? 'row' : 'column',
+            flexDirection: isTablet ? 'row' : 'column',
           }}
         >
           <button
