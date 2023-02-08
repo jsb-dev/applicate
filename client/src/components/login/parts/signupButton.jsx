@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useMediaQuery } from '@mui/material';
-import StyledButton from '../styled/formButtons';
+import StyledButton from '../styled/styledButton';
 import StyledDialog from '../../shared/styledDialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -9,8 +8,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
 const SignupButton = ({ email, password }) => {
-  let isMobile = useMediaQuery('(max-width:600px)');
-  let isTablet = useMediaQuery('(max-width:960px)');
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -56,15 +53,7 @@ const SignupButton = ({ email, password }) => {
 
   return (
     <>
-      <StyledButton
-        variant="contained"
-        color="primary"
-        onClick={handleSignup}
-        style={{
-          width: isMobile ? '120%' : isTablet ? '130%' : '150%',
-          borderRadius: 15,
-        }}
-      >
+      <StyledButton variant="contained" color="primary" onClick={handleSignup}>
         Sign up
       </StyledButton>
       <StyledDialog

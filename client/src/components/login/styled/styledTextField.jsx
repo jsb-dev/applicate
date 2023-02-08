@@ -2,18 +2,20 @@ import { styled } from '@mui/material/styles';
 import { TextField } from '@mui/material';
 
 const StyledTextField = styled(TextField)({
+  marginTop: '5%',
+  width: '100%',
   '& label': {
-    color: '#ffffff',
+    color: '#fff',
   },
   '& .MuiInputBase-input': {
-    color: '#ffffff',
+    color: '#fff',
   },
   '& label.Mui-focused': {
-    color: '#ffffff',
+    color: '#fff',
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: '#ffffff',
+      borderColor: '#fff',
     },
     '&:hover fieldset': {
       borderColor: '#00aec2',

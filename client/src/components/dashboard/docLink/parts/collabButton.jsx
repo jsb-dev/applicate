@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import ShareIcon from '../../../../assets/icons/share.png';
 import StyledDialog from '../../../shared/styledDialog.jsx';
 
-const CollabButton = ({ docId, fileName }) => {
+const CollabButton = ({ docId, fileName, email }) => {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
@@ -27,6 +27,11 @@ const CollabButton = ({ docId, fileName }) => {
   const handleSubmit = () => {
     if (!value) {
       setError('Please enter an email address');
+      return;
+    }
+
+    if (value === email) {
+      setError('You cannot add yourself as a collaborator');
       return;
     }
 
@@ -74,7 +79,8 @@ const CollabButton = ({ docId, fileName }) => {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Please enter an email address for someone to collaborate with you on
-            "{fileName}"
+            "{fileName}". It will appear in their documents list the next time
+            they load their dashboard.
           </DialogContentText>
           <TextField
             autoFocus

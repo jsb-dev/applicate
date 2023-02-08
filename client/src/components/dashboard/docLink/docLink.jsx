@@ -13,6 +13,7 @@ import DocIcon from '../../../assets/icons/docs.png';
 import UserIcon from '../../../assets/icons/user.png';
 import UsersIcon from '../../../assets/icons/users.png';
 import DeleteDocButton from './parts/deleteDocButton.jsx';
+import LeaveButton from './parts/leaveButton.jsx';
 import RenameDocButton from './parts/renameDocButton.jsx';
 import CollabButton from './parts/collabButton.jsx';
 
@@ -34,6 +35,8 @@ const DocLink = ({
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 960px)');
 
+  const email = localStorage.getItem('userEmail');
+
   const StyledCard = styled(Card)({
     background: 'transparent',
     borderRadius: 20,
@@ -53,7 +56,7 @@ const DocLink = ({
     color: 'black',
     fontFamily: 'Raleway, sans-serif',
     letterSpacing: '0.1rem',
-    fontSize: isTablet ? '12pt' : '15pt',
+    fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
     width: '95%',
   });
 
@@ -109,10 +112,16 @@ const DocLink = ({
               alt="User icon"
               style={{
                 width: 30,
-                marginRight: '5%',
+                marginRight: '3%',
               }}
             />
-            <p>'{author}'</p>
+            <p
+              style={{
+                fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
+              }}
+            >
+              '{author}'
+            </p>
           </div>
           <div
             style={{
@@ -125,10 +134,16 @@ const DocLink = ({
               alt="User icon"
               style={{
                 width: 30,
-                marginRight: '5%',
+                marginRight: '3%',
               }}
             />
-            <p>'{dateCreated}'</p>
+            <p
+              style={{
+                fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
+              }}
+            >
+              '{dateCreated}'
+            </p>
           </div>
           <br />
           <div
@@ -138,24 +153,46 @@ const DocLink = ({
               width: '100%',
             }}
           >
-            <DeleteDocButton
-              docId={docId}
-              fileName={fileName}
-              author={author}
-              setDocuments={setDocuments}
-            />
-            <RenameDocButton
-              docId={docId}
-              author={author}
-              fileName={fileName}
-              setDocuments={setDocuments}
-            />
-            <CollabButton docId={docId} fileName={fileName} />
-            <ShowCollaboratorsButton
-              fileName={fileName}
-              collaborators={collaborators}
-              docId={docId}
-            />
+            {email === author ? (
+              <>
+                <DeleteDocButton
+                  docId={docId}
+                  fileName={fileName}
+                  author={author}
+                  setDocuments={setDocuments}
+                />
+                <RenameDocButton
+                  docId={docId}
+                  author={author}
+                  fileName={fileName}
+                  setDocuments={setDocuments}
+                />
+                <CollabButton docId={docId} fileName={fileName} email={email} />
+                <ShowCollaboratorsButton
+                  fileName={fileName}
+                  email={email}
+                  author={author}
+                  collaborators={collaborators}
+                  docId={docId}
+                />
+              </>
+            ) : (
+              <>
+                <LeaveButton
+                  docId={docId}
+                  fileName={fileName}
+                  email={email}
+                  setDocuments={setDocuments}
+                />
+                <ShowCollaboratorsButton
+                  fileName={fileName}
+                  email={email}
+                  author={author}
+                  collaborators={collaborators}
+                  docId={docId}
+                />
+              </>
+            )}
           </div>
         </div>
       </Menu>
@@ -245,7 +282,7 @@ const DocLink = ({
                     display: 'inline-block',
                     width: '100%',
                     overflowWrap: 'break-word',
-                    fontSize: isTablet ? '10pt' : '12pt',
+                    fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
                   }}
                 >
                   {fileName.length > 30
@@ -255,7 +292,7 @@ const DocLink = ({
               </p>
               <p
                 style={{
-                  fontSize: isTablet ? '10pt' : '12pt',
+                  fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
                 }}
               >
                 Modified: {dateModified}

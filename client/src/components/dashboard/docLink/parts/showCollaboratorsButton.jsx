@@ -7,7 +7,13 @@ import RemoveCollaboratorButton from './removeCollaboratorButton.jsx';
 import UsersIcon from '../../../../assets/icons/users.png';
 import StyledDialog from '../../../shared/styledDialog.jsx';
 
-const ShowCollaboratorsButton = ({ fileName, collaborators, docId }) => {
+const ShowCollaboratorsButton = ({
+  fileName,
+  email,
+  author,
+  collaborators,
+  docId,
+}) => {
   const [show, setShow] = useState(false);
   const [collaboratorEmails, setCollaboratorEmails] = useState([]);
 
@@ -55,16 +61,19 @@ const ShowCollaboratorsButton = ({ fileName, collaborators, docId }) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">{'Collaborators'}</DialogTitle>
-        <DialogContent>
-          <br />
+        <DialogContent
+          style={{
+            overflow: 'hidden',
+          }}
+        >
           {collaboratorEmails.length === 0 ? (
             <DialogContentText id="alert-dialog-description">
-              Collaborators you add to {fileName} will appear here.
+              Collaborators you add to "{fileName}" will appear here.
             </DialogContentText>
           ) : (
             <>
               <DialogContentText id="alert-dialog-description">
-                The current collaborators with access to {fileName}:
+                The current collaborators with access to "{fileName}":
               </DialogContentText>
               <ul
                 style={{
@@ -72,14 +81,26 @@ const ShowCollaboratorsButton = ({ fileName, collaborators, docId }) => {
                   padding: 0,
                 }}
               >
+                <br />
                 {collaboratorEmails.map((collaborator) => (
-                  <li key={collaborator}>
-                    {collaborator}
-                    <RemoveCollaboratorButton
-                      setCollaboratorEmails={setCollaboratorEmails}
-                      email={collaborator}
-                      docId={docId}
-                    />
+                  <li
+                    key={collaborator}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    {collaborator.length > 20
+                      ? collaborator.substring(0, 20) + '...'
+                      : collaborator}
+                    {email === author ? (
+                      <RemoveCollaboratorButton
+                        setCollaboratorEmails={setCollaboratorEmails}
+                        email={collaborator}
+                        docId={docId}
+                      />
+                    ) : null}
                   </li>
                 ))}
               </ul>
