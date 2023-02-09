@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import logoutUser from '../../../utils/logoutUser.js';
 
 const StyledLogoutButton = styled(Button)({
   width: 150,
@@ -34,10 +35,7 @@ function LogoutButton() {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            localStorage.removeItem('authToken');
-            localStorage.removeItem('userId');
-            localStorage.removeItem('userEmail');
-            window.location.href = '/';
+            logoutUser();
           }
         });
     } catch (error) {

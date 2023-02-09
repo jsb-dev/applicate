@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import LogoImg from '../../assets/images/applicateLogo.png';
 import MobileLinkButton from './parts/mobileLinkButton.jsx';
 import MobileLogoutButton from './parts/mobileLogoutButton.jsx';
+import AccountButton from './parts/accountButton.jsx';
 
 const StyledAppBar = styled(AppBar)({
   background: 'linear-gradient(45deg, #2e393b 30%, #0dc9de 90%)',
@@ -135,6 +136,7 @@ function MobileNavbar() {
             <PageLink to="/contact">
               <MobileLinkButton>Contact</MobileLinkButton>
             </PageLink>
+            {isAuthenticated ? <AccountButton /> : null}
             {isAuthenticated ? <MobileLogoutButton /> : null}
           </div>
         </div>
