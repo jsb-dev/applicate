@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
-import styled from '@emotion/styled';
+import StyledCard from './styled/styledCard.jsx';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Tooltip } from '@mui/material';
 import ShowCollaboratorsButton from './parts/showCollaboratorsButton.jsx';
@@ -33,32 +32,19 @@ const DocLink = ({
   const href = `/editor?${searchParams.toString()}`;
 
   const isMobile = useMediaQuery('(max-width: 600px)');
+  const isBetween = useMediaQuery('(max-width: 800px)');
   const isTablet = useMediaQuery('(max-width: 960px)');
 
   const email = localStorage.getItem('userEmail');
 
-  const StyledCard = styled(Card)({
-    background: 'transparent',
-    borderRadius: 20,
-    border: 'solid 2px #2e393b',
-    boxShadow: '0px 0px 10px 4px #2e393b',
-    width: '100%',
-    minHeight: 'fit-content',
-    height: 'calc(100vw / 100vh)',
-    '&:hover': {
-      boxShadow: '0px 0px 12px 5px #fff',
-      border: 'solid 2px #fff',
-      transition: 'all 0.4s ease-in-out',
-    },
-  });
-
-  const StyledTypography = styled(Typography)({
-    color: 'black',
-    fontFamily: 'Raleway, sans-serif',
-    letterSpacing: '0.1rem',
-    fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
-    width: '95%',
-  });
+  let fileNameLength;
+  if (isMobile) {
+    fileNameLength = 11;
+  } else if (isTablet) {
+    fileNameLength = 15;
+  } else {
+    fileNameLength = 19;
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.target);
@@ -70,20 +56,31 @@ const DocLink = ({
 
   return (
     <>
-      <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
+      <div
         style={{
+          display: 'flex',
           position: 'absolute',
-          backgroundColor: 'rgba(255,255,255,0.5)',
-          padding: isMobile ? '5%' : isTablet ? '3%' : '2%',
-          margin: isMobile ? '3%' : isTablet ? '2%' : '1%',
+          alignItems: 'center',
+          width: isMobile ? '40%' : isTablet ? '25%' : '20%',
+          marginTop: isMobile ? '6%' : isTablet ? '3%' : '2.5%',
         }}
       >
-        <MoreVertIcon fontSize={isMobile ? 'medium' : 'large'} />
-      </IconButton>
+        <IconButton
+          aria-label="more"
+          aria-controls="long-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          style={{
+            position: 'absolute',
+            backgroundColor: 'rgba(255,255,255,0.5)',
+            marginLeft: isMobile ? '5%' : '5%',
+          }}
+        >
+          <MoreVertIcon
+            fontSize={isMobile ? 'medium' : isTablet ? 'small' : 'medium'}
+          />
+        </IconButton>
+      </div>
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
@@ -205,7 +202,7 @@ const DocLink = ({
               textDecoration: 'none',
               width: '100%',
             }}
-          ></a>
+          />
           <div
             style={{
               width: '100%',
@@ -227,20 +224,17 @@ const DocLink = ({
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              padding: '5%',
+              padding: '4%',
+              paddingTop: isMobile ? '4%' : 0,
             }}
           >
             <div
               style={{
-                marginBottom: isMobile ? '15%' : 0,
-              }}
-            />
-            <div
-              style={{
+                marginTop: isMobile ? '5%' : 0,
                 display: 'flex',
                 justifyContent: 'space-around',
                 background: 'white',
-                padding: '10%',
+                padding: '5%',
                 borderRadius: 20,
               }}
             >
@@ -250,7 +244,8 @@ const DocLink = ({
                   alt="Document icon"
                   style={{
                     display: 'block',
-                    width: '30%',
+                    width: '20%',
+                    height: '20%',
                   }}
                 />
               </Tooltip>
@@ -260,8 +255,8 @@ const DocLink = ({
                     src={UsersIcon}
                     alt="Users icon"
                     style={{
-                      display: 'block',
-                      width: '30%',
+                      width: '20%',
+                      height: '20%',
                     }}
                   />
                 </Tooltip>
@@ -270,34 +265,50 @@ const DocLink = ({
                   <img
                     src={UserIcon}
                     alt="User icon"
-                    style={{ display: 'block', width: '30%' }}
+                    style={{ width: '20%', height: '20%' }}
                   />
                 </Tooltip>
               )}
             </div>
-            <StyledTypography variant="h5" component="h2">
+            <Typography
+              variant="h5"
+              component="h2"
+              style={{
+                color: 'black',
+                fontFamily: 'Raleway, sans-serif',
+                letterSpacing: '0.1rem',
+                fontSize: isMobile
+                  ? '10pt'
+                  : isBetween
+                  ? '8pt'
+                  : isTablet
+                  ? '12pt'
+                  : '13pt',
+                width: '95%',
+              }}
+            >
               <p>
                 <b
                   style={{
                     display: 'inline-block',
                     width: '100%',
                     overflowWrap: 'break-word',
-                    fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
                   }}
                 >
-                  {fileName.length > 30
-                    ? fileName.substring(0, 30) + '...'
+                  {fileName.length > fileNameLength
+                    ? fileName.substring(0, fileNameLength) + '...'
                     : fileName}
                 </b>
               </p>
               <p
                 style={{
-                  fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
+                  fontSize: isMobile ? '8pt' : isTablet ? '10pt' : '12pt',
                 }}
               >
-                Modified: {dateModified}
+                Modified: {isMobile ? <br /> : null}
+                {dateModified}
               </p>
-            </StyledTypography>
+            </Typography>
           </CardContent>
         </a>
       </StyledCard>

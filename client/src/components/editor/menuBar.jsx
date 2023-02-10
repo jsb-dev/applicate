@@ -51,9 +51,8 @@ const useMenu = () => {
 };
 
 const menuStyles = {
-  padding: 5,
+  padding: 10,
   borderRadius: 20,
-  boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
 };
 
 const MenuBar = ({ editor }) => {
@@ -264,20 +263,31 @@ const MenuBar = ({ editor }) => {
               open={Boolean(headerSizeMenu.anchorEl)}
               onClose={headerSizeMenu.handleClose}
               PaperProps={{
-                style: menuStyles,
+                style: {
+                  ...menuStyles,
+                  width: 190,
+                },
               }}
             >
-              {headerSizeItems.map((headerSizeItem, index) => (
-                <button
-                  key={index}
-                  onClick={() => headerSizeItem.action.run()}
-                  disabled={headerSizeItem.disabled}
-                  className={headerSizeItem.active ? 'is-active' : ''}
-                  title={headerSizeItem.title}
-                >
-                  {headerSizeItem.title}
-                </button>
-              ))}
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gridGap: 10,
+                }}
+              >
+                {headerSizeItems.map((headerSizeItem, index) => (
+                  <button
+                    key={index}
+                    onClick={() => headerSizeItem.action.run()}
+                    disabled={headerSizeItem.disabled}
+                    className={headerSizeItem.active ? 'is-active' : ''}
+                    title={headerSizeItem.title}
+                  >
+                    {headerSizeItem.title}
+                  </button>
+                ))}
+              </div>
             </Menu>
           </button>
           <button

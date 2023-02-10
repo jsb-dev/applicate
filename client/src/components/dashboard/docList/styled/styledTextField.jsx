@@ -2,6 +2,7 @@ import Styled from '@emotion/styled';
 import TextField from '@mui/material/TextField';
 
 const StyledTextField = Styled(TextField)({
+  width: '70%',
   '& label': {
     color: '#ffffff',
   },

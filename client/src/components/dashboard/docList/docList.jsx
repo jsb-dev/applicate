@@ -7,8 +7,8 @@ import StyledGrid from './styled/styledGrid.jsx';
 import StyledTextField from './styled/styledTextField.jsx';
 import DocLink from '../docLink/docLink.jsx';
 import SearchIcon from '../../../assets/icons/search.png';
-import ClearFiltersIcon from '../../../assets/icons/clearFilters.png';
 import FilterButton from './parts/filterButton.jsx';
+import CloseIcon from '@mui/icons-material/Close';
 
 function DocList({ userId }) {
   const [documents, setDocuments] = useState([]);
@@ -196,9 +196,6 @@ function DocList({ userId }) {
             fullWidth
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            style={{
-              width: '70%',
-            }}
           />
           <StyledButton
             style={{
@@ -217,6 +214,9 @@ function DocList({ userId }) {
             padding: '2% 5%',
           }}
         >
+          <StyledButton onClick={handleReset}>
+            <CloseIcon fontSize="small" />
+          </StyledButton>
           <FilterButton
             handleSubmit={handleSubmit}
             show={show}
@@ -224,12 +224,6 @@ function DocList({ userId }) {
             selectedFilter={selectedFilter}
             setSelectedFilter={setSelectedFilter}
           />
-          <StyledButton
-            onClick={handleReset}
-            style={{
-              backgroundImage: `url(${ClearFiltersIcon})`,
-            }}
-          ></StyledButton>
           <NewDocButton addDocument={addDocument} />
         </div>
       </div>
@@ -259,9 +253,6 @@ function DocList({ userId }) {
               <Grid
                 item
                 xs={6}
-                sm={6}
-                lg={4}
-                xl={4}
                 key={document.id || document.documentId}
                 style={{
                   padding: 10,
@@ -319,6 +310,8 @@ function DocList({ userId }) {
               padding: '0 1% 0.5% 1%',
               border: '1px solid #fff',
               borderRadius: 10,
+              minHeight: '60%',
+              maxHeight: '90%',
               width: '60%',
             }}
           >
@@ -342,6 +335,9 @@ function DocList({ userId }) {
               onClick={handleSearch}
             />
           </div>
+          <StyledButton onClick={handleReset}>
+            <CloseIcon fontSize="large" />
+          </StyledButton>
           <FilterButton
             handleSubmit={handleSubmit}
             show={show}
@@ -349,12 +345,6 @@ function DocList({ userId }) {
             selectedFilter={selectedFilter}
             setSelectedFilter={setSelectedFilter}
           />
-          <StyledButton
-            onClick={handleClear}
-            style={{
-              backgroundImage: `url(${ClearFiltersIcon})`,
-            }}
-          ></StyledButton>
           <NewDocButton addDocument={addDocument} />
         </div>
         <div
@@ -382,10 +372,8 @@ function DocList({ userId }) {
               {documents.map((document) => (
                 <Grid
                   item
-                  xs={6}
-                  sm={6}
-                  lg={4}
-                  xl={4}
+                  sm={4}
+                  lg={3}
                   key={document.id || document.documentId}
                   style={{
                     padding: 20,

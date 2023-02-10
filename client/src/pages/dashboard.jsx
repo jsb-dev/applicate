@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LoginPage from './loginPage.jsx';
 import checkAuth from '../utils/checkAuth.js';
 import DocList from '../components/dashboard/docList/docList.jsx';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import FullNavbar from '../components/navbar/fullNavbar.jsx';
-import MobileNavbar from '../components/navbar/mobileNavbar.jsx';
+import NavBar from '../components/global/navBar/navBar.jsx';
 import LoadingSpinner from '../components/global/loadingSpinner.jsx';
 
 const Dashboard = () => {
@@ -12,7 +10,6 @@ const Dashboard = () => {
   const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const isTablet = useMediaQuery('(max-width: 960px)');
   const searchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
@@ -58,10 +55,10 @@ const Dashboard = () => {
     <>
       {isAuthenticated ? (
         <div>
-          {isTablet ? <MobileNavbar /> : <FullNavbar />}
+          <NavBar />
           <div
             style={{
-              marginTop: isTablet ? '15vh' : '',
+              marginTop: '15vh',
             }}
           >
             <DocList userId={userId} />

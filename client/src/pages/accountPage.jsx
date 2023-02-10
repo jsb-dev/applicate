@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import checkAuth from '../utils/checkAuth.js';
 import LoginPage from './loginPage.jsx';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import LoadingSpinner from '../components/global/loadingSpinner.jsx';
-import FullNavbar from '../components/navbar/fullNavbar.jsx';
-import MobileNavbar from '../components/navbar/mobileNavbar.jsx';
+import NavBar from '../components/global/navBar/navBar.jsx';
 import ChangePasswordButton from '../components/account/changePasswordButton.jsx';
 import ChangeEmailButton from '../components/account/changeEmailButton.jsx';
 
@@ -12,7 +10,6 @@ const AccountPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const isTablet = useMediaQuery('(max-width: 960px)');
   const searchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
@@ -57,7 +54,7 @@ const AccountPage = () => {
     <>
       {isAuthenticated ? (
         <div>
-          {isTablet ? <MobileNavbar /> : <FullNavbar />}
+          <NavBar />
           <br />
           <br />
           <br />

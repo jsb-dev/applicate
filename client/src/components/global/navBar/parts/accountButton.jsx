@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@mui/material/Button';
+import StyledButton from '../styled/styledButton.jsx';
 
 const AccountButton = () => {
   const handleClick = () => {
@@ -11,7 +11,7 @@ const AccountButton = () => {
   };
 
   return (
-    <Button
+    <StyledButton
       variant="contained"
       color="primary"
       onClick={() => {
@@ -19,7 +19,7 @@ const AccountButton = () => {
       }}
     >
       Account
-    </Button>
+    </StyledButton>
   );
 };
 

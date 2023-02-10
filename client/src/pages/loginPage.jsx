@@ -1,7 +1,6 @@
 import React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import MobileNavbar from '../components/navbar/mobileNavbar.jsx';
-import FullNavbar from '../components/navbar/fullNavbar.jsx';
+import NavBar from '../components/global/navBar/navBar.jsx';
 import LoginForm from '../components/login/loginForm.jsx';
 import GalaxyBg from '../assets/images/Focus_ProductCard_DavidMonje_Aqua.jpg';
 import LaptopBg from '../assets/images/WebDev_ProductCard_AlesNesetril.jpg';
@@ -13,7 +12,7 @@ const LoginPage = () => {
 
   return (
     <div style={{ maxWidth: '100vw' }}>
-      {isMobile ? <MobileNavbar /> : <FullNavbar />}
+      <NavBar />
       <section
         style={{
           backgroundImage: `url(${GalaxyBg})`,

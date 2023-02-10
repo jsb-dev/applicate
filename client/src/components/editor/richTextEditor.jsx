@@ -3,7 +3,9 @@ import { BubbleMenu, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import io from 'socket.io-client';
 import React, { useRef, useEffect } from 'react';
-import Placeholder from '@tiptap/extension-placeholder';
+import BoldIcon from '../../assets/icons/bold.png';
+import ItalicIcon from '../../assets/icons/italic.png';
+import StrikethroughIcon from '../../assets/icons/strikethrough.png';
 import MenuBar from './menuBar.jsx';
 
 const ENDPOINT = 'http://localhost:3000';
@@ -29,12 +31,7 @@ const RichTextEditor = ({ content, docId }) => {
   });
 
   const editor = new Editor({
-    extensions: [
-      StarterKit,
-      Placeholder.configure({
-        placeholder: 'Start typing here...',
-      }),
-    ],
+    extensions: [StarterKit],
     content: content,
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
@@ -66,21 +63,27 @@ const RichTextEditor = ({ content, docId }) => {
           <button
             onClick={() => editor.chain().focus().toggleBold().run()}
             className={editor.isActive('bold') ? 'is-active' : ''}
-          >
-            bold
-          </button>
+            style={{
+              backgroundImage: `url(${BoldIcon})`,
+              boxShadow: '0 0 0 1px #000',
+            }}
+          />
           <button
             onClick={() => editor.chain().focus().toggleItalic().run()}
             className={editor.isActive('italic') ? 'is-active' : ''}
-          >
-            italic
-          </button>
+            style={{
+              backgroundImage: `url(${ItalicIcon})`,
+              boxShadow: '0 0 0 1px #000',
+            }}
+          />
           <button
             onClick={() => editor.chain().focus().toggleStrike().run()}
             className={editor.isActive('strike') ? 'is-active' : ''}
-          >
-            strike
-          </button>
+            style={{
+              backgroundImage: `url(${StrikethroughIcon})`,
+              boxShadow: '0 0 0 1px #000',
+            }}
+          />
         </BubbleMenu>
       )}
       <EditorContent editor={editor} />

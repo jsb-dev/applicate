@@ -30,7 +30,7 @@ const documentSchema = new Schema({
           content: [
             {
               type: 'text',
-              text: 'Start typing here...',
+              text: '',
             },
           ],
         },
