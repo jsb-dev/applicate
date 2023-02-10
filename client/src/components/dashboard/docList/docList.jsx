@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import UseMediaQuery from '@mui/material/useMediaQuery';
+import { Tooltip } from '@mui/material';
 import NewDocButton from './parts/newDocButton.jsx';
 import StyledButton from '../../shared/styledButton.jsx';
 import StyledGrid from './styled/styledGrid.jsx';
@@ -328,16 +329,20 @@ function DocList({ userId }) {
                 width: '83%',
               }}
             />
-            <StyledButton
-              style={{
-                backgroundImage: `url(${SearchIcon})`,
-              }}
-              onClick={handleSearch}
-            />
+            <Tooltip title="Search by file name">
+              <StyledButton
+                style={{
+                  backgroundImage: `url(${SearchIcon})`,
+                }}
+                onClick={handleSearch}
+              />
+            </Tooltip>
           </div>
-          <StyledButton onClick={handleReset}>
-            <CloseIcon fontSize="large" />
-          </StyledButton>
+          <Tooltip title="Clear search and dashboard filters">
+            <StyledButton onClick={handleReset}>
+              <CloseIcon fontSize="large" />
+            </StyledButton>
+          </Tooltip>
           <FilterButton
             handleSubmit={handleSubmit}
             show={show}

@@ -12,7 +12,7 @@ const StyledButton = styled(Button)({
   height: 'max(4vw, 4vh)',
   width: 'max(4vw, 4vh)',
   '&:hover': {
-    transform: 'scale(1.1)',
+    transform: 'scale(1)',
     backgroundColor: 'white',
     boxShadow: '0px 0px 12px 5px #fff',
     transition: 'all 0.2s ease-in-out',

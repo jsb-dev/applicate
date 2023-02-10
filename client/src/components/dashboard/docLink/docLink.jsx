@@ -62,7 +62,7 @@ const DocLink = ({
           position: 'absolute',
           alignItems: 'center',
           width: isMobile ? '40%' : isTablet ? '25%' : '20%',
-          marginTop: isMobile ? '6%' : isTablet ? '3%' : '2.5%',
+          marginTop: isMobile ? '6%' : isTablet ? '3%' : '2%',
         }}
       >
         <IconButton
