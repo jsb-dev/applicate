@@ -7,8 +7,6 @@ const Footer = () => {
         padding: '3vh',
         height: '100%',
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
       }}
     >
       <footer

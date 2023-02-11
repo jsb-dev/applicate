@@ -5,7 +5,7 @@ import LoginForm from '../components/login/loginForm.jsx';
 import GalaxyBg from '../assets/images/Focus_ProductCard_DavidMonje_Aqua.jpg';
 import LaptopBg from '../assets/images/WebDev_ProductCard_AlesNesetril.jpg';
 import OfficeBg from '../assets/images/OfficePic_Bg_NastuhAbootalebi.jpg';
-import SiteFooter from '../components/global/footer.jsx';
+import Footer from '../components/global/footer.jsx';
 
 const LoginPage = () => {
   const isMobile = useMediaQuery('(max-width: 600px)');
@@ -268,7 +268,7 @@ const LoginPage = () => {
         }}
       >
         <div>
-          <SiteFooter />
+          <Footer />
         </div>
       </section>
     </div>
