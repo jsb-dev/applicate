@@ -190,7 +190,8 @@ function NavBar() {
 
               {isAuthenticated ? (
                 <>
-                  <LogoutButton /> <AccountButton />
+                  <LogoutButton />
+                  <AccountButton />
                 </>
               ) : null}
             </div>
