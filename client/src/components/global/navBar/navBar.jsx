@@ -57,7 +57,7 @@ function NavBar() {
               style={{
                 flexGrow: 0.5,
                 display: 'flex',
-                justifyContent: 'space-between',
+                justifyContent: 'space-evenly',
               }}
             >
               {isAuthenticated ? (
@@ -74,7 +74,12 @@ function NavBar() {
               <StyledLink to="/contact">
                 <StyledButton>Contact</StyledButton>
               </StyledLink>
-              {isAuthenticated ? <LogoutButton /> : null}
+              {isAuthenticated ? (
+                <>
+                  <AccountButton />
+                  <LogoutButton />
+                </>
+              ) : null}
             </Typography>
           </Toolbar>
         </StyledAppBar>

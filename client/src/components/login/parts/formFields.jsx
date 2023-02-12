@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
-import StyledTextField from '../styled/styledTextField.jsx';
+import StyledTextField from '../../shared/styledTextField.jsx';
 import { useMediaQuery } from '@mui/material';
 
 const EmailField = () => {

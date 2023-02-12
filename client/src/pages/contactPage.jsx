@@ -3,18 +3,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import NavBar from '../components/global/navBar/navBar.jsx';
 import GalaxyBg from '../assets/images/Focus_ProductCard_DavidMonje_Aqua.jpg';
 import Footer from '../components/global/footer.jsx';
+import ContactCard from '../components/contact/contactCard.jsx';
 
 const AboutPage = () => {
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 960px)');
-
-  const articleBlock = {
-    color: 'white',
-    letterSpacing: '0.1rem',
-    wordSpacing: '0.2rem',
-    width: isMobile ? '100%' : '50%',
-    padding: isMobile ? '2% 2% 0 2%' : isTablet ? 0 : '2% 2% 0 2%',
-  };
 
   return (
     <>
@@ -37,7 +30,19 @@ const AboutPage = () => {
             backgroundRepeat: 'no-repeat',
             minHeight: '90vh',
           }}
-        ></div>
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minHeight: '90vh',
+            }}
+          >
+            <ContactCard />
+          </div>
+        </div>
       </section>
       <Footer />
     </>

@@ -11,6 +11,19 @@ const LoginPage = () => {
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 960px)');
 
+  const articleBlock = {
+    borderRadius: 5,
+    boxShadow: '0 0 5px 3px rgba(0, 171, 191, 0.8)',
+    width: isTablet ? '90%' : '43%',
+    minHeight: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    letterSpacing: '0.1rem',
+    wordSpacing: '0.2rem',
+    padding: isMobile ? '3%' : '2%',
+    margin: isMobile ? '5%' : isTablet ? '2%' : '1%',
+  };
+
   return (
     <div style={{ maxWidth: '100vw' }}>
       <NavBar />
@@ -155,31 +168,17 @@ const LoginPage = () => {
       >
         <div
           style={{
-            padding: '7% 0',
+            padding: '5% 0',
             display: 'flex',
-            alignItems: 'center',
+            alignItems: isTablet ? 'center' : null,
             justifyContent: 'space-evenly',
             flexDirection: isTablet ? 'column' : 'row',
             color: 'white',
             width: '100%',
-            height: isTablet ? '100%' : '90vh',
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
           }}
         >
-          <div
-            style={{
-              borderRadius: 5,
-              boxShadow: '0 0 5px 3px rgba(0, 171, 191, 0.8)',
-              maxWidth: '90vw',
-              display: 'flex',
-              flexDirection: 'column',
-              letterSpacing: '0.1rem',
-              wordSpacing: '0.2rem',
-              padding: '3%',
-              margin: '2%',
-              height: '100%',
-            }}
-          >
+          <article style={articleBlock}>
             <h2
               style={{
                 textAlign: 'left',
@@ -192,7 +191,6 @@ const LoginPage = () => {
               style={{
                 textAlign: 'left',
                 fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
-                minWidth: isTablet ? '80vw' : '40vw',
               }}
             >
               At the core of Applicate's design is the fundamental concept of
@@ -216,21 +214,8 @@ const LoginPage = () => {
               <li>Accessibility from any device</li>
               <li>Automatic saving</li>
             </ul>
-          </div>
-          <div
-            style={{
-              borderRadius: 5,
-              boxShadow: '0 0 5px 3px rgba(0, 171, 191, 0.8)',
-              maxWidth: '90vw',
-              display: 'flex',
-              flexDirection: 'column',
-              letterSpacing: '0.1rem',
-              wordSpacing: '0.2rem',
-              padding: '3%',
-              margin: '2%',
-              height: '100%',
-            }}
-          >
+          </article>
+          <article style={articleBlock}>
             <h2
               style={{
                 textAlign: 'left',
@@ -243,7 +228,6 @@ const LoginPage = () => {
               style={{
                 textAlign: 'left',
                 fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
-                minWidth: isTablet ? '80vw' : '40vw',
               }}
             >
               Applicate is a MERN stack (MongoDB, Express, React, Node)
@@ -259,7 +243,7 @@ const LoginPage = () => {
               be a simple, intuitive tool that you can use to plan and document
               your project, and then forget about it until you need it again.
             </p>
-          </div>
+          </article>
         </div>
       </section>
       <section

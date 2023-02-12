@@ -5,6 +5,7 @@ import loginController from '../controllers/account/login.js';
 import logoutController from '../controllers/account/logout.js';
 import passwordController from '../controllers/account/password.js';
 import emailController from '../controllers/account/email.js';
+import contactController from '../controllers/account/contact.js';
 
 dotenv.config();
 
@@ -15,5 +16,6 @@ accountRouter.post('/login', loginController);
 accountRouter.post('/logout', logoutController);
 accountRouter.post('/password', passwordController);
 accountRouter.post('/email', emailController);
+accountRouter.post('/contact', contactController);
 
 export default accountRouter;
