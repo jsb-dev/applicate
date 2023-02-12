@@ -39,7 +39,7 @@ const DocLink = ({
 
   let fileNameLength;
   if (isMobile) {
-    fileNameLength = 11;
+    fileNameLength = 10;
   } else if (isTablet) {
     fileNameLength = 15;
   } else {

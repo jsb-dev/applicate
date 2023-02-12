@@ -1,14 +1,10 @@
 import React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import NavBar from '../components/global/navBar/navBar.jsx';
 import GalaxyBg from '../assets/images/Focus_ProductCard_DavidMonje_Aqua.jpg';
 import Footer from '../components/global/footer.jsx';
 import ContactCard from '../components/contact/contactCard.jsx';
 
 const AboutPage = () => {
-  const isMobile = useMediaQuery('(max-width: 600px)');
-  const isTablet = useMediaQuery('(max-width: 960px)');
-
   return (
     <>
       <NavBar />

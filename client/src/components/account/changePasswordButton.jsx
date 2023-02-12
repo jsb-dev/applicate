@@ -8,7 +8,9 @@ import {
   FormControl,
   FormHelperText,
 } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledDialog from '../shared/styledDialog.jsx';
+import StyledButton from './styled/styledButton.jsx';
 import logoutUser from '../../utils/logoutUser.js';
 
 function ChangePasswordButton() {
@@ -19,6 +21,8 @@ function ChangePasswordButton() {
     confirmPassword: '',
     error: '',
   });
+
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const handlePasswordChange = async () => {
     if (passwordData.newPassword !== passwordData.confirmPassword) {
@@ -67,14 +71,14 @@ function ChangePasswordButton() {
   };
 
   return (
-    <div>
-      <Button
+    <>
+      <StyledButton
         variant="contained"
         color="primary"
         onClick={() => setOpenPasswordDialog(true)}
       >
         Change Password
-      </Button>
+      </StyledButton>
       <StyledDialog
         open={openPasswordDialog}
         onClose={() => {
@@ -150,7 +154,7 @@ function ChangePasswordButton() {
           <Button onClick={handlePasswordChange}>Change Password</Button>
         </DialogActions>
       </StyledDialog>
-    </div>
+    </>
   );
 }
 

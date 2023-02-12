@@ -8,7 +8,9 @@ import {
   FormControl,
   FormHelperText,
 } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledDialog from '../shared/styledDialog.jsx';
+import StyledButton from './styled/styledButton.jsx';
 import logoutUser from '../../utils/logoutUser.js';
 
 function ChangeEmailButton() {
@@ -19,6 +21,8 @@ function ChangeEmailButton() {
     confirmEmail: '',
     error: '',
   });
+
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const handleEmailChange = async () => {
     if (emailData.newEmail !== emailData.confirmEmail) {
@@ -54,14 +58,14 @@ function ChangeEmailButton() {
   };
 
   return (
-    <div>
-      <Button
+    <>
+      <StyledButton
         variant="contained"
         color="primary"
         onClick={() => setOpenEmailDialog(true)}
       >
         Change Email
-      </Button>
+      </StyledButton>
       <StyledDialog
         open={openEmailDialog}
         onClose={() => {
@@ -115,7 +119,7 @@ function ChangeEmailButton() {
           </Button>
         </DialogActions>
       </StyledDialog>
-    </div>
+    </>
   );
 }
 

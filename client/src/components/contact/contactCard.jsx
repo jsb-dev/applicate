@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  TextField,
   Button,
   Card,
   CardHeader,
@@ -10,37 +9,21 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import styled from '@emotion/styled';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledTextField from '../shared/styledTextField.jsx';
 
 function ContactCard(props) {
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+
   const [message, setMessage] = useState('');
+
   const [error, setError] = useState('');
-  const email = localStorage.getItem('userEmail');
   const token = localStorage.getItem('authToken');
 
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 900px)');
-
-  const TextBox = styled(StyledTextField)({
-    '& label': {
-      color: '#000',
-    },
-    '& .MuiInputBase-input': {
-      color: '#000',
-    },
-    '& label.Mui-focused': {
-      color: '#000',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#000',
-      },
-    },
-  });
 
   const handleSubmit = async () => {
     if (!subject || !description) {
@@ -55,7 +38,7 @@ function ContactCard(props) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ email, subject, description }),
+        body: JSON.stringify({ userEmail, subject, description }),
       });
       if (response.ok) {
         setSubject('');
@@ -109,6 +92,12 @@ function ContactCard(props) {
             justifyContent: 'center',
           }}
         >
+          <StyledTextField
+            label="Email"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+            autoFocus
+          />
           <StyledTextField
             label="Subject"
             value={subject}
