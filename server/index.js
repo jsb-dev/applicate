@@ -1,7 +1,8 @@
 import express from 'express';
 import connection from './database/database.js';
-import cors from 'cors';
 import dotenv from 'dotenv';
+import sendEmail from './utils/mailer.js';
+import cors from 'cors';
 import { Server } from 'socket.io';
 import accountRouter from './routers/account.js';
 import documentRouter from './routers/document.js';
@@ -35,12 +36,10 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   socket.on('setup', (userId) => {
     socket.join(userId);
-    console.log('user connected', userId);
   });
 
-  socket.on('access document', (userId, room) => {
+  socket.on('access document', (room) => {
     socket.join(room);
-    console.log('user', userId, 'accessed document', room);
   });
 
   socket.on('document update', (docId, json) => {
