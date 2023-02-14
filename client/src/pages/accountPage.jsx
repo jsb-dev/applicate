@@ -16,6 +16,7 @@ import NavBar from '../components/global/navBar/navBar.jsx';
 import Footer from '../components/global/footer.jsx';
 import ChangePasswordButton from '../components/account/changePasswordButton.jsx';
 import ChangeEmailButton from '../components/account/changeEmailButton.jsx';
+import DeleteAccountButton from '../components/account/deleteAccountButton.jsx';
 import GalaxyBg from '../assets/images/Focus_ProductCard_DavidMonje_Aqua.jpg';
 
 const AccountPage = () => {
@@ -153,6 +154,10 @@ const AccountPage = () => {
                     >
                       <ChangePasswordButton />
                       <ChangeEmailButton />
+                      <DeleteAccountButton
+                        userId={searchParams.get('userId')}
+                        userEmail={userEmail}
+                      />
                     </CardActions>
                   </div>
                 </Card>
