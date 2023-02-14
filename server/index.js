@@ -1,7 +1,6 @@
 import express from 'express';
 import connection from './database/database.js';
 import dotenv from 'dotenv';
-import sendEmail from './utils/mailer.js';
 import cors from 'cors';
 import { Server } from 'socket.io';
 import accountRouter from './routers/account.js';

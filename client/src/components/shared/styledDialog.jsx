@@ -6,6 +6,8 @@ const StyledDialog = styled(Dialog)({
     borderRadius: 20,
     overflow: 'hidden',
     padding: '1%',
+    backgroundColor: '#222c30',
+    color: '#fff',
   },
 });
 

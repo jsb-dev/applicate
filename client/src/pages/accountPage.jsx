@@ -119,34 +119,42 @@ const AccountPage = () => {
                       </Avatar>
                     }
                   />
-                  <CardContent
+                  <div
                     style={{
-                      maxWidth: '70vw',
-                    }}
-                  >
-                    <Typography
-                      style={{
-                        fontSize: '15pt',
-                      }}
-                    >
-                      Below you will find options to change your account
-                      password and email, or delete your account
-                    </Typography>
-                    <br />
-                  </CardContent>
-                  <CardActions
-                    style={{
-                      height: '30vh',
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'space-evenly',
-                      width: '100%',
                     }}
                   >
-                    <ChangePasswordButton />
-                    <ChangeEmailButton />
-                  </CardActions>
+                    <CardContent
+                      style={{
+                        maxWidth: '70vw',
+                      }}
+                    >
+                      <Typography
+                        style={{
+                          fontSize: '15pt',
+                        }}
+                      >
+                        Below you will find options to change your account
+                        password and email, or delete your account
+                      </Typography>
+                    </CardContent>
+                    <CardActions
+                      style={{
+                        height: '30vh',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'space-evenly',
+                        width: '100%',
+                      }}
+                    >
+                      <ChangePasswordButton />
+                      <ChangeEmailButton />
+                    </CardActions>
+                  </div>
                 </Card>
               </div>
             </div>

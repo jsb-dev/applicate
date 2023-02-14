@@ -7,6 +7,7 @@ import EditorPage from './pages/editorPage.jsx';
 import AccountPage from './pages/accountPage.jsx';
 import AboutPage from './pages/aboutPage.jsx';
 import ContactPage from './pages/contactPage.jsx';
+import RecoveryPage from './pages/recoveryPage.jsx';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route exact path="/account" element={<AccountPage />} />
         <Route exact path="/about" element={<AboutPage />} />
         <Route exact path="/contact" element={<ContactPage />} />
+        <Route exact path="/recovery" element={<RecoveryPage />} />
       </Routes>
     </BrowserRouter>
   );

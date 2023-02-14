@@ -5,7 +5,9 @@ import { StyledCard, StyledCardContent } from './styled/styledCard';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import LoginButton from './parts/loginButton.jsx';
 import SignupButton from './parts/signupButton.jsx';
+import './parts/forgotPasswordLink.jsx';
 import LogoImg from '../../assets/images/applicateLogo.png';
+import ForgotPasswordLink from './parts/forgotPasswordLink.jsx';
 
 const LoginForm = () => {
   const isMobile = useMediaQuery('(max-width: 600px)');
@@ -46,11 +48,11 @@ const LoginForm = () => {
                     password={values.password}
                   />
                 </section>
-
                 <br />
               </div>
             )}
           </Formik>
+          <ForgotPasswordLink />
         </StyledCardContent>
       </StyledCard>
     </>
