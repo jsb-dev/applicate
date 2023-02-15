@@ -56,7 +56,6 @@ const LeaveButton = ({ docId, fileName, email, setDocuments }) => {
         onClick={handleClick}
         style={{
           backgroundImage: `url(${ExitIcon})`,
-          backgroundSize: 'max(2.5vw, 3.5vh)',
         }}
       />
       <StyledDialog

@@ -67,7 +67,6 @@ const CollabButton = ({ docId, fileName, email }) => {
         onClick={handleShow}
         style={{
           backgroundImage: `url(${ShareIcon})`,
-          backgroundSize: 'max(2.5vw, 3.5vh)',
         }}
       />
       <StyledDialog

@@ -7,13 +7,19 @@ const StyledButton = styled(Button)({
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
   backgroundColor: 'white',
-  backgroundSize: 'max(3vw, 3vh)',
   color: 'black',
   '&:hover': {
     transform: 'scale(1)',
     backgroundColor: 'white',
     boxShadow: '0px 0px 12px 5px #fff',
     transition: 'all 0.2s ease-in-out',
+  },
+  height: '100%',
+  '@media (max-width: 600px)': {
+    width: '20%',
+  },
+  '@media (min-width: 601px) and (max-width: 960px)': {
+    width: '10%',
   },
 });
 

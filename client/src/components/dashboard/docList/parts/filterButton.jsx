@@ -28,6 +28,11 @@ function FilterButton({
     margin: '5%',
   };
 
+  const buttonStyles = {
+    width: '40%',
+    margin: '3%',
+  };
+
   return (
     <>
       <Tooltip title="Filter documents">
@@ -105,25 +110,13 @@ function FilterButton({
                 display: 'flex',
                 justifyContent: 'space-between',
                 width: '100%',
-                marginTop: '5%',
+                marginTop: isTablet ? '10%' : '5%',
               }}
             >
-              <StyledButton
-                onClick={handleClose}
-                style={{
-                  width: '40%',
-                  margin: '5%',
-                }}
-              >
+              <StyledButton onClick={handleClose} style={buttonStyles}>
                 <span>Cancel</span>
               </StyledButton>
-              <StyledButton
-                onClick={handleSubmit}
-                style={{
-                  width: '40%',
-                  margin: '5%',
-                }}
-              >
+              <StyledButton onClick={handleSubmit} style={buttonStyles}>
                 <span>Apply</span>
               </StyledButton>
             </div>

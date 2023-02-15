@@ -1,21 +1,21 @@
-import {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@mui/material';
+import { DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import React, { useState } from 'react';
 import { Tooltip } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import AddIcon from '../../../../assets/icons/add.png';
 import StyledButton from '../../../shared/styledButton.jsx';
 import StyledDialog from '../../../shared/styledDialog.jsx';
 import StyledDialogButton from '../../../shared/styledDialogButton.jsx';
 import StyledAlert from '../../../shared/styledAlert.jsx';
+import StyledTextField from '../../../shared/styledTextField.jsx';
 
 function NewDocButton({ addDocument }) {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
+
+  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isTablet = useMediaQuery('(max-width: 960px)');
 
   const handleShow = () => setShow(true);
 
@@ -79,7 +79,7 @@ function NewDocButton({ addDocument }) {
       <StyledDialog open={show} onClose={handleClose}>
         <DialogTitle>Enter a file name</DialogTitle>
         <DialogContent>
-          <TextField
+          <StyledTextField
             autoFocus
             margin="dense"
             id="name"
@@ -88,6 +88,9 @@ function NewDocButton({ addDocument }) {
             fullWidth
             value={value}
             onChange={handleChange}
+            style={{
+              minWidth: isMobile ? '' : isTablet ? '50vw' : '30vw',
+            }}
           />
           {error && (
             <StyledAlert
@@ -100,7 +103,14 @@ function NewDocButton({ addDocument }) {
           )}
         </DialogContent>
         <DialogActions>
-          <StyledDialogButton onClick={handleClose}>Cancel</StyledDialogButton>
+          <StyledDialogButton
+            onClick={handleClose}
+            style={{
+              marginRight: '10%',
+            }}
+          >
+            Cancel
+          </StyledDialogButton>
           <StyledDialogButton onClick={handleSubmit}>Submit</StyledDialogButton>
         </DialogActions>
       </StyledDialog>

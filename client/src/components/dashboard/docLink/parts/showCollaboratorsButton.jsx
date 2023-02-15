@@ -51,7 +51,7 @@ const ShowCollaboratorsButton = ({
         onClick={handleShow}
         style={{
           backgroundImage: `url(${UsersIcon})`,
-          backgroundSize: 'max(3.5vw, 4.5vh)',
+          backgroundSize: '70%',
         }}
       />
       <StyledDialog

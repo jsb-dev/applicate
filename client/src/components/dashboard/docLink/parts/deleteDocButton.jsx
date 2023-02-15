@@ -53,7 +53,6 @@ const DeleteDocButton = ({ docId, fileName, setDocuments }) => {
         onClick={handleClick}
         style={{
           backgroundImage: `url(${DeleteIcon})`,
-          backgroundSize: 'max(2.5vw, 3.5vh)',
         }}
       />
       <StyledDialog

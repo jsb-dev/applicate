@@ -54,6 +54,26 @@ const DocLink = ({
     setAnchorEl(null);
   };
 
+  const buttonRowStyles = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    height: isMobile ? '10vh' : '5vh',
+  };
+
+  const infoTagStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+  };
+
+  const infoTagImg = {
+    width: '12%',
+    marginRight: '3%',
+  };
+
   return (
     <>
       <div
@@ -93,25 +113,14 @@ const DocLink = ({
             boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
             width: 'fit-content',
             overflow: 'hidden',
-            padding: isTablet ? '2% 5%' : '1% 2%',
+            padding: isMobile ? '5%' : isTablet ? '3%' : '2%',
+            width: isMobile ? '80vw' : isTablet ? '40vw' : '30vw',
           },
         }}
       >
-        <div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <img
-              src={UserIcon}
-              alt="User icon"
-              style={{
-                width: 30,
-                marginRight: '3%',
-              }}
-            />
+        <section>
+          <div style={infoTagStyles}>
+            <img src={UserIcon} alt="User icon" style={infoTagImg} />
             <p
               style={{
                 fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
@@ -120,20 +129,8 @@ const DocLink = ({
               '{author}'
             </p>
           </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <img
-              src={DocIcon}
-              alt="User icon"
-              style={{
-                width: 30,
-                marginRight: '3%',
-              }}
-            />
+          <div style={infoTagStyles}>
+            <img src={DocIcon} alt="User icon" style={infoTagImg} />
             <p
               style={{
                 fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
@@ -142,56 +139,54 @@ const DocLink = ({
               '{dateCreated}'
             </p>
           </div>
-          <br />
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              width: '100%',
-            }}
-          >
-            {email === author ? (
-              <>
-                <DeleteDocButton
-                  docId={docId}
-                  fileName={fileName}
-                  author={author}
-                  setDocuments={setDocuments}
-                />
-                <RenameDocButton
-                  docId={docId}
-                  author={author}
-                  fileName={fileName}
-                  setDocuments={setDocuments}
-                />
-                <CollabButton docId={docId} fileName={fileName} email={email} />
-                <ShowCollaboratorsButton
-                  fileName={fileName}
-                  email={email}
-                  author={author}
-                  collaborators={collaborators}
-                  docId={docId}
-                />
-              </>
-            ) : (
-              <>
-                <LeaveButton
-                  docId={docId}
-                  fileName={fileName}
-                  email={email}
-                  setDocuments={setDocuments}
-                />
-                <ShowCollaboratorsButton
-                  fileName={fileName}
-                  email={email}
-                  author={author}
-                  collaborators={collaborators}
-                  docId={docId}
-                />
-              </>
-            )}
-          </div>
-        </div>
+        </section>
+        <br />
+        <section
+          style={{
+            width: '100%',
+          }}
+        >
+          {email === author ? (
+            <div style={buttonRowStyles}>
+              <DeleteDocButton
+                docId={docId}
+                fileName={fileName}
+                author={author}
+                setDocuments={setDocuments}
+              />
+              <RenameDocButton
+                docId={docId}
+                author={author}
+                fileName={fileName}
+                setDocuments={setDocuments}
+              />
+              <CollabButton docId={docId} fileName={fileName} email={email} />
+              <ShowCollaboratorsButton
+                fileName={fileName}
+                email={email}
+                author={author}
+                collaborators={collaborators}
+                docId={docId}
+              />
+            </div>
+          ) : (
+            <div style={buttonRowStyles}>
+              <LeaveButton
+                docId={docId}
+                fileName={fileName}
+                email={email}
+                setDocuments={setDocuments}
+              />
+              <ShowCollaboratorsButton
+                fileName={fileName}
+                email={email}
+                author={author}
+                collaborators={collaborators}
+                docId={docId}
+              />
+            </div>
+          )}
+        </section>
       </Menu>
       <StyledCard>
         <div>

@@ -2,7 +2,6 @@ import { styled } from '@mui/material/styles';
 import { TextField } from '@mui/material';
 
 const StyledTextField = styled(TextField)({
-  marginTop: '5%',
   width: '100%',
   '& label': {
     color: '#fff',
