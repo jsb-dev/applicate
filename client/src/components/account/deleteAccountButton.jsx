@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import StyledButton from './styled/styledButton.jsx';
 import StyledDialog from '../shared/styledDialog.jsx';
 import StyledTextField from '../shared/styledTextField.jsx';
+import logoutUser from '../../utils/logoutUser.js';
 
 const DeleteAccountButton = ({ userId, userEmail }) => {
   const [open, setOpen] = useState(false);
@@ -27,9 +28,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
       if (!data.success) {
         return setError(data.message);
       }
-
-      // logic to log the user out goes here
-      window.location.href = '/';
+      logoutUser();
     } catch (error) {
       setError(error.message);
     }

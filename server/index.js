@@ -7,6 +7,7 @@ import accountRouter from './routers/account.js';
 import documentRouter from './routers/document.js';
 import checkAuthRouter from './routers/auth.js';
 import apiRouter from './routers/api.js';
+import contactRouter from './routers/contact.js';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use('/account', accountRouter);
 app.use('/auth', checkAuthRouter);
 app.use('/document', documentRouter);
 app.use('/api', apiRouter);
+app.use('/contact', contactRouter);
 
 const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {

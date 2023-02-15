@@ -8,7 +8,6 @@ import {
   FormControl,
   FormHelperText,
 } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledDialog from '../shared/styledDialog.jsx';
 import StyledButton from './styled/styledButton.jsx';
 import logoutUser from '../../utils/logoutUser.js';
@@ -21,8 +20,6 @@ function ChangeEmailButton() {
     confirmEmail: '',
     error: '',
   });
-
-  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const handleEmailChange = async () => {
     if (emailData.newEmail !== emailData.confirmEmail) {

@@ -39,6 +39,7 @@ const recoverController = async (req, res) => {
   const recoveryLink = `http://localhost:3000/recovery?auth=${token}`;
 
   sendEmail(
+    process.env.SMTP_USER,
     email,
     'Password Recovery',
     '',

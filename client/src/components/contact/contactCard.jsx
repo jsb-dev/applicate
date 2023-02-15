@@ -11,28 +11,30 @@ import {
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledTextField from '../shared/styledTextField.jsx';
+import StyledAlert from '../shared/styledAlert.jsx';
 
-function ContactCard(props) {
+function ContactCard() {
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
   const [userEmail, setUserEmail] = useState('');
-
   const [message, setMessage] = useState('');
-
   const [error, setError] = useState('');
+
   const token = localStorage.getItem('authToken');
 
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 900px)');
 
   const handleSubmit = async () => {
-    if (!subject || !description) {
-      setError('Please provide a subject and description for your query');
+    if (!subject || !description || !userEmail) {
+      setError(
+        'Please provide an email, subject and description for your query'
+      );
       return;
     }
 
     try {
-      const response = await fetch('/account/contact', {
+      const response = await fetch('/contact/enquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,13 +42,19 @@ function ContactCard(props) {
         },
         body: JSON.stringify({ userEmail, subject, description }),
       });
-      if (response.ok) {
+
+      const res = await response.json();
+
+      if (res.success) {
+        console.log(res);
+        setError('');
         setSubject('');
         setDescription('');
+        setUserEmail('');
         setMessage("Thanks! We'll be in touch soon");
       }
     } catch (error) {
-      console.error(error);
+      setMessage('');
       setError(
         'There was a problem sending your message. Please try again later.'
       );
@@ -56,7 +64,7 @@ function ContactCard(props) {
   return (
     <Card
       style={{
-        margin: isMobile ? '30% 0' : isTablet ? 0 : '10%',
+        margin: isMobile ? '30% 0 15% 0' : isTablet ? '20% 0 10% 0' : '10%',
         padding: '2%',
         backgroundColor: '#222c30',
         color: '#fff',
@@ -93,7 +101,7 @@ function ContactCard(props) {
           }}
         >
           <StyledTextField
-            label="Email"
+            label="Your Email Address"
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
             autoFocus
@@ -105,15 +113,17 @@ function ContactCard(props) {
             autoFocus
           />
           <StyledTextField
-            label="Description"
+            label="Brief Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             multiline
             rows={8}
             autoFocus
           />
-          {error && <Typography color="error">{error}</Typography>}
-          {message && <Typography color="primary">{message}</Typography>}
+          {error && <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>}
+          {message && (
+            <StyledAlert style={{ color: 'green' }}>{message}</StyledAlert>
+          )}
         </section>
       </CardContent>
       <CardActions>

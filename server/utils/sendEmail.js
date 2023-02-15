@@ -13,22 +13,26 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = (to, subject, text, html) => {
-  const mailOptions = {
-    from: `Applicate Support <${process.env.SMTP_USER}>`,
-    to,
-    subject,
-    text,
-    html,
-  };
+const sendEmail = (from, to, subject, text, html) => {
+  try {
+    const mailOptions = {
+      from,
+      to,
+      subject,
+      text,
+      html,
+    };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(error);
-    } else {
-      console.log(`Email sent: ${info.response}`);
-    }
-  });
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(`Email sent: ${info.response}`);
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default sendEmail;
