@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
 import StyledButton from '../../../shared/styledButton.jsx';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,6 +7,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import RenameIcon from '../../../../assets/icons/rename.png';
 import StyledDialog from '../../../shared/styledDialog.jsx';
+import StyledDialogButton from '../../../shared/styledDialogButton.jsx';
+import StyledAlert from '../../../shared/styledAlert.jsx';
 
 const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
   const [show, setShow] = useState(false);
@@ -90,16 +91,20 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
             onChange={handleChange}
           />
           {error && (
-            <DialogContentText color="error">{error}</DialogContentText>
+            <StyledAlert
+              style={{
+                color: 'red',
+              }}
+            >
+              {error}
+            </StyledAlert>
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary" autoFocus>
+          <StyledDialogButton onClick={handleClose}>Cancel</StyledDialogButton>
+          <StyledDialogButton onClick={handleSubmit} autoFocus>
             Submit
-          </Button>
+          </StyledDialogButton>
         </DialogActions>
       </StyledDialog>
     </>

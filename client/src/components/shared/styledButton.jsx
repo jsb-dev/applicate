@@ -9,8 +9,6 @@ const StyledButton = styled(Button)({
   backgroundColor: 'white',
   backgroundSize: 'max(3vw, 3vh)',
   color: 'black',
-  height: 'max(4vw, 4vh)',
-  width: 'max(4vw, 4vh)',
   '&:hover': {
     transform: 'scale(1)',
     backgroundColor: 'white',

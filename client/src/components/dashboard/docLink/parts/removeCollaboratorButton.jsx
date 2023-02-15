@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import StyledButton from '../../../shared/styledButton.jsx';
 import DeleteIcon from '../../../../assets/icons/delete.png';
+import StyledAlert from '../../../shared/styledAlert.jsx';
 
 const DeleteDocButton = ({ setCollaboratorEmails, email, docId }) => {
   const [error, setError] = useState(null);
@@ -38,7 +39,15 @@ const DeleteDocButton = ({ setCollaboratorEmails, email, docId }) => {
           backgroundImage: `url(${DeleteIcon})`,
         }}
       />
-      {error && <p>{error}</p>}
+      {error && (
+        <StyledAlert
+          style={{
+            color: 'red',
+          }}
+        >
+          {error}
+        </StyledAlert>
+      )}
     </>
   );
 };

@@ -1,8 +1,6 @@
 import {
-  Button,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   TextField,
 } from '@mui/material';
@@ -11,6 +9,8 @@ import { Tooltip } from '@mui/material';
 import AddIcon from '../../../../assets/icons/add.png';
 import StyledButton from '../../../shared/styledButton.jsx';
 import StyledDialog from '../../../shared/styledDialog.jsx';
+import StyledDialogButton from '../../../shared/styledDialogButton.jsx';
+import StyledAlert from '../../../shared/styledAlert.jsx';
 
 function NewDocButton({ addDocument }) {
   const [show, setShow] = useState(false);
@@ -90,16 +90,18 @@ function NewDocButton({ addDocument }) {
             onChange={handleChange}
           />
           {error && (
-            <DialogContentText color="error">{error}</DialogContentText>
+            <StyledAlert
+              style={{
+                color: 'red',
+              }}
+            >
+              {error}
+            </StyledAlert>
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary">
-            Submit
-          </Button>
+          <StyledDialogButton onClick={handleClose}>Cancel</StyledDialogButton>
+          <StyledDialogButton onClick={handleSubmit}>Submit</StyledDialogButton>
         </DialogActions>
       </StyledDialog>
     </>

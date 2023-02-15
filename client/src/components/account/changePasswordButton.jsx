@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Button,
   DialogActions,
   DialogContent,
   DialogTitle,
@@ -10,6 +9,7 @@ import {
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledDialog from '../shared/styledDialog.jsx';
+import StyledDialogButton from '../shared/styledDialogButton.jsx';
 import StyledButton from './styled/styledButton.jsx';
 import logoutUser from '../../utils/logoutUser.js';
 
@@ -138,7 +138,7 @@ function ChangePasswordButton() {
         </DialogContent>
 
         <DialogActions>
-          <Button
+          <StyledDialogButton
             onClick={() => {
               setOpenPasswordDialog(false);
               setPasswordData({
@@ -150,8 +150,10 @@ function ChangePasswordButton() {
             }}
           >
             Cancel
-          </Button>
-          <Button onClick={handlePasswordChange}>Change Password</Button>
+          </StyledDialogButton>
+          <StyledDialogButton onClick={handlePasswordChange}>
+            Change Password
+          </StyledDialogButton>
         </DialogActions>
       </StyledDialog>
     </>

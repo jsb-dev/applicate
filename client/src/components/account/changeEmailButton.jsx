@@ -9,6 +9,7 @@ import {
   FormHelperText,
 } from '@mui/material';
 import StyledDialog from '../shared/styledDialog.jsx';
+import StyledDialogButton from '../shared/styledDialogButton.jsx';
 import StyledButton from './styled/styledButton.jsx';
 import logoutUser from '../../utils/logoutUser.js';
 
@@ -110,10 +111,12 @@ function ChangeEmailButton() {
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenEmailDialog(false)}>Cancel</Button>
-          <Button onClick={handleEmailChange} color="primary">
+          <StyledDialogButton onClick={() => setOpenEmailDialog(false)}>
+            Cancel
+          </StyledDialogButton>
+          <StyledDialogButton onClick={handleEmailChange}>
             Change Email
-          </Button>
+          </StyledDialogButton>
         </DialogActions>
       </StyledDialog>
     </>

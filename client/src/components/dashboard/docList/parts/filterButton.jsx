@@ -1,6 +1,7 @@
 import { DialogActions, DialogTitle } from '@mui/material';
 import React from 'react';
 import { Tooltip } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledButton from '../../../shared/styledButton.jsx';
 import StyledDialog from '../../../shared/styledDialog.jsx';
 import CalendarIcon from '../../../../assets/icons/calendar.png';
@@ -12,12 +13,19 @@ function FilterButton({
   selectedFilter,
   setSelectedFilter,
 }) {
+  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isTablet = useMediaQuery('(max-width: 960px)');
+
   const handleShow = () => {
     setShow(true);
   };
 
   const handleClose = () => {
     setShow(false);
+  };
+
+  const inputStyles = {
+    margin: '5%',
   };
 
   return (
@@ -38,7 +46,7 @@ function FilterButton({
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              alignItems: 'center',
+              minWidth: isMobile ? '70vw' : isTablet ? '30vw' : '20vw',
             }}
           >
             <div>
@@ -49,10 +57,9 @@ function FilterButton({
                 value="dateModifiedNewest"
                 checked={selectedFilter === 'dateModifiedNewest'}
                 onChange={(e) => setSelectedFilter(e.target.value)}
+                style={inputStyles}
               />
-              <label htmlFor="dateModifiedNewest">
-                Date Modified (Newest to Oldest)
-              </label>
+              <label htmlFor="dateModifiedNewest">Newest to Oldest</label>
             </div>
 
             <div>
@@ -63,10 +70,9 @@ function FilterButton({
                 value="dateModifiedOldest"
                 checked={selectedFilter === 'dateModifiedOldest'}
                 onChange={(e) => setSelectedFilter(e.target.value)}
+                style={inputStyles}
               />
-              <label htmlFor="dateModifiedOldest">
-                Date Modified (Oldest to Newest)
-              </label>
+              <label htmlFor="dateModifiedOldest">Oldest to Newest</label>
             </div>
 
             <div>
@@ -77,6 +83,7 @@ function FilterButton({
                 value="fileNameAsc"
                 checked={selectedFilter === 'fileNameAsc'}
                 onChange={(e) => setSelectedFilter(e.target.value)}
+                style={inputStyles}
               />
               <label htmlFor="fileNameAsc">File Name (A-Z)</label>
             </div>
@@ -89,13 +96,37 @@ function FilterButton({
                 value="fileNameDesc"
                 checked={selectedFilter === 'fileNameDesc'}
                 onChange={(e) => setSelectedFilter(e.target.value)}
+                style={inputStyles}
               />
               <label htmlFor="fileNameDesc">File Name (Z-A)</label>
             </div>
-
-            <StyledButton onClick={handleSubmit}>
-              <span>Apply</span>
-            </StyledButton>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                marginTop: '5%',
+              }}
+            >
+              <StyledButton
+                onClick={handleClose}
+                style={{
+                  width: '40%',
+                  margin: '5%',
+                }}
+              >
+                <span>Cancel</span>
+              </StyledButton>
+              <StyledButton
+                onClick={handleSubmit}
+                style={{
+                  width: '40%',
+                  margin: '5%',
+                }}
+              >
+                <span>Apply</span>
+              </StyledButton>
+            </div>
           </div>
         </DialogActions>
       </StyledDialog>

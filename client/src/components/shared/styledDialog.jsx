@@ -8,6 +8,12 @@ const StyledDialog = styled(Dialog)({
     padding: '1%',
     backgroundColor: '#222c30',
     color: '#fff',
+    maxWidth: '60vw',
+  },
+  '@media (max-width: 600px)': {
+    '& .MuiDialog-paper': {
+      maxWidth: '90vw',
+    },
   },
 });
 

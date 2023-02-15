@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
 import StyledButton from '../../../shared/styledButton.jsx';
 import ExitIcon from '../../../../assets/icons/exit.png';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,6 +6,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import StyledDialog from '../../../shared/styledDialog.jsx';
+import StyledDialogButton from '../../../shared/styledDialogButton.jsx';
+import StyledAlert from '../../../shared/styledAlert.jsx';
 
 const LeaveButton = ({ docId, fileName, email, setDocuments }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -71,16 +72,20 @@ const LeaveButton = ({ docId, fileName, email, setDocuments }) => {
             "?
           </DialogContentText>
           {error && (
-            <DialogContentText color="error">{error}</DialogContentText>
+            <StyledAlert
+              style={{
+                color: 'red',
+              }}
+            >
+              {error}
+            </StyledAlert>
           )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancel} color="primary">
-            No
-          </Button>
-          <Button onClick={handleConfirm} color="primary" autoFocus>
+          <StyledDialogButton onClick={handleCancel}>No</StyledDialogButton>
+          <StyledDialogButton onClick={handleConfirm} autoFocus>
             Yes
-          </Button>
+          </StyledDialogButton>
         </DialogActions>
       </StyledDialog>
     </>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import StyledButton from '../styled/styledButton';
 import StyledDialog from '../../shared/styledDialog';
+import StyledDialogButton from '../../shared/styledDialogButton';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+import StyledAlert from '../../shared/styledAlert';
 
 const LoginButton = ({ email, password }) => {
   const [error, setError] = useState(null);
@@ -17,6 +17,12 @@ const LoginButton = ({ email, password }) => {
   };
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      setError('Please enter an email and password');
+      setOpen(true);
+      return;
+    }
+
     try {
       const response = await fetch('/account/login', {
         method: 'POST',
@@ -64,14 +70,18 @@ const LoginButton = ({ email, password }) => {
       >
         <DialogTitle id="alert-dialog-title">Whoops!</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {error}
-          </DialogContentText>
+          {error && (
+            <StyledAlert
+              style={{
+                color: 'red',
+              }}
+            >
+              {error}
+            </StyledAlert>
+          )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
+          <StyledDialogButton onClick={handleClose}>Close</StyledDialogButton>
         </DialogActions>
       </StyledDialog>
     </>

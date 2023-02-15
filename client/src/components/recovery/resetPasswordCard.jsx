@@ -6,6 +6,7 @@ import StyledTextField from '../shared/styledTextField.jsx';
 import StyledButton from '../shared/styledButton.jsx';
 import StyledDialog from '../shared/styledDialog.jsx';
 import LogoImg from '../../assets/images/applicateLogo.png';
+import StyledAlert from '../shared/styledAlert.jsx';
 
 const ResetPasswordCard = ({ auth }) => {
   const [newPassword, setNewPassword] = useState('');
@@ -85,7 +86,7 @@ const ResetPasswordCard = ({ auth }) => {
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
         />
-        <p style={{ color: 'red' }}>{error}</p>
+        <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>
         <div
           style={{
             margin: isMobile ? '12% 0 6% 0' : '10% 0 5% 0',

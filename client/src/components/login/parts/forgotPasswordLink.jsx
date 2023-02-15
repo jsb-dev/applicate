@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import {
   Link,
   TextField,
-  Button,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
 import StyledDialog from '../../shared/styledDialog';
+import StyledDialogButton from '../../shared/styledDialogButton';
+import StyledAlert from '../../shared/styledAlert';
 
 const ForgotPasswordLink = () => {
   const [open, setOpen] = useState(false);
@@ -70,11 +71,9 @@ const ForgotPasswordLink = () => {
             and we'll sernd you a link to change your password.
           </DialogContentText>
           <br />
-          {message ? (
-            <DialogContentText style={{ color: 'green' }}>
-              {message}
-            </DialogContentText>
-          ) : null}
+          {message && (
+            <StyledAlert style={{ color: 'green' }}>{message}</StyledAlert>
+          )}
           <TextField
             autoFocus
             margin="dense"
@@ -89,12 +88,8 @@ const ForgotPasswordLink = () => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary">
-            Submit
-          </Button>
+          <StyledDialogButton onClick={handleClose}>Cancel</StyledDialogButton>
+          <StyledDialogButton onClick={handleSubmit}>Submit</StyledDialogButton>
         </DialogActions>
       </StyledDialog>
     </>

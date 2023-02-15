@@ -3,6 +3,7 @@ import StyledButton from './styled/styledButton.jsx';
 import StyledDialog from '../shared/styledDialog.jsx';
 import StyledTextField from '../shared/styledTextField.jsx';
 import logoutUser from '../../utils/logoutUser.js';
+import StyledAlert from '../shared/styledAlert.jsx';
 
 const DeleteAccountButton = ({ userId, userEmail }) => {
   const [open, setOpen] = useState(false);
@@ -52,7 +53,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
             including documents that others have access to. THIS CANNOT BE
             UNDONE.
           </h2>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {error && <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>}
           <form
             onSubmit={handleSubmit}
             style={{
