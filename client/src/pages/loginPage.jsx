@@ -48,7 +48,7 @@ const LoginPage = () => {
               alignItems: isTablet ? 'space-evenly' : 'center',
               justifyContent: isTablet ? 'center' : '',
               flexDirection: isTablet ? 'column' : 'row',
-              padding: isTablet ? '10vh 5vw 5vh 5vw' : '5vh 0 6vh 0',
+              padding: isTablet ? '10vh 5vw 5vh 5vw' : '',
             }}
           >
             <div
@@ -58,8 +58,7 @@ const LoginPage = () => {
                 wordSpacing: '0.2rem',
                 width: '100%',
                 paddingLeft: isTablet ? '' : '5vw',
-                paddingTop: isTablet ? '' : '15vh',
-                marginBottom: isTablet ? '4vh' : '',
+                marginBottom: isMobile ? '4vh' : '',
               }}
             >
               <h1
@@ -100,9 +99,8 @@ const LoginPage = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '100%',
                 width: '100%',
-                marginTop: isTablet ? '' : '15vh',
+                height: isMobile ? '' : isTablet ? '60vh' : '',
               }}
             >
               <LoginForm />

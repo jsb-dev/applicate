@@ -96,9 +96,7 @@ const DocLink = ({
             marginLeft: isMobile ? '5%' : '5%',
           }}
         >
-          <MoreVertIcon
-            fontSize={isMobile ? 'medium' : isTablet ? 'small' : 'medium'}
-          />
+          <MoreVertIcon fontSize="small" />
         </IconButton>
       </div>
       <Menu
@@ -298,6 +296,7 @@ const DocLink = ({
               <p
                 style={{
                   fontSize: isMobile ? '8pt' : isTablet ? '10pt' : '12pt',
+                  fontFamily: 'Calibri',
                 }}
               >
                 Modified: {isMobile ? <br /> : null}

@@ -19,6 +19,7 @@ function DocList({ userId }) {
   const [selectedFilter, setSelectedFilter] = useState('dateModifiedNewest');
 
   const isMobile = UseMediaQuery('(max-width: 600px)');
+  const isTablet = UseMediaQuery('(max-width: 960px)');
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -51,6 +52,7 @@ function DocList({ userId }) {
 
   const addDocument = (document) => {
     setDocuments([document, ...documents]);
+    setAllDocs([document, ...allDocs]);
   };
 
   const handleSearch = () => {
@@ -73,14 +75,10 @@ function DocList({ userId }) {
     ));
   };
 
-  const handleClear = () => {
-    setSearchValue('');
-    setDocuments(allDocs);
-  };
-
   const handleReset = () => {
-    handleClear();
+    setSearchValue('');
     setSelectedFilter('fileNameAsc');
+    setDocuments(allDocs);
   };
 
   const handleSubmit = () => {
@@ -152,7 +150,8 @@ function DocList({ userId }) {
     ));
   };
 
-  return isMobile ? (
+  return isTablet ? (
+    // Mobile View
     <div
       style={{
         margin: '5%',
@@ -172,7 +171,8 @@ function DocList({ userId }) {
           alignItems: 'center',
           backgroundColor: '#182021',
           width: '100%',
-          height: '25vh',
+          height: isMobile ? '25vh' : '20vh',
+          minHeight: '200px',
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
         }}
@@ -183,7 +183,7 @@ function DocList({ userId }) {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '90%',
-            padding: '0 3% 1.5% 3%',
+            padding: isMobile ? '5% 2%' : '2%',
             border: '1px solid #fff',
             borderRadius: 10,
           }}
@@ -197,26 +197,42 @@ function DocList({ userId }) {
             fullWidth
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-          />
-          <StyledButton
             style={{
-              backgroundImage: `url(${SearchIcon})`,
-              height: 50,
+              margin: 0,
+              width: '72.5%',
             }}
-            onClick={handleSearch}
           />
+          <div
+            style={{
+              height: '80%',
+              width: isMobile ? '' : isTablet ? '15%' : '',
+            }}
+          >
+            <StyledButton
+              style={{
+                backgroundImage: `url(${SearchIcon})`,
+                width: '100%',
+              }}
+              onClick={handleSearch}
+            />
+          </div>
         </div>
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            width: '90%',
+            width: '93%',
+            height: '20%',
             alignItems: 'center',
             padding: '2% 5%',
           }}
         >
           <StyledButton onClick={handleReset}>
-            <CloseIcon fontSize="small" />
+            {isMobile ? (
+              <CloseIcon fontSize="small" />
+            ) : (
+              <CloseIcon fontSize="large" />
+            )}
           </StyledButton>
           <FilterButton
             handleSubmit={handleSubmit}
@@ -254,6 +270,7 @@ function DocList({ userId }) {
               <Grid
                 item
                 xs={6}
+                sm={4}
                 key={document.id || document.documentId}
                 style={{
                   padding: 10,
@@ -275,7 +292,6 @@ function DocList({ userId }) {
       </div>
     </div>
   ) : (
-    // Mobile View
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     // Desktop View
     <>
@@ -298,7 +314,7 @@ function DocList({ userId }) {
             justifyContent: 'space-around',
             alignItems: 'center',
             width: '100%',
-            height: '10vw',
+            height: '20vh',
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
           }}
@@ -308,11 +324,10 @@ function DocList({ userId }) {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              padding: '0 1% 0.5% 1%',
+              padding: '0 2%',
               border: '1px solid #fff',
               borderRadius: 10,
-              minHeight: '60%',
-              maxHeight: '90%',
+              height: '70%',
               width: '60%',
             }}
           >
@@ -326,31 +341,48 @@ function DocList({ userId }) {
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               style={{
-                width: '83%',
+                width: '80%',
+                margin: 0,
               }}
             />
-            <Tooltip title="Search by file name">
-              <StyledButton
-                style={{
-                  backgroundImage: `url(${SearchIcon})`,
-                }}
-                onClick={handleSearch}
-              />
-            </Tooltip>
+            <div
+              style={{
+                height: '60%',
+              }}
+            >
+              <Tooltip title="Search by file name">
+                <StyledButton
+                  style={{
+                    backgroundImage: `url(${SearchIcon})`,
+                  }}
+                  onClick={handleSearch}
+                />
+              </Tooltip>
+            </div>
           </div>
-          <Tooltip title="Clear search and dashboard filters">
-            <StyledButton onClick={handleReset}>
-              <CloseIcon fontSize="large" />
-            </StyledButton>
-          </Tooltip>
-          <FilterButton
-            handleSubmit={handleSubmit}
-            show={show}
-            setShow={setShow}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-          />
-          <NewDocButton addDocument={addDocument} />
+          <div
+            style={{
+              height: '60%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '30%',
+            }}
+          >
+            <Tooltip title="Clear search and dashboard filters">
+              <StyledButton onClick={handleReset}>
+                <CloseIcon fontSize="large" />
+              </StyledButton>
+            </Tooltip>
+            <FilterButton
+              handleSubmit={handleSubmit}
+              show={show}
+              setShow={setShow}
+              selectedFilter={selectedFilter}
+              setSelectedFilter={setSelectedFilter}
+            />
+            <NewDocButton addDocument={addDocument} />
+          </div>
         </div>
         <div
           style={{

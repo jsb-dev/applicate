@@ -13,6 +13,7 @@ const StyledCardContent = styled(CardContent)({
   alignItems: 'center',
   justifyContent: 'center',
   padding: '10%',
+  maxHeight: '100%',
 });
 
 export { StyledCard, StyledCardContent };
