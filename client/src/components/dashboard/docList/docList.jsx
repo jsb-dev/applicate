@@ -199,18 +199,19 @@ function DocList({ userId }) {
             onChange={(e) => setSearchValue(e.target.value)}
             style={{
               margin: 0,
-              width: '72.5%',
+              width: isMobile ? '70%' : isTablet ? '82.5%' : '',
             }}
           />
           <div
             style={{
               height: '80%',
-              width: isMobile ? '' : isTablet ? '15%' : '',
+              width: isMobile ? '25%' : isTablet ? '15%' : '',
             }}
           >
             <StyledButton
               style={{
                 backgroundImage: `url(${SearchIcon})`,
+                backgroundSize: isMobile ? '45%' : '35%',
                 width: '100%',
               }}
               onClick={handleSearch}
@@ -228,11 +229,7 @@ function DocList({ userId }) {
           }}
         >
           <StyledButton onClick={handleReset}>
-            {isMobile ? (
-              <CloseIcon fontSize="small" />
-            ) : (
-              <CloseIcon fontSize="large" />
-            )}
+            <CloseIcon fontSize="large" />
           </StyledButton>
           <FilterButton
             handleSubmit={handleSubmit}
@@ -341,7 +338,7 @@ function DocList({ userId }) {
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               style={{
-                width: '80%',
+                width: '87.5%',
                 margin: 0,
               }}
             />
@@ -354,6 +351,7 @@ function DocList({ userId }) {
                 <StyledButton
                   style={{
                     backgroundImage: `url(${SearchIcon})`,
+                    backgroundSize: '45%',
                   }}
                   onClick={handleSearch}
                 />

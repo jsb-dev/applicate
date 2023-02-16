@@ -3,13 +3,12 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   FormControl,
   FormHelperText,
 } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledDialog from '../shared/styledDialog.jsx';
 import StyledDialogButton from '../shared/styledDialogButton.jsx';
+import StyledTextField from '../shared/styledTextField.jsx';
 import StyledButton from './styled/styledButton.jsx';
 import logoutUser from '../../utils/logoutUser.js';
 
@@ -21,8 +20,6 @@ function ChangePasswordButton() {
     confirmPassword: '',
     error: '',
   });
-
-  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const handlePasswordChange = async () => {
     if (passwordData.newPassword !== passwordData.confirmPassword) {
@@ -70,12 +67,20 @@ function ChangePasswordButton() {
     }
   };
 
+  const fieldContainer = {
+    margin: '3%',
+    width: '100%',
+  };
+
   return (
     <>
       <StyledButton
         variant="contained"
         color="primary"
         onClick={() => setOpenPasswordDialog(true)}
+        style={{
+          margin: 0,
+        }}
       >
         Change Password
       </StyledButton>
@@ -93,67 +98,104 @@ function ChangePasswordButton() {
       >
         <DialogTitle>Change Password</DialogTitle>
         <DialogContent>
-          You will be logged out after changing your password, please log in
-          afterward with your new password
-          <br />
-          <br />
-          <FormControl>
-            <TextField
-              label="Current Password"
-              type="password"
-              value={passwordData.currentPassword}
-              onChange={(e) =>
-                setPasswordData({
-                  ...passwordData,
-                  currentPassword: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="New Password"
-              type="password"
-              value={passwordData.newPassword}
-              onChange={(e) =>
-                setPasswordData({
-                  ...passwordData,
-                  newPassword: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="Confirm Password"
-              type="password"
-              value={passwordData.confirmPassword}
-              onChange={(e) =>
-                setPasswordData({
-                  ...passwordData,
-                  confirmPassword: e.target.value,
-                })
-              }
-            />
+          <p
+            style={{
+              color: 'white',
+            }}
+          >
+            You will be logged out after changing your password, please log in
+            afterward with your new password
+          </p>
+          <FormControl
+            style={{
+              padding: 0,
+              margin: 0,
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <div style={fieldContainer}>
+              <StyledTextField
+                label="Current Password"
+                type="password"
+                value={passwordData.currentPassword}
+                onChange={(e) =>
+                  setPasswordData({
+                    ...passwordData,
+                    currentPassword: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div style={fieldContainer}>
+              <StyledTextField
+                label="New Password"
+                type="password"
+                value={passwordData.newPassword}
+                onChange={(e) =>
+                  setPasswordData({
+                    ...passwordData,
+                    newPassword: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div style={fieldContainer}>
+              <StyledTextField
+                label="Confirm Password"
+                type="password"
+                value={passwordData.confirmPassword}
+                onChange={(e) =>
+                  setPasswordData({
+                    ...passwordData,
+                    confirmPassword: e.target.value,
+                  })
+                }
+              />
+            </div>
             {passwordData.error ? (
-              <FormHelperText error>{passwordData.error}</FormHelperText>
+              <FormHelperText
+                error
+                style={{
+                  fontSize: '12pt',
+                  fontWeight: 'bold',
+                  color: 'red',
+                }}
+              >
+                {passwordData.error}
+              </FormHelperText>
             ) : null}
           </FormControl>
         </DialogContent>
 
         <DialogActions>
-          <StyledDialogButton
-            onClick={() => {
-              setOpenPasswordDialog(false);
-              setPasswordData({
-                currentPassword: '',
-                newPassword: '',
-                confirmPassword: '',
-                error: '',
-              });
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: ' 0 3% 3% 3%',
             }}
           >
-            Cancel
-          </StyledDialogButton>
-          <StyledDialogButton onClick={handlePasswordChange}>
-            Change Password
-          </StyledDialogButton>
+            <StyledDialogButton
+              onClick={() => {
+                setOpenPasswordDialog(false);
+                setPasswordData({
+                  currentPassword: '',
+                  newPassword: '',
+                  confirmPassword: '',
+                  error: '',
+                });
+              }}
+            >
+              Cancel
+            </StyledDialogButton>
+            <StyledDialogButton onClick={handlePasswordChange}>
+              Change Password
+            </StyledDialogButton>
+          </div>
         </DialogActions>
       </StyledDialog>
     </>

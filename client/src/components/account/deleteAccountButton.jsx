@@ -14,9 +14,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email !== userEmail) {
-      return setError(
-        'That email is not associated with this account, please enter the correct email'
-      );
+      return setError('Incorrect email');
     }
 
     try {
@@ -35,25 +33,56 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
     }
   };
 
+  const fieldContainer = {
+    margin: '3%',
+    width: '100%',
+  };
+
+  const buttonContainer = {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '3%',
+    width: '100%',
+  };
+
   return (
     <>
-      <StyledButton onClick={() => setOpen(true)}>Delete Account</StyledButton>
-      <StyledDialog open={open} onClose={() => setOpen(false)}>
+      <StyledButton
+        onClick={() => setOpen(true)}
+        style={{
+          margin: 0,
+        }}
+      >
+        Delete Account
+      </StyledButton>
+      <StyledDialog
+        open={open}
+        onClose={() => {
+          setError('');
+          setOpen(false);
+        }}
+      >
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-evenly',
+            padding: '3%',
           }}
         >
-          <h2>
+          <p>
             Please enter your username and password to remove your account from
             our database. This will delete any documents that you have authored,
-            including documents that others have access to. THIS CANNOT BE
-            UNDONE.
-          </h2>
-          {error && <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>}
+            including documents that others have access to.{' '}
+            <b
+              style={{
+                color: 'red',
+              }}
+            >
+              THIS CANNOT BE UNDONE.
+            </b>
+          </p>
           <form
             onSubmit={handleSubmit}
             style={{
@@ -64,19 +93,54 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
               width: '100%',
             }}
           >
-            <StyledTextField
-              label="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <StyledTextField
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <StyledButton type="submit">Submit</StyledButton>
-            <StyledButton onClick={() => setOpen(false)}>Cancel</StyledButton>
+            <div style={fieldContainer}>
+              <StyledTextField
+                label="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div style={fieldContainer}>
+              <StyledTextField
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            {error && (
+              <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>
+            )}
+            <section
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
+                width: '100%',
+              }}
+            >
+              <div style={buttonContainer}>
+                <StyledButton
+                  type="submit"
+                  style={{
+                    height: '100%',
+                  }}
+                >
+                  Submit
+                </StyledButton>
+              </div>
+              <div style={buttonContainer}>
+                <StyledButton
+                  onClick={() => setOpen(false)}
+                  style={{
+                    height: '100%',
+                  }}
+                >
+                  Cancel
+                </StyledButton>
+              </div>
+            </section>
           </form>
         </div>
       </StyledDialog>

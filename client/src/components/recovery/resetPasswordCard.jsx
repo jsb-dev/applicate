@@ -50,6 +50,10 @@ const ResetPasswordCard = ({ auth }) => {
       });
   };
 
+  const fieldContainer = {
+    margin: '3%',
+  };
+
   return (
     <>
       <StyledCard
@@ -74,18 +78,22 @@ const ResetPasswordCard = ({ auth }) => {
           />
           <h1 style={{ textAlign: 'right' }}>Reset Password</h1>
         </div>
-        <StyledTextField
-          label="New Password"
-          type="password"
-          value={newPassword}
-          onChange={(event) => setNewPassword(event.target.value)}
-        />
-        <StyledTextField
-          label="Confirm Password"
-          type="password"
-          value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
-        />
+        <div style={fieldContainer}>
+          <StyledTextField
+            label="New Password"
+            type="password"
+            value={newPassword}
+            onChange={(event) => setNewPassword(event.target.value)}
+          />
+        </div>
+        <div style={fieldContainer}>
+          <StyledTextField
+            label="Confirm Password"
+            type="password"
+            value={confirmPassword}
+            onChange={(event) => setConfirmPassword(event.target.value)}
+          />
+        </div>
         <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>
         <div
           style={{

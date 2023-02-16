@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Toolbar, Typography, IconButton, Drawer } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledAppBar from './styled/styledAppBar.jsx';
 import StyledLink from './styled/styledLink.jsx';
@@ -9,7 +10,6 @@ import AccountButton from './parts/accountButton.jsx';
 import StyledButton from './styled/styledButton.jsx';
 import LogoImg from '../../../assets/images/applicateLogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 
 function NavBar() {
   const isTablet = useMediaQuery('(max-width: 960px)');
@@ -27,6 +27,13 @@ function NavBar() {
     useEffect(() => {
       check();
     }, []);
+
+    const buttonContainer = {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '10vw',
+    };
 
     return (
       <div>
@@ -57,29 +64,57 @@ function NavBar() {
               style={{
                 flexGrow: 0.5,
                 display: 'flex',
-                justifyContent: 'space-evenly',
+                justifyContent: 'space-between',
               }}
             >
               {isAuthenticated ? (
-                <StyledLink to="/dashboard">
-                  <StyledButton>Dashboard</StyledButton>
-                </StyledLink>
-              ) : null}
-              <StyledLink to="/">
-                <StyledButton>Home</StyledButton>
-              </StyledLink>
-              <StyledLink to="/about">
-                <StyledButton>About</StyledButton>
-              </StyledLink>
-              <StyledLink to="/contact">
-                <StyledButton>Contact</StyledButton>
-              </StyledLink>
-              {isAuthenticated ? (
                 <>
-                  <AccountButton />
-                  <LogoutButton />
+                  <div style={buttonContainer}>
+                    <StyledLink to="/dashboard">
+                      <StyledButton>Dashboard</StyledButton>
+                    </StyledLink>
+                  </div>
+                  <div style={buttonContainer}>
+                    <AccountButton />
+                  </div>
+                  <div style={buttonContainer}>
+                    <StyledLink to="/contact">
+                      <StyledButton>Contact</StyledButton>
+                    </StyledLink>
+                  </div>
+                  <div style={buttonContainer}>
+                    <StyledLink to="/about">
+                      <StyledButton>About</StyledButton>
+                    </StyledLink>
+                  </div>
+                  <div style={buttonContainer}>
+                    <StyledLink to="/">
+                      <StyledButton>Home / Login</StyledButton>
+                    </StyledLink>
+                  </div>
+                  <div style={buttonContainer}>
+                    <LogoutButton />
+                  </div>
                 </>
-              ) : null}
+              ) : (
+                <>
+                  <div style={buttonContainer}>
+                    <StyledLink to="/">
+                      <StyledButton>Home / Login</StyledButton>
+                    </StyledLink>
+                  </div>
+                  <div style={buttonContainer}>
+                    <StyledLink to="/about">
+                      <StyledButton>About</StyledButton>
+                    </StyledLink>
+                  </div>
+                  <div style={buttonContainer}>
+                    <StyledLink to="/contact">
+                      <StyledButton>Contact</StyledButton>
+                    </StyledLink>
+                  </div>
+                </>
+              )}
             </Typography>
           </Toolbar>
         </StyledAppBar>
@@ -179,24 +214,26 @@ function NavBar() {
               }}
             >
               {isAuthenticated ? (
-                <StyledLink to="/dashboard">
-                  <StyledButton>Dashboard</StyledButton>
-                </StyledLink>
+                <>
+                  <StyledLink to="/dashboard">
+                    <StyledButton>Dashboard</StyledButton>
+                  </StyledLink>
+                  <AccountButton />
+                </>
               ) : null}
-              <StyledLink to="/">
-                <StyledButton>Home</StyledButton>
+              <StyledLink to="/contact">
+                <StyledButton>Contact</StyledButton>
               </StyledLink>
               <StyledLink to="/about">
                 <StyledButton>About</StyledButton>
               </StyledLink>
-              <StyledLink to="/contact">
-                <StyledButton>Contact</StyledButton>
+              <StyledLink to="/">
+                <StyledButton>Home / Login</StyledButton>
               </StyledLink>
 
               {isAuthenticated ? (
                 <>
                   <LogoutButton />
-                  <AccountButton />
                 </>
               ) : null}
             </div>

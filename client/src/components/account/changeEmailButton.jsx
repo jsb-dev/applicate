@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import {
-  Button,
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   FormControl,
   FormHelperText,
 } from '@mui/material';
 import StyledDialog from '../shared/styledDialog.jsx';
 import StyledDialogButton from '../shared/styledDialogButton.jsx';
+import StyledTextField from '../shared/styledTextField.jsx';
 import StyledButton from './styled/styledButton.jsx';
 import logoutUser from '../../utils/logoutUser.js';
 
@@ -55,12 +54,20 @@ function ChangeEmailButton() {
     }
   };
 
+  const fieldContainer = {
+    margin: '3%',
+    width: '100%',
+  };
+
   return (
     <>
       <StyledButton
         variant="contained"
         color="primary"
         onClick={() => setOpenEmailDialog(true)}
+        style={{
+          margin: 0,
+        }}
       >
         Change Email
       </StyledButton>
@@ -77,46 +84,87 @@ function ChangeEmailButton() {
         }}
       >
         <DialogTitle>Change Email</DialogTitle>
-        <DialogContent>
-          You will be logged out after changing your email, please log in
-          afterward with your new email
-          <br />
-          <br />
-          <FormControl>
-            <TextField
-              label="Password"
-              type="password"
-              value={emailData.password}
-              onChange={(e) =>
-                setEmailData({ ...emailData, password: e.target.value })
-              }
-            />
-            <TextField
-              label="New Email"
-              value={emailData.newEmail}
-              onChange={(e) =>
-                setEmailData({ ...emailData, newEmail: e.target.value })
-              }
-            />
-            <TextField
-              label="Confirm Email"
-              value={emailData.confirmEmail}
-              onChange={(e) =>
-                setEmailData({ ...emailData, confirmEmail: e.target.value })
-              }
-            />
-            <FormHelperText error={Boolean(emailData.error)}>
+        <DialogContent
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <p
+            style={{
+              color: 'white',
+            }}
+          >
+            You will be logged out after changing your email, please log in
+            afterward with your new email
+          </p>
+          <FormControl
+            style={{
+              padding: 0,
+              margin: 0,
+              width: '80%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <div style={fieldContainer}>
+              <StyledTextField
+                label="Password"
+                type="password"
+                value={emailData.password}
+                onChange={(e) =>
+                  setEmailData({ ...emailData, password: e.target.value })
+                }
+              />
+            </div>
+            <div style={fieldContainer}>
+              <StyledTextField
+                label="New Email"
+                value={emailData.newEmail}
+                onChange={(e) =>
+                  setEmailData({ ...emailData, newEmail: e.target.value })
+                }
+              />
+            </div>
+            <div style={fieldContainer}>
+              <StyledTextField
+                label="Confirm Email"
+                value={emailData.confirmEmail}
+                onChange={(e) =>
+                  setEmailData({ ...emailData, confirmEmail: e.target.value })
+                }
+              />
+            </div>
+            <FormHelperText
+              error={Boolean(emailData.error)}
+              style={{
+                fontSize: '12pt',
+                fontWeight: 'bold',
+                color: 'red',
+              }}
+            >
               {emailData.error}
             </FormHelperText>
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <StyledDialogButton onClick={() => setOpenEmailDialog(false)}>
-            Cancel
-          </StyledDialogButton>
-          <StyledDialogButton onClick={handleEmailChange}>
-            Change Email
-          </StyledDialogButton>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '0 5% 5% 5%',
+            }}
+          >
+            <StyledDialogButton onClick={() => setOpenEmailDialog(false)}>
+              Cancel
+            </StyledDialogButton>
+            <StyledDialogButton onClick={handleEmailChange}>
+              Change Email
+            </StyledDialogButton>
+          </div>
         </DialogActions>
       </StyledDialog>
     </>

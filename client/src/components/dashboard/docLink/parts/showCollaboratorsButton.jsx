@@ -3,6 +3,7 @@ import StyledButton from '../../../shared/styledButton.jsx';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import RemoveCollaboratorButton from './removeCollaboratorButton.jsx';
 import UsersIcon from '../../../../assets/icons/users.png';
 import StyledDialog from '../../../shared/styledDialog.jsx';
@@ -16,6 +17,9 @@ const ShowCollaboratorsButton = ({
 }) => {
   const [show, setShow] = useState(false);
   const [collaboratorEmails, setCollaboratorEmails] = useState([]);
+
+  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isTablet = useMediaQuery('(max-width: 960px)');
 
   const handleShow = () => {
     setShow(true);
@@ -51,7 +55,7 @@ const ShowCollaboratorsButton = ({
         onClick={handleShow}
         style={{
           backgroundImage: `url(${UsersIcon})`,
-          backgroundSize: '70%',
+          backgroundSize: isTablet ? '70%' : '50%',
         }}
       />
       <StyledDialog
@@ -68,12 +72,24 @@ const ShowCollaboratorsButton = ({
         >
           {collaboratorEmails.length === 0 ? (
             <DialogContentText id="alert-dialog-description">
-              Collaborators you add to "{fileName}" will appear here.
+              <p
+                style={{
+                  color: 'white',
+                }}
+              >
+                Collaborators you add to "{fileName}" will appear here.
+              </p>
             </DialogContentText>
           ) : (
             <>
               <DialogContentText id="alert-dialog-description">
-                The current collaborators with access to "{fileName}":
+                <p
+                  style={{
+                    color: 'white',
+                  }}
+                >
+                  The current collaborators with access to "{fileName}":
+                </p>
               </DialogContentText>
               <ul
                 style={{
@@ -89,10 +105,11 @@ const ShowCollaboratorsButton = ({
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
+                      height: isMobile ? '8vh' : isTablet ? '4vh' : '6vh',
                     }}
                   >
-                    {collaborator.length > 20
-                      ? collaborator.substring(0, 20) + '...'
+                    {collaborator.length > 15
+                      ? collaborator.substring(0, 15) + '...'
                       : collaborator}
                     {email === author ? (
                       <RemoveCollaboratorButton

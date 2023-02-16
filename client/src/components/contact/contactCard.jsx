@@ -61,6 +61,11 @@ function ContactCard() {
     }
   };
 
+  const fieldContainer = {
+    margin: isMobile ? '3%' : '1%',
+    width: '100%',
+  };
+
   return (
     <Card
       style={{
@@ -100,26 +105,30 @@ function ContactCard() {
             justifyContent: 'center',
           }}
         >
-          <StyledTextField
-            label="Your Email Address"
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
-            autoFocus
-          />
-          <StyledTextField
-            label="Subject"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-            autoFocus
-          />
-          <StyledTextField
-            label="Brief Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            multiline
-            rows={8}
-            autoFocus
-          />
+          <div style={fieldContainer}>
+            <StyledTextField
+              label="Your Email Address"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+              autoFocus
+            />
+          </div>
+          <div style={fieldContainer}>
+            <StyledTextField
+              label="Subject"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            />
+          </div>
+          <div style={fieldContainer}>
+            <StyledTextField
+              label="Brief Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              multiline
+              rows={8}
+            />
+          </div>
           {error && <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>}
           {message && (
             <StyledAlert style={{ color: 'green' }}>{message}</StyledAlert>

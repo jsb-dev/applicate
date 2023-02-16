@@ -40,6 +40,7 @@ function FilterButton({
           onClick={handleShow}
           style={{
             backgroundImage: `url(${CalendarIcon})`,
+            backgroundSize: isMobile ? '45%' : isTablet ? '20%' : '40%',
           }}
         ></StyledButton>
       </Tooltip>

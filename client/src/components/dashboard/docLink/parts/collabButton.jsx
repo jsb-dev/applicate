@@ -4,10 +4,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
 import ShareIcon from '../../../../assets/icons/share.png';
 import StyledDialog from '../../../shared/styledDialog.jsx';
 import StyledDialogButton from '../../../shared/styledDialogButton.jsx';
+import StyledTextField from '../../../shared/styledTextField.jsx';
 import StyledAlert from '../../../shared/styledAlert.jsx';
 
 const CollabButton = ({ docId, fileName, email }) => {
@@ -78,11 +78,17 @@ const CollabButton = ({ docId, fileName, email }) => {
         <DialogTitle id="alert-dialog-title">{'Share Document'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Please enter an email address for someone to collaborate with you on
-            "{fileName}". It will appear in their documents list the next time
-            they load their dashboard.
+            <p
+              style={{
+                color: 'white',
+              }}
+            >
+              Please enter an email address for someone to collaborate with you
+              on "{fileName}". It will appear in their documents list the next
+              time they load their dashboard.
+            </p>
           </DialogContentText>
-          <TextField
+          <StyledTextField
             autoFocus
             margin="dense"
             id="email"
@@ -103,10 +109,21 @@ const CollabButton = ({ docId, fileName, email }) => {
           )}
         </DialogContent>
         <DialogActions>
-          <StyledDialogButton onClick={handleClose}>Cancel</StyledDialogButton>
-          <StyledDialogButton onClick={handleSubmit} autoFocus>
-            Submit
-          </StyledDialogButton>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '0 5%',
+            }}
+          >
+            <StyledDialogButton onClick={handleClose}>
+              Cancel
+            </StyledDialogButton>
+            <StyledDialogButton onClick={handleSubmit} autoFocus>
+              Submit
+            </StyledDialogButton>
+          </div>
         </DialogActions>
       </StyledDialog>
     </>

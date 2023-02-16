@@ -7,7 +7,10 @@ const StyledButton = styled(Button)({
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
   backgroundColor: 'white',
-  backgroundSize: 'max(2.5vw, 3vh)',
+  backgroundSize: '50%',
+  '@media (min-width: 961px)': {
+    backgroundSize: '30%',
+  },
   color: 'black',
   '&:hover': {
     transform: 'scale(1)',

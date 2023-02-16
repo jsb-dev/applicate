@@ -41,9 +41,9 @@ const DocLink = ({
   if (isMobile) {
     fileNameLength = 10;
   } else if (isTablet) {
-    fileNameLength = 15;
+    fileNameLength = 13;
   } else {
-    fileNameLength = 19;
+    fileNameLength = 17;
   }
 
   const handleClick = (event) => {
@@ -82,7 +82,7 @@ const DocLink = ({
           position: 'absolute',
           alignItems: 'center',
           width: isMobile ? '40%' : isTablet ? '25%' : '20%',
-          marginTop: isMobile ? '6%' : isTablet ? '3%' : '2%',
+          marginTop: isMobile ? '6.5%' : isTablet ? '3.5%' : '2%',
         }}
       >
         <IconButton
@@ -109,7 +109,6 @@ const DocLink = ({
           style: {
             borderRadius: 20,
             boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
-            width: 'fit-content',
             overflow: 'hidden',
             padding: isMobile ? '5%' : isTablet ? '3%' : '2%',
             width: isMobile ? '80vw' : isTablet ? '40vw' : '30vw',

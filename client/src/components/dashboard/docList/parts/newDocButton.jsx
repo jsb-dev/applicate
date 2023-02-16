@@ -73,6 +73,7 @@ function NewDocButton({ addDocument }) {
           onClick={handleShow}
           style={{
             backgroundImage: `url(${AddIcon})`,
+            backgroundSize: isMobile ? '45%' : isTablet ? '20%' : '40%',
           }}
         />
       </Tooltip>

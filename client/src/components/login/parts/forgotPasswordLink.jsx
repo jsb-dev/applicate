@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import StyledDialog from '../../shared/styledDialog';
 import StyledDialogButton from '../../shared/styledDialogButton';
+import StyledTextField from '../../shared/styledTextField';
 import StyledAlert from '../../shared/styledAlert';
 
 const ForgotPasswordLink = () => {
@@ -67,14 +68,19 @@ const ForgotPasswordLink = () => {
         <DialogTitle>Enter your email</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To recover your account, please enter the email you use to log in,
-            and we'll sernd you a link to change your password.
+            <p
+              style={{
+                color: 'white',
+              }}
+            >
+              To recover your account, please enter the email you use to log in,
+              and we'll sernd you a link to change your password.
+            </p>
           </DialogContentText>
-          <br />
           {message && (
             <StyledAlert style={{ color: 'green' }}>{message}</StyledAlert>
           )}
-          <TextField
+          <StyledTextField
             autoFocus
             margin="dense"
             id="email"
@@ -88,8 +94,22 @@ const ForgotPasswordLink = () => {
           />
         </DialogContent>
         <DialogActions>
-          <StyledDialogButton onClick={handleClose}>Cancel</StyledDialogButton>
-          <StyledDialogButton onClick={handleSubmit}>Submit</StyledDialogButton>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '0 3% 1% 3%',
+            }}
+          >
+            <StyledDialogButton onClick={handleClose}>
+              Cancel
+            </StyledDialogButton>
+            <StyledDialogButton onClick={handleSubmit}>
+              Submit
+            </StyledDialogButton>
+          </div>
         </DialogActions>
       </StyledDialog>
     </>

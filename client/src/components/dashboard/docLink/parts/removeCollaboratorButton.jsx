@@ -37,6 +37,7 @@ const DeleteDocButton = ({ setCollaboratorEmails, email, docId }) => {
         onClick={handleClick}
         style={{
           backgroundImage: `url(${DeleteIcon})`,
+          backgroundSize: '30%',
         }}
       />
       {error && (

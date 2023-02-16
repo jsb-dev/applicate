@@ -2,7 +2,7 @@ import button from '@mui/material/Button';
 import styled from '@emotion/styled';
 
 const StyledButton = styled(button)({
-  height: '8vh',
+  height: '25%',
   minWidth: '80%',
   background: '#0dc9de',
   color: '#263436',
@@ -17,9 +17,6 @@ const StyledButton = styled(button)({
     transform: 'scale(1.05)',
     background: '#2f5b61',
     transition: 'all 0.4s ease-in-out',
-  },
-  '@media (max-width: 600px)': {
-    height: '10vh',
   },
 });
 

@@ -64,7 +64,13 @@ const DeleteDocButton = ({ docId, fileName, setDocuments }) => {
         <DialogTitle id="alert-dialog-title">{'Delete Document'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete "{fileName}"?
+            <p
+              style={{
+                color: 'white',
+              }}
+            >
+              Are you sure you want to delete {fileName}?
+            </p>
           </DialogContentText>
           {error && (
             <StyledAlert

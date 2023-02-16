@@ -5,15 +5,10 @@ const StyledDialog = styled(Dialog)({
   '& .MuiDialog-paper': {
     borderRadius: 20,
     overflow: 'hidden',
-    padding: '1%',
+    padding: '1vh',
     backgroundColor: '#222c30',
     color: '#fff',
-    maxWidth: '60vw',
-  },
-  '@media (max-width: 600px)': {
-    '& .MuiDialog-paper': {
-      maxWidth: '90vw',
-    },
+    margin: '5%',
   },
 });
 

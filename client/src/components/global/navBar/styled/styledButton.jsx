@@ -10,7 +10,7 @@ const StyledButton = styled(Button)({
   fontWeight: 'bold',
   borderRadius: 15,
   boxShadow: '0 0 8px 2px rgba(0, 0, 0, .6)',
-  maxWidth: '12vw',
+  width: '100%',
   '&:hover': {
     color: '#ffffff',
     boxShadow: '0 0 5px 4px rgba(255, 255, 255, .4)',

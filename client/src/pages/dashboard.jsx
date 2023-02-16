@@ -3,6 +3,7 @@ import LoginPage from './loginPage.jsx';
 import checkAuth from '../utils/checkAuth.js';
 import DocList from '../components/dashboard/docList/docList.jsx';
 import NavBar from '../components/global/navBar/navBar.jsx';
+import Footer from '../components/global/footer.jsx';
 import LoadingSpinner from '../components/global/loadingSpinner.jsx';
 
 const Dashboard = () => {
@@ -63,6 +64,7 @@ const Dashboard = () => {
           >
             <DocList userId={userId} />
           </div>
+          <Footer />
         </div>
       ) : (
         <LoginPage />

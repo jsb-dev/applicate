@@ -15,8 +15,6 @@ import BlockQuoteIcon from '../../assets/icons/blockQuote.png';
 import ClearFormatIcon from '../../assets/icons/clearFormat.png';
 import HorizontalRuleIcon from '../../assets/icons/horizontalRule.png';
 import HardBreakIcon from '../../assets/icons/hardBreak.png';
-import UndoIcon from '../../assets/icons/undo.png';
-import RedoIcon from '../../assets/icons/redo.png';
 import ExitIcon from '../../assets/icons/exit.png';
 
 const BackToDashboardButton = () => {
@@ -60,6 +58,16 @@ const MenuBar = ({ editor }) => {
   const formatMenu = useMenu();
   const headerSizeMenu = useMenu();
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleDialogOpen = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
+
   const isTablet = useMediaQuery('(max-width:960px)');
 
   if (!editor) {
@@ -93,9 +101,9 @@ const MenuBar = ({ editor }) => {
     },
     {
       icon: ClearStylesIcon,
-      action: editor.chain().focus().clearNodes(),
+      action: editor.chain().focus().unsetAllMarks(),
       active: false,
-      disabled: !editor.can().chain().focus().clearNodes().run(),
+      disabled: !editor.can().chain().focus().unsetAllMarks().run(),
     },
   ];
 
@@ -120,9 +128,9 @@ const MenuBar = ({ editor }) => {
     },
     {
       icon: ClearFormatIcon,
-      action: editor.chain().focus().unsetAllMarks(),
+      action: editor.chain().focus().clearNodes(),
       active: false,
-      disabled: !editor.can().chain().focus().unsetAllMarks().run(),
+      disabled: !editor.can().chain().focus().clearNodes().run(),
     },
   ];
 
@@ -296,32 +304,14 @@ const MenuBar = ({ editor }) => {
               backgroundImage: `url(${HorizontalRuleIcon})`,
               backgroundSize: '60%',
             }}
-          ></button>
+          />
           <button
             onClick={() => editor.chain().focus().setHardBreak().run()}
             style={{
               backgroundImage: `url(${HardBreakIcon})`,
               backgroundSize: '80%',
             }}
-          ></button>
-
-          <button
-            onClick={() => editor.chain().focus().undo().run()}
-            disabled={!editor.can().chain().focus().undo().run()}
-            style={{
-              backgroundImage: `url(${UndoIcon})`,
-              backgroundSize: '60%',
-            }}
-          ></button>
-          <button
-            onClick={() => editor.chain().focus().redo().run()}
-            disabled={!editor.can().chain().focus().redo().run()}
-            style={{
-              backgroundImage: `url(${RedoIcon})`,
-              backgroundSize: '60%',
-            }}
-          ></button>
-
+          />
           <BackToDashboardButton />
         </div>
       </div>

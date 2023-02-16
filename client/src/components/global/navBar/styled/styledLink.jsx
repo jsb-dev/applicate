@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const styledLink = styled(Link)({
   color: '#182021',
   textDecoration: 'none',
-  marginRight: '10px',
+  width: '100%',
   '&:hover': {
     color: '#ffffff',
   },

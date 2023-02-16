@@ -1,6 +1,11 @@
+#dotenv
 /server/.env
 /server/database/.env
+
+#node_modules
 node_modules
 /client/node_modules
+/server/node_modules
+
+#misc
 /client/attributes.txt
-/server/applicate.dev-ssl-bundle

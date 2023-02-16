@@ -144,7 +144,7 @@ const AccountPage = () => {
                     </CardContent>
                     <CardActions
                       style={{
-                        height: '30vh',
+                        height: isMobile ? '40vh' : isTablet ? '30vh' : '40vh',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',

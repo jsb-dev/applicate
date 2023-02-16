@@ -4,10 +4,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
 import RenameIcon from '../../../../assets/icons/rename.png';
 import StyledDialog from '../../../shared/styledDialog.jsx';
 import StyledDialogButton from '../../../shared/styledDialogButton.jsx';
+import StyledTextField from '../../../shared/styledTextField.jsx';
 import StyledAlert from '../../../shared/styledAlert.jsx';
 
 const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
@@ -77,9 +77,15 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
         <DialogTitle id="alert-dialog-title">{'Rename Document'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Please enter a new name for "{fileName}"
+            <p
+              style={{
+                color: 'white',
+              }}
+            >
+              Please enter a new name for "{fileName}"
+            </p>
           </DialogContentText>
-          <TextField
+          <StyledTextField
             autoFocus
             margin="dense"
             id="file-name"
@@ -100,10 +106,21 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
           )}
         </DialogContent>
         <DialogActions>
-          <StyledDialogButton onClick={handleClose}>Cancel</StyledDialogButton>
-          <StyledDialogButton onClick={handleSubmit} autoFocus>
-            Submit
-          </StyledDialogButton>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              padding: '0 5%',
+            }}
+          >
+            <StyledDialogButton onClick={handleClose}>
+              Cancel
+            </StyledDialogButton>
+            <StyledDialogButton onClick={handleSubmit} autoFocus>
+              Submit
+            </StyledDialogButton>
+          </div>
         </DialogActions>
       </StyledDialog>
     </>
