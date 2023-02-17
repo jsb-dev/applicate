@@ -48,6 +48,7 @@ const ForgotPasswordLink = () => {
         setMessage(
           'Recovery email sent successfully! Check your email inbox/junk for steps to recover your account'
         );
+        setError('');
       } else {
         setError(result.message);
       }

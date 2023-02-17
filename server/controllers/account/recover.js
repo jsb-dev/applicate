@@ -43,7 +43,7 @@ const recoverController = async (req, res) => {
     email,
     'Password Recovery',
     '',
-    `<p>Let's get this sorted! Please click the link provided to recover your password:</p><a>${recoveryLink}</a><p>This link is active for 15 minutes, after which you'll have to request another password recovery if you still don't have access. If you did not request a password recovery, please reply to this email and we will get in touch to secure your account. If you have any queries, reply to this email and we'll be with you soon!</p><p>Thanks,</p><p>Applicate Support Team</p>`
+    `<p>Let's get this sorted! Please use the link provided to recover your password:</p><a>${recoveryLink}</a><p>This link is active for 15 minutes, after which you'll have to request another password recovery if you still don't have access. If you did not request a password recovery, please reply to this email and we will get in touch to secure your account. If you have any queries, reply to this email and we'll be with you soon!</p><p>Thanks,</p><p>Applicate Support Team</p>`
   );
 
   res.json({

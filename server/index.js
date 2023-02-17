@@ -14,6 +14,8 @@ import contactRouter from './routers/contact.js';
 dotenv.config();
 
 const app = express();
+
+/*
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -21,6 +23,8 @@ app.use(express.static(path.resolve(__dirname, './client/build')));
 app.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
 });
+*/
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());

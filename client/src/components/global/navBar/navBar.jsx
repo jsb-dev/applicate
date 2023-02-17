@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 function NavBar() {
   const isTablet = useMediaQuery('(max-width: 960px)');
+  const croppedScreen = useMediaQuery('(max-width: 1200px)');
 
   // Desktop View
   function FullNavbar() {
@@ -32,7 +33,7 @@ function NavBar() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '14vw',
+      width: croppedScreen ? '14vw' : '12vw',
     };
 
     return (
