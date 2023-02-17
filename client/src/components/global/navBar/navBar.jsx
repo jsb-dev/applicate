@@ -32,7 +32,7 @@ function NavBar() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '10vw',
+      width: '14vw',
     };
 
     return (

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Link,
-  TextField,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -61,9 +59,19 @@ const ForgotPasswordLink = () => {
 
   return (
     <>
-      <Link onClick={handleClickOpen} style={{ color: '#0daabd' }}>
+      {/* eslint-disable-next-line */}
+      <a
+        href="#"
+        onClick={handleClickOpen}
+        style={{
+          color: '#0daabd',
+          '& hover': {
+            color: '#0daabd',
+          },
+        }}
+      >
         Forgot Password
-      </Link>
+      </a>
       <StyledDialog open={open} onClose={handleClose}>
         <DialogTitle>Enter your email</DialogTitle>
         <DialogContent>

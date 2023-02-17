@@ -22,7 +22,6 @@ const LoginForm = () => {
     <StyledCard
       style={{
         width: isMobile ? '75vw' : isTablet ? '60vw' : '30vw',
-        transform: isMobile ? '' : isTablet ? 'scale(0.7)' : 'scale(0.9)',
         transform: isMobile ? '' : 'scale(0.7)',
       }}
     >
@@ -82,6 +81,24 @@ const LoginForm = () => {
         >
           <ForgotPasswordLink />
         </div>
+        <p
+          style={{
+            fontSize: '10pt',
+            color: 'white',
+            textAlign: 'center',
+          }}
+        >
+          Use of this website is subject to our{' '}
+          <a
+            href="https://www.gdprprivacynotice.com/live.php?token=k5heGT0TqmZ3N4FaNVPuboGKGFM7quPt"
+            style={{
+              color: 'white',
+              textDecoration: 'underline',
+            }}
+          >
+            privacy policy
+          </a>
+        </p>
       </StyledCardContent>
     </StyledCard>
   );
