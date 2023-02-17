@@ -3,6 +3,8 @@ import connection from './database/database.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { Server } from 'socket.io';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import accountRouter from './routers/account.js';
 import documentRouter from './routers/document.js';
 import checkAuthRouter from './routers/auth.js';
@@ -12,7 +14,13 @@ import contactRouter from './routers/contact.js';
 dotenv.config();
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+app.use(express.static(path.resolve(__dirname, './client/build')));
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -22,7 +30,7 @@ app.use('/document', documentRouter);
 app.use('/api', apiRouter);
 app.use('/contact', contactRouter);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
