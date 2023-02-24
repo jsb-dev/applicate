@@ -1,104 +1,131 @@
 import React from 'react';
 import { Formik } from 'formik';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { EmailField, PasswordField } from './parts/formFields';
 import { StyledCard, StyledCardContent } from './styled/styledCard';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import LoginButton from './parts/loginButton.jsx';
 import SignupButton from './parts/signupButton.jsx';
-import './parts/forgotPasswordLink.jsx';
 import LogoImg from '../../assets/images/applicateLogo.png';
 import ForgotPasswordLink from './parts/forgotPasswordLink.jsx';
 
 const LoginForm = () => {
-  const isMobile = useMediaQuery('(max-width: 600px)');
-  const isTablet = useMediaQuery('(max-width: 900px)');
+  const isNarrow = useMediaQuery('(max-width: 800px)');
 
   const container = {
-    margin: '5% 0',
-    width: '100%',
+    marginTop: '5%',
   };
 
   return (
     <StyledCard
       style={{
-        width: isMobile ? '75vw' : isTablet ? '60vw' : '30vw',
-        transform: isMobile ? '' : 'scale(0.7)',
+        width: '100%',
+        height: '100%',
       }}
     >
       <StyledCardContent>
-        <img
-          src={LogoImg}
-          alt="Applicate Logo"
-          style={{
-            width: '70%',
-            margin: '2% 0 5% 0 ',
-          }}
-        />
-        <Formik initialValues={{ email: '', password: '' }}>
-          {({ values }) => (
-            <div
-              style={{
-                width: '100%',
-              }}
-            >
-              <section
-                style={{
-                  marginTop: '15%',
-                }}
-              >
-                <div style={container}>
-                  <EmailField value={values.email} />
-                </div>
-                <div style={container}>
-                  <PasswordField value={values.password} />
-                </div>
-              </section>
-              <section
-                style={{
-                  marginTop: '15%',
-                }}
-              >
-                <div style={container}>
-                  <SignupButton
-                    email={values.email}
-                    password={values.password}
-                  />
-                </div>
-                <div style={container}>
-                  <LoginButton
-                    email={values.email}
-                    password={values.password}
-                  />
-                </div>
-              </section>
-            </div>
-          )}
-        </Formik>
-        <div
-          style={{
-            margin: '10% 0 5% 0',
-          }}
-        >
-          <ForgotPasswordLink />
-        </div>
-        <p
-          style={{
-            fontSize: '10pt',
-            color: 'white',
-            textAlign: 'center',
-          }}
-        >
-          Use of this website is subject to our{' '}
-          <a
-            href="https://www.gdprprivacynotice.com/live.php?token=k5heGT0TqmZ3N4FaNVPuboGKGFM7quPt"
+        <form>
+          <div
             style={{
-              color: 'white',
-              textDecoration: 'underline',
+              display: 'flex',
+              flexDirection: isNarrow ? 'column' : 'row',
             }}
           >
-            privacy policy
-          </a>
-        </p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: isNarrow ? '100%' : '80%',
+                marginRight: isNarrow ? '' : '5%',
+              }}
+            >
+              <img
+                src={LogoImg}
+                alt="Applicate Logo"
+                style={{
+                  width: isNarrow ? '80%' : '100%',
+                  padding: isNarrow ? '5% 0' : '',
+                }}
+              />
+            </div>
+            <Formik initialValues={{ email: '', password: '' }}>
+              {({ values }) => (
+                <div
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                  }}
+                >
+                  <section>
+                    <div
+                      style={{
+                        marginTop: isNarrow ? '5%' : '',
+                      }}
+                    >
+                      <EmailField value={values.email} />
+                    </div>
+                    <div style={container}>
+                      <PasswordField value={values.password} />
+                    </div>
+                  </section>
+                  <section
+                    style={{
+                      marginTop: isNarrow ? '10%' : '',
+                    }}
+                  >
+                    <div style={container}>
+                      <SignupButton
+                        email={values.email}
+                        password={values.password}
+                      />
+                    </div>
+                    <div style={container}>
+                      <LoginButton
+                        email={values.email}
+                        password={values.password}
+                      />
+                    </div>
+                  </section>
+                </div>
+              )}
+            </Formik>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              width: '100%',
+              textAlign: 'center',
+              marginTop: '10%',
+            }}
+          >
+            <div>
+              <ForgotPasswordLink />
+            </div>
+            <p
+              style={{
+                fontSize: '1rem',
+                color: 'white',
+                textAlign: 'center',
+              }}
+            >
+              Use of this website is subject to our{' '}
+              <a
+                href="https://www.gdprprivacynotice.com/live.php?token=k5heGT0TqmZ3N4FaNVPuboGKGFM7quPt"
+                style={{
+                  color: 'white',
+                  textDecoration: 'underline',
+                }}
+              >
+                privacy policy
+              </a>
+            </p>
+          </div>
+        </form>
       </StyledCardContent>
     </StyledCard>
   );

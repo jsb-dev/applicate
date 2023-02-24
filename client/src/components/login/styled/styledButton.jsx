@@ -6,14 +6,14 @@ const StyledButton = styled(Button)({
   color: '#222c30',
   fontWeight: 'bold',
   borderRadius: 15,
-  width: '100%',
-  height: 'max(5vh, 4vw)',
   '&:hover': {
     background: '#098c9c',
     color: '#ffffff',
     transform: 'scale(1.05)',
     transition: 'all 0.1s ease-in-out',
   },
+  minHeight: 50,
+  width: '100%',
 });
 
 export default StyledButton;

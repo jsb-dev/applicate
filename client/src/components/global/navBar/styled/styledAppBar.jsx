@@ -7,6 +7,7 @@ const StyledAppBar = styled(AppBar)({
   color: 'white',
   height: '10vh',
   width: '100%',
+  minHeight: '50px',
   borderBottomLeftRadius: '20px',
   borderBottomRightRadius: '20px',
   display: 'flex',
