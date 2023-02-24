@@ -66,7 +66,7 @@ function LogoutButton() {
     return (
       <>
         <StyledButton variant="contained" onClick={logout}>
-          Log out
+          Logout
         </StyledButton>
       </>
     );

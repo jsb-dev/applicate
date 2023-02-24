@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Toolbar, Typography, IconButton, Drawer } from '@mui/material';
+import { CheckOrientation } from '../../../utils/CheckOrientation.jsx';
+import { CheckDevice } from '../../../utils/CheckDevice.jsx';
 import CloseIcon from '@mui/icons-material/Close';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledAppBar from './styled/styledAppBar.jsx';
 import StyledLink from './styled/styledLink.jsx';
 import checkAuth from '../../../utils/checkAuth.js';
@@ -12,8 +13,8 @@ import LogoImg from '../../../assets/images/applicateLogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
 
 function NavBar() {
-  const isTablet = useMediaQuery('(max-width: 960px)');
-  const croppedScreen = useMediaQuery('(max-width: 1200px)');
+  const isVertical = CheckOrientation();
+  const isMobile = CheckDevice();
 
   // Desktop View
   function FullNavbar() {
@@ -33,7 +34,9 @@ function NavBar() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: croppedScreen ? '14vw' : '12vw',
+      width: '100%',
+      height: '90%',
+      padding: '1rem',
     };
 
     return (
@@ -90,7 +93,7 @@ function NavBar() {
                   </div>
                   <div style={buttonContainer}>
                     <StyledLink to="/">
-                      <StyledButton>Home / Login</StyledButton>
+                      <StyledButton>Home</StyledButton>
                     </StyledLink>
                   </div>
                   <div style={buttonContainer}>
@@ -101,7 +104,7 @@ function NavBar() {
                 <>
                   <div style={buttonContainer}>
                     <StyledLink to="/">
-                      <StyledButton>Home / Login</StyledButton>
+                      <StyledButton>Home</StyledButton>
                     </StyledLink>
                   </div>
                   <div style={buttonContainer}>
@@ -174,13 +177,19 @@ function NavBar() {
                 justifyContent: 'space-between',
               }}
             >
-              <img
-                src={LogoImg}
-                alt="The applicate Logo"
+              <div
                 style={{
-                  height: 'calc(100vh / 14)',
+                  height: '100%',
                 }}
-              />
+              >
+                <img
+                  src={LogoImg}
+                  alt="The applicate Logo"
+                  style={{
+                    width: '10%',
+                  }}
+                />
+              </div>
             </Typography>
             <IconButton onClick={toggleDrawer(true)}>
               <MenuIcon fontSize="large" />
@@ -191,9 +200,8 @@ function NavBar() {
           <div
             style={{
               background: '#182021',
-              height: '100vh',
+              minHeight: isVertical ? '100vh' : '',
               maxWidth: '80vw',
-              overflow: 'hidden',
             }}
           >
             <IconButton
@@ -244,7 +252,7 @@ function NavBar() {
     );
   }
 
-  return <>{isTablet ? <MobileNavbar /> : <FullNavbar />}</>;
+  return <>{isMobile ? <MobileNavbar /> : <FullNavbar />}</>;
 }
 
 export default NavBar;

@@ -2,14 +2,14 @@ import { Card, CardContent } from '@mui/material';
 import styled from '@emotion/styled';
 
 const StyledCard = styled(Card)({
-  boxShadow: '0 0 20px 10px rgba(255, 255, 255, 1)',
-  background: '#222c30',
+  boxShadow: 'inset 0 0 2rem 0.5rem rgba(255,255,255, 0.2)',
+  background: 'rgb(0, 0, 0, 0.5)',
   borderRadius: 15,
   width: '100%',
 });
 
 const StyledCardContent = styled(CardContent)({
-  padding: '5%',
+  padding: '10%',
 });
 
 export { StyledCard, StyledCardContent };

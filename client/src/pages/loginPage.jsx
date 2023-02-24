@@ -18,6 +18,8 @@ const LoginPage = () => {
     flexDirection: 'column',
     letterSpacing: '0.1rem',
     wordSpacing: '0.2rem',
+    padding: '0 0.1rem',
+    width: isMobile ? '100%' : '46.5%',
   };
 
   return (
@@ -126,7 +128,7 @@ const LoginPage = () => {
             backgroundRepeat: 'no-repeat',
             backgroundColor: 'rgb(0, 0, 0)',
             height: '80vh',
-            minHeight: 400,
+            minHeight: 500,
             boxShadow: 'inset 0 0 40px 3px rgba(0, 0, 0, 1)',
           }}
         >
@@ -162,7 +164,7 @@ const LoginPage = () => {
           </div>
         </div>
       </section>
-      {/* 
+
       <section
         style={{
           backgroundImage: `url(${OfficeBg})`,
@@ -175,21 +177,20 @@ const LoginPage = () => {
       >
         <div
           style={{
-            padding: '5% 0',
+            padding: '10% 3%',
             display: 'flex',
-            alignItems: !isVertical && isMobile ? 'center' : null,
             justifyContent: 'space-evenly',
-            flexDirection: !isVertical && isMobile ? 'column' : 'row',
+            flexDirection: isMobile ? 'column' : 'row',
             color: 'white',
-            width: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
           }}
         >
           <article style={articleBlock}>
             <h2
               style={{
                 textAlign: 'left',
-                fontSize: !isVertical && isMobile ? '16pt' : '18pt',
+                fontSize: '1.3rem',
+                margin: 0,
               }}
             >
               Why Applicate?
@@ -197,11 +198,7 @@ const LoginPage = () => {
             <p
               style={{
                 textAlign: 'left',
-                fontSize: isMobile
-                  ? '10pt'
-                  : !isVertical && isMobile
-                  ? '12pt'
-                  : '15pt',
+                fontSize: '1rem',
               }}
             >
               At the core of Applicate's design is the fundamental concept of
@@ -216,7 +213,7 @@ const LoginPage = () => {
             <ul
               style={{
                 textAlign: 'left',
-                fontSize: !isVertical && isMobile ? '12pt' : '15pt',
+                fontSize: '1rem',
               }}
             >
               <li>Rich text editing</li>
@@ -230,34 +227,37 @@ const LoginPage = () => {
             <h2
               style={{
                 textAlign: 'left',
-                fontSize: !isVertical && isMobile ? '16pt' : '18pt',
+                fontSize: '1.3rem',
+                marginTop: isMobile ? '5%' : '0',
+                marginBottom: 0,
               }}
             >
               How Applicate works
             </h2>
-            <p
+            <div
               style={{
                 textAlign: 'left',
-                fontSize: isMobile
-                  ? '10pt'
-                  : !isVertical && isMobile
-                  ? '12pt'
-                  : '15pt',
+                fontSize: '1rem',
               }}
             >
-              Applicate is a MERN stack (MongoDB, Express, React, Node)
-              application. It harnesses the Tiptapjs library to deliver a
-              simplified alternative to most commercial text editors, while
-              still maintaining the core functionality users will expect. Your
-              data is stored in our database hosted on MongoDB Atlas, so there's
-              no need to worry about losing your work. This allows you to adopt
-              a set-and-forget approach to your project planning and
-              documentation. Forget about digging around on your desktop or
-              cloud drive for your planning and documentation files. Save those
-              environments for your professional work. Applicate is designed to
-              be a simple, intuitive tool that you can use to plan and document
-              your project, and then forget about it until you need it again.
-            </p>
+              <p>
+                Applicate is a MERN stack (MongoDB, Express, React, Node)
+                application. It harnesses the Tiptapjs library to deliver a
+                simplified alternative to most commercial text editors, while
+                still maintaining the core functionality users will expect. Your
+                data is stored in our database hosted on MongoDB Atlas, so
+                there's no need to worry about losing your work. This allows you
+                to adopt a set-and-forget approach to your project planning and
+                documentation.
+              </p>
+              <p>
+                Forget about digging around on your desktop or cloud drive for
+                your planning and documentation files. Save those environments
+                for your professional work. Applicate is designed to be a
+                simple, intuitive tool that you can use to plan and document
+                your project, and then forget about it until you need it again.
+              </p>
+            </div>
           </article>
         </div>
       </section>
@@ -270,7 +270,6 @@ const LoginPage = () => {
           <Footer />
         </div>
       </section>
-      */}
     </div>
   );
 };

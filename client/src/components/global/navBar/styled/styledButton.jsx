@@ -6,11 +6,12 @@ const StyledButton = styled(Button)({
   width: 150,
   background: '#0dc9de',
   color: '#263436',
-  fontSize: '1rem',
+  fontSize: '0.7rem',
   fontWeight: 'bold',
   borderRadius: 15,
   boxShadow: '0 0 8px 2px rgba(0, 0, 0, .6)',
   width: '100%',
+  height: '100%',
   '&:hover': {
     color: '#ffffff',
     boxShadow: '0 0 5px 4px rgba(255, 255, 255, .4)',
