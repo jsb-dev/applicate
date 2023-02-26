@@ -69,13 +69,9 @@ function NewDocButton({ addDocument }) {
   return (
     <>
       <Tooltip title="Create a new document">
-        <StyledButton
-          onClick={handleShow}
-          style={{
-            backgroundImage: `url(${AddIcon})`,
-            backgroundSize: isMobile ? '45%' : isTablet ? '20%' : '40%',
-          }}
-        />
+        <div onClick={handleShow}>
+          <StyledButton image={AddIcon} />
+        </div>
       </Tooltip>
       <StyledDialog open={show} onClose={handleClose}>
         <DialogTitle>Enter a file name</DialogTitle>

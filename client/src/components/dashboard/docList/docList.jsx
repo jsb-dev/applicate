@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
-import UseMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { CheckOrientation } from '../../../utils/CheckOrientation.jsx';
+import { CheckDevice } from '../../../utils/CheckDevice.jsx';
 import { Tooltip } from '@mui/material';
 import NewDocButton from './parts/newDocButton.jsx';
 import StyledButton from '../../shared/styledButton.jsx';
@@ -9,7 +11,7 @@ import StyledTextField from './styled/styledTextField.jsx';
 import DocLink from '../docLink/docLink.jsx';
 import SearchIcon from '../../../assets/icons/search.png';
 import FilterButton from './parts/filterButton.jsx';
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from '../../../assets/icons/close.png';
 
 function DocList({ userId }) {
   const [documents, setDocuments] = useState([]);
@@ -18,8 +20,9 @@ function DocList({ userId }) {
   const [show, setShow] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('dateModifiedNewest');
 
-  const isMobile = UseMediaQuery('(max-width: 600px)');
-  const isTablet = UseMediaQuery('(max-width: 960px)');
+  const isVertical = CheckOrientation();
+  const isMobile = CheckDevice();
+  const isNarrow = useMediaQuery('(max-width: 600px)');
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -77,7 +80,7 @@ function DocList({ userId }) {
 
   const handleReset = () => {
     setSearchValue('');
-    setSelectedFilter('fileNameAsc');
+    setSelectedFilter('dateModifiedNewest');
     setDocuments(allDocs);
   };
 
@@ -150,243 +153,103 @@ function DocList({ userId }) {
     ));
   };
 
-  return isTablet ? (
+  return isNarrow ? (
     // Mobile View
     <div
       style={{
-        margin: '5%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        boxShadow: '0px 0px 30px 2px #0dc9de',
-        borderRadius: 20,
-        maxWidth: '95vw',
+        boxShadow:
+          'inset 0 0 1rem 0.1rem rgba(255,255,255, 0.2), 0px 0px 30px 2px #0dc9de',
+        backgroundColor: '#182021',
+        borderRadius: '1rem',
+        width: '90%',
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          backgroundColor: '#182021',
-          width: '100%',
-          height: isMobile ? '25vh' : '20vh',
-          minHeight: '200px',
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '90%',
-            padding: isMobile ? '5% 2%' : '2%',
-            border: '1px solid #fff',
-            borderRadius: 10,
-          }}
-        >
-          <StyledTextField
-            autoFocus
-            margin="dense"
-            id="search"
-            label="Search"
-            type="text"
-            fullWidth
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            style={{
-              margin: 0,
-              width: isMobile ? '70%' : isTablet ? '82.5%' : '',
-            }}
-          />
-          <div
-            style={{
-              height: '80%',
-              width: isMobile ? '25%' : isTablet ? '15%' : '',
-            }}
-          >
-            <StyledButton
-              style={{
-                backgroundImage: `url(${SearchIcon})`,
-                backgroundSize: isMobile ? '45%' : '35%',
-                width: '100%',
-              }}
-              onClick={handleSearch}
-            />
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            width: '93%',
-            height: '20%',
-            alignItems: 'center',
-            padding: '2% 5%',
-          }}
-        >
-          <StyledButton onClick={handleReset}>
-            <CloseIcon fontSize="large" />
-          </StyledButton>
-          <FilterButton
-            handleSubmit={handleSubmit}
-            show={show}
-            setShow={setShow}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-          />
-          <NewDocButton addDocument={addDocument} />
-        </div>
-      </div>
-      <div
-        style={{
-          width: '100%',
-        }}
-      >
-        <StyledGrid container>
-          <Grid container>
-            {documents.length === 0 && (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '100%',
-                  width: '100%',
-                  fontSize: '12pt',
-                  color: 'white',
-                }}
-              >
-                Your documents will appear here
-              </div>
-            )}
-            {documents.map((document) => (
-              <Grid
-                item
-                xs={6}
-                sm={4}
-                key={document.id || document.documentId}
-                style={{
-                  padding: 10,
-                }}
-              >
-                <DocLink
-                  docId={document.id || document.documentId}
-                  fileName={document.fileName}
-                  author={document.author}
-                  collaborators={document.collaborators}
-                  dateCreated={document.dateCreated}
-                  dateModified={document.dateModified}
-                  setDocuments={setDocuments}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </StyledGrid>
-      </div>
-    </div>
-  ) : (
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Desktop View
-    <>
       <div
         style={{
           margin: '5%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
           alignItems: 'center',
-          boxShadow: '0px 0px 30px 2px #0dc9de',
-          borderRadius: 20,
-          maxWidth: '95vw',
+          borderRadius: '1rem',
         }}
       >
-        <div
+        <section
           style={{
-            backgroundColor: '#182021',
             display: 'flex',
+            flexDirection: 'column',
             justifyContent: 'space-around',
             alignItems: 'center',
-            width: '100%',
-            height: '20vh',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            backgroundColor: '#182021',
+            minHeight: 200,
+            borderTopLeftRadius: '1rem',
+            borderTopRightRadius: '1rem',
+            width: '85%',
           }}
         >
           <div
             style={{
               display: 'flex',
-              justifyContent: 'space-between',
               alignItems: 'center',
-              padding: '0 2%',
+              justifyContent: 'space-around',
               border: '1px solid #fff',
-              borderRadius: 10,
-              height: '70%',
-              width: '60%',
+              borderRadius: '1rem',
+              width: '100%',
+              height: '100%',
+              padding: '1rem',
+              marginBottom: '1rem',
             }}
           >
-            <StyledTextField
-              autoFocus
-              margin="dense"
-              id="search"
-              label="Search"
-              type="text"
-              fullWidth
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              style={{
-                width: '87.5%',
-                margin: 0,
-              }}
-            />
             <div
               style={{
-                height: '60%',
+                width: '85%',
+                height: '100%',
+                margin: '0 1rem 0 0',
               }}
             >
-              <Tooltip title="Search by file name">
-                <StyledButton
-                  style={{
-                    backgroundImage: `url(${SearchIcon})`,
-                    backgroundSize: '45%',
-                  }}
-                  onClick={handleSearch}
-                />
-              </Tooltip>
+              <StyledTextField
+                autoFocus
+                margin="dense"
+                id="search"
+                label="Search"
+                type="text"
+                fullWidth
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+              />
+            </div>
+            <div onClick={handleSearch}>
+              <StyledButton image={SearchIcon} />
             </div>
           </div>
           <div
             style={{
-              height: '60%',
               display: 'flex',
               justifyContent: 'space-between',
+              height: '20%',
               alignItems: 'center',
-              width: '30%',
+              padding: '1rem',
+              width: '110%',
+              marginBottom: '1rem',
             }}
           >
-            <Tooltip title="Clear search and dashboard filters">
-              <StyledButton onClick={handleReset}>
-                <CloseIcon fontSize="large" />
-              </StyledButton>
-            </Tooltip>
-            <FilterButton
-              handleSubmit={handleSubmit}
-              show={show}
-              setShow={setShow}
-              selectedFilter={selectedFilter}
-              setSelectedFilter={setSelectedFilter}
-            />
-            <NewDocButton addDocument={addDocument} />
+            <div onClick={handleReset}>
+              <StyledButton image={CloseIcon} />
+            </div>
+            <div>
+              <FilterButton
+                handleSubmit={handleSubmit}
+                show={show}
+                setShow={setShow}
+                selectedFilter={selectedFilter}
+                setSelectedFilter={setSelectedFilter}
+              />
+            </div>
+            <div>
+              <NewDocButton addDocument={addDocument} />
+            </div>
           </div>
-        </div>
-        <div
-          style={{
-            width: '100%',
-          }}
-        >
+        </section>
+        <section>
           <StyledGrid container>
             <Grid container>
               {documents.length === 0 && (
@@ -397,7 +260,150 @@ function DocList({ userId }) {
                     alignItems: 'center',
                     height: '100%',
                     width: '100%',
-                    fontSize: '15pt',
+                    fontSize: '1rem',
+                    color: 'white',
+                  }}
+                >
+                  Your documents will appear here
+                </div>
+              )}
+              {documents.map((document) => (
+                <Grid
+                  item
+                  xs={6}
+                  sm={4}
+                  key={document.id || document.documentId}
+                  style={{
+                    padding: 10,
+                  }}
+                >
+                  <DocLink
+                    docId={document.id || document.documentId}
+                    fileName={document.fileName}
+                    author={document.author}
+                    collaborators={document.collaborators}
+                    dateCreated={document.dateCreated}
+                    dateModified={document.dateModified}
+                    setDocuments={setDocuments}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </StyledGrid>
+        </section>
+      </div>
+    </div>
+  ) : (
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Desktop View
+    <>
+      <div
+        style={{
+          boxShadow:
+            'inset 0 0 1rem 0.1rem rgba(255,255,255, 0.2), 0px 0px 30px 2px #0dc9de',
+          backgroundColor: '#182021',
+          borderRadius: '1rem',
+          width: '90%',
+        }}
+      >
+        <div
+          style={{
+            margin: '1rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            borderRadius: '1rem',
+          }}
+        >
+          <section
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              backgroundColor: '#182021',
+              minHeight: 100,
+              borderTopLeftRadius: '1rem',
+              borderTopRightRadius: '1rem',
+              width: '100%',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                border: '1px solid #fff',
+                borderRadius: '1rem',
+                width: '60%',
+                height: '100%',
+                padding: '1rem',
+              }}
+            >
+              <div
+                style={{
+                  width: '90%',
+                  height: '100%',
+                  margin: '0 1rem 0 0',
+                }}
+              >
+                <StyledTextField
+                  autoFocus
+                  margin="dense"
+                  id="search"
+                  label="Search"
+                  type="text"
+                  fullWidth
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+              </div>
+              <div>
+                <Tooltip title="Search by file name">
+                  <div onClick={handleSearch}>
+                    <StyledButton image={SearchIcon} />
+                  </div>
+                </Tooltip>
+              </div>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '30%',
+              }}
+            >
+              <Tooltip title="Clear search and dashboard filters">
+                <div onClick={handleReset}>
+                  <StyledButton image={CloseIcon} />
+                </div>
+              </Tooltip>
+              <div>
+                <FilterButton
+                  handleSubmit={handleSubmit}
+                  show={show}
+                  setShow={setShow}
+                  selectedFilter={selectedFilter}
+                  setSelectedFilter={setSelectedFilter}
+                />
+              </div>
+              <div>
+                <NewDocButton addDocument={addDocument} />
+              </div>
+            </div>
+          </section>
+        </div>
+        <div>
+          <StyledGrid container>
+            <Grid container>
+              {documents.length === 0 && (
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                    width: '100%',
+                    fontSize: '1rem',
                     color: 'white',
                   }}
                 >

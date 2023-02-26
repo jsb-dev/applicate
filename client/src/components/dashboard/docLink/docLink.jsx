@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { CheckOrientation } from '../../../utils/CheckOrientation.jsx';
+import { CheckDevice } from '../../../utils/CheckDevice.jsx';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -31,16 +33,16 @@ const DocLink = ({
   searchParams.set('docId', docId);
   const href = `/editor?${searchParams.toString()}`;
 
-  const isMobile = useMediaQuery('(max-width: 600px)');
-  const isBetween = useMediaQuery('(max-width: 800px)');
-  const isTablet = useMediaQuery('(max-width: 960px)');
+  const isMobile = CheckDevice();
+  const isVertical = CheckOrientation();
+  const isNarrow = useMediaQuery('(max-width: 600px)');
 
   const email = localStorage.getItem('userEmail');
 
   let fileNameLength;
   if (isMobile) {
     fileNameLength = 10;
-  } else if (isTablet) {
+  } else if (isMobile) {
     fileNameLength = 13;
   } else {
     fileNameLength = 17;
@@ -81,8 +83,8 @@ const DocLink = ({
           display: 'flex',
           position: 'absolute',
           alignItems: 'center',
-          width: isMobile ? '40%' : isTablet ? '25%' : '20%',
-          marginTop: isMobile ? '6.5%' : isTablet ? '3.5%' : '2%',
+          marginLeft: '0.5rem',
+          marginTop: '0.5rem',
         }}
       >
         <IconButton
@@ -91,9 +93,8 @@ const DocLink = ({
           aria-haspopup="true"
           onClick={handleClick}
           style={{
-            position: 'absolute',
+            position: 'relative',
             backgroundColor: 'rgba(255,255,255,0.5)',
-            marginLeft: isMobile ? '5%' : '5%',
           }}
         >
           <MoreVertIcon fontSize="small" />
@@ -110,8 +111,8 @@ const DocLink = ({
             borderRadius: 20,
             boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
             overflow: 'hidden',
-            padding: isMobile ? '5%' : isTablet ? '3%' : '2%',
-            width: isMobile ? '80vw' : isTablet ? '40vw' : '30vw',
+            padding: isMobile ? '5%' : isMobile ? '3%' : '2%',
+            width: isMobile ? '80vw' : isMobile ? '40vw' : '30vw',
           },
         }}
       >
@@ -120,7 +121,7 @@ const DocLink = ({
             <img src={UserIcon} alt="User icon" style={infoTagImg} />
             <p
               style={{
-                fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
+                fontSize: isMobile ? '10pt' : isMobile ? '12pt' : '15pt',
               }}
             >
               '{author}'
@@ -130,7 +131,7 @@ const DocLink = ({
             <img src={DocIcon} alt="User icon" style={infoTagImg} />
             <p
               style={{
-                fontSize: isMobile ? '10pt' : isTablet ? '12pt' : '15pt',
+                fontSize: isMobile ? '10pt' : isMobile ? '12pt' : '15pt',
               }}
             >
               '{dateCreated}'
@@ -192,18 +193,8 @@ const DocLink = ({
             href={href}
             style={{
               textDecoration: 'none',
-              width: '100%',
             }}
           />
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'flex-end',
-              marginRight: '5%',
-              marginTop: isTablet ? '25%' : '20%',
-            }}
-          ></div>
         </div>
         <a
           href={href}
@@ -216,18 +207,17 @@ const DocLink = ({
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              padding: '4%',
-              paddingTop: isMobile ? '4%' : 0,
+              padding: '0.5rem',
             }}
           >
             <div
               style={{
-                marginTop: isMobile ? '5%' : 0,
+                marginTop: '2.5rem',
                 display: 'flex',
                 justifyContent: 'space-around',
                 background: 'white',
-                padding: '5%',
-                borderRadius: 20,
+                padding: '0.5rem',
+                borderRadius: '0.3rem',
               }}
             >
               <Tooltip title="Click to access this document">
@@ -269,22 +259,14 @@ const DocLink = ({
                 color: 'black',
                 fontFamily: 'Raleway, sans-serif',
                 letterSpacing: '0.1rem',
-                fontSize: isMobile
-                  ? '10pt'
-                  : isBetween
-                  ? '8pt'
-                  : isTablet
-                  ? '12pt'
-                  : '13pt',
+                fontSize: '0.6rem',
                 width: '95%',
               }}
             >
               <p>
                 <b
                   style={{
-                    display: 'inline-block',
-                    width: '100%',
-                    overflowWrap: 'break-word',
+                    color: 'white',
                   }}
                 >
                   {fileName.length > fileNameLength
@@ -294,8 +276,8 @@ const DocLink = ({
               </p>
               <p
                 style={{
-                  fontSize: isMobile ? '8pt' : isTablet ? '10pt' : '12pt',
-                  fontFamily: 'Calibri',
+                  fontSize: '0.6rem',
+                  color: 'white',
                 }}
               >
                 Modified: {isMobile ? <br /> : null}

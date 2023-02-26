@@ -60,6 +60,10 @@ const Dashboard = () => {
           <div
             style={{
               marginTop: '15vh',
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             <DocList userId={userId} />

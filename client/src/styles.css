@@ -1,19 +1,10 @@
 body {
-  margin: 0;
   background-color: #182021;
-  font-family: 'Open Sans', sans-serif, 'Raleway', sans-serif, 'Roboto Serif', serif, 'Noto Sans', sans-serif, 'Arial', sans-serif, 'Calibri', sans-serif, 'Times New Roman', serif;
+  margin: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-/*    --- FONTS ---   */
-
-/*    font-family: 'Roboto Serif', serif;    */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap');
-
-/*    font-family: 'Open Sans', sans-serif;    */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Serif:opsz@8..144&display=swap');
-
-/*    font-family: 'Raleway', sans-serif;    */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway&family=Roboto+Serif:opsz@8..144&display=swap');
-
-/*    font-family: 'Noto Sans', sans-serif;   */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans&family=Raleway&family=Roboto+Serif:opsz@8..144&display=swap');

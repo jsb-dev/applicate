@@ -46,7 +46,7 @@ const LoginPage = () => {
               alignItems: 'center',
               justifyContent: 'space-around',
               paddingTop: isVertical
-                ? '10vh'
+                ? '13vh'
                 : !isVertical && isMobile
                 ? '20vh'
                 : '10vh',

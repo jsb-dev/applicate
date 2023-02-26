@@ -28,21 +28,12 @@ function FilterButton({
     margin: '5%',
   };
 
-  const buttonStyles = {
-    width: '40%',
-    margin: '3%',
-  };
-
   return (
     <>
       <Tooltip title="Filter documents">
-        <StyledButton
-          onClick={handleShow}
-          style={{
-            backgroundImage: `url(${CalendarIcon})`,
-            backgroundSize: isMobile ? '45%' : isTablet ? '20%' : '40%',
-          }}
-        ></StyledButton>
+        <div onClick={handleShow}>
+          <StyledButton image={CalendarIcon}></StyledButton>
+        </div>
       </Tooltip>
       <StyledDialog open={show} onClose={handleClose}>
         <DialogTitle>Select a filter</DialogTitle>
@@ -114,12 +105,12 @@ function FilterButton({
                 marginTop: isTablet ? '10%' : '5%',
               }}
             >
-              <StyledButton onClick={handleClose} style={buttonStyles}>
-                <span>Cancel</span>
-              </StyledButton>
-              <StyledButton onClick={handleSubmit} style={buttonStyles}>
-                <span>Apply</span>
-              </StyledButton>
+              <div onClick={handleClose}>
+                <StyledButton text="Cancel" />
+              </div>
+              <div onClick={handleSubmit}>
+                <StyledButton text="Apply" />
+              </div>
             </div>
           </div>
         </DialogActions>
