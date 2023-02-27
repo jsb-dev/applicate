@@ -33,13 +33,9 @@ const DeleteDocButton = ({ setCollaboratorEmails, email, docId }) => {
 
   return (
     <>
-      <StyledButton
-        onClick={handleClick}
-        style={{
-          backgroundImage: `url(${DeleteIcon})`,
-          backgroundSize: '30%',
-        }}
-      />
+      <div onClick={handleClick}>
+        <StyledButton image={DeleteIcon} />
+      </div>
       {error && (
         <StyledAlert
           style={{

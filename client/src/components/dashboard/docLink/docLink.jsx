@@ -9,6 +9,7 @@ import Menu from '@mui/material/Menu';
 import StyledCard from './styled/styledCard.jsx';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Tooltip } from '@mui/material';
+import Button from '@mui/material/Button';
 import ShowCollaboratorsButton from './parts/showCollaboratorsButton.jsx';
 import DocIcon from '../../../assets/icons/docs.png';
 import UserIcon from '../../../assets/icons/user.png';
@@ -40,7 +41,7 @@ const DocLink = ({
   const email = localStorage.getItem('userEmail');
 
   let fileNameLength;
-  if (isMobile) {
+  if (isNarrow) {
     fileNameLength = 10;
   } else if (isMobile) {
     fileNameLength = 13;
@@ -61,19 +62,17 @@ const DocLink = ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '100%',
-    height: isMobile ? '10vh' : '5vh',
+    height: '100%',
   };
 
   const infoTagStyles = {
     display: 'flex',
     alignItems: 'center',
-    width: '100%',
   };
 
   const infoTagImg = {
-    width: '12%',
-    marginRight: '3%',
+    width: '10%',
+    margin: '1rem',
   };
 
   return (
@@ -101,47 +100,77 @@ const DocLink = ({
         </IconButton>
       </div>
       <Menu
-        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
         PaperProps={{
           style: {
-            borderRadius: 20,
-            boxShadow: '2px 6px 15px 0px rgba(40, 0, 0, .6)',
             overflow: 'hidden',
-            padding: isMobile ? '5%' : isMobile ? '3%' : '2%',
-            width: isMobile ? '80vw' : isMobile ? '40vw' : '30vw',
+            backgroundColor: 'rgba(0,0,0,0.85)',
+            borderRadius: '1rem',
+            display: 'flex',
+            flexDirection: 'column',
+            width: '30rem',
+            boxShadow: '0 0 100rem 100rem rgba(0,0,0,0.85)',
           },
         }}
       >
-        <section>
-          <div style={infoTagStyles}>
-            <img src={UserIcon} alt="User icon" style={infoTagImg} />
-            <p
-              style={{
-                fontSize: isMobile ? '10pt' : isMobile ? '12pt' : '15pt',
-              }}
-            >
-              '{author}'
-            </p>
-          </div>
-          <div style={infoTagStyles}>
-            <img src={DocIcon} alt="User icon" style={infoTagImg} />
-            <p
-              style={{
-                fontSize: isMobile ? '10pt' : isMobile ? '12pt' : '15pt',
-              }}
-            >
-              '{dateCreated}'
-            </p>
-          </div>
-        </section>
-        <br />
         <section
           style={{
-            width: '100%',
+            backgroundColor: '#ffffff',
+            borderTopLeftRadius: '1rem',
+            borderTopRightRadius: '1rem',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div>
+            <div style={infoTagStyles}>
+              <img src={UserIcon} alt="User icon" style={infoTagImg} />
+              <p
+                style={{
+                  fontSize: '1rem',
+                }}
+              >
+                '{author}'
+              </p>
+            </div>
+            <div style={infoTagStyles}>
+              <img src={DocIcon} alt="User icon" style={infoTagImg} />
+              <p
+                style={{
+                  fontSize: '1rem',
+                }}
+              >
+                '{dateCreated}'
+              </p>
+            </div>
+          </div>
+          <Button
+            onClick={handleClose}
+            style={{
+              position: 'absolute',
+              right: '1.2rem',
+              top: '1.8rem',
+              fontSize: '1rem',
+              fontWeight: 'bold',
+              color: '#161a19',
+              boxShadow: '0 0 0.5rem 0.2rem rgba(0,0,0,0.85)',
+              borderRadius: '0.5rem',
+              padding: '1.2rem',
+            }}
+          >
+            CLOSE
+          </Button>
+        </section>
+        <section
+          style={{
+            height: '6rem',
+            backgroundColor: '#161a19',
+            borderBottomLeftRadius: '1rem',
+            borderBottomRightRadius: '1rem',
+            padding: '0 1.8rem',
           }}
         >
           {email === author ? (

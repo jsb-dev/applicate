@@ -155,7 +155,7 @@ function ChangeEmailButton() {
               display: 'flex',
               justifyContent: 'space-between',
               width: '100%',
-              padding: '0 5% 5% 5%',
+              padding: '5%',
             }}
           >
             <StyledDialogButton onClick={() => setOpenEmailDialog(false)}>

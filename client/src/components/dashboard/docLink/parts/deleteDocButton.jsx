@@ -49,12 +49,9 @@ const DeleteDocButton = ({ docId, fileName, setDocuments }) => {
 
   return (
     <>
-      <StyledButton
-        onClick={handleClick}
-        style={{
-          backgroundImage: `url(${DeleteIcon})`,
-        }}
-      />
+      <div onClick={handleClick}>
+        <StyledButton image={DeleteIcon} />
+      </div>
       <StyledDialog
         open={confirmOpen}
         onClose={handleCancel}

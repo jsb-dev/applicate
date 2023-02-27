@@ -62,12 +62,9 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
 
   return (
     <>
-      <StyledButton
-        onClick={handleShow}
-        style={{
-          backgroundImage: `url(${RenameIcon})`,
-        }}
-      />
+      <div onClick={handleShow}>
+        <StyledButton image={RenameIcon} />
+      </div>
       <StyledDialog
         open={show}
         onClose={handleClose}

@@ -63,12 +63,9 @@ const CollabButton = ({ docId, fileName, email }) => {
 
   return (
     <>
-      <StyledButton
-        onClick={handleShow}
-        style={{
-          backgroundImage: `url(${ShareIcon})`,
-        }}
-      />
+      <div onClick={handleShow}>
+        <StyledButton image={ShareIcon} />
+      </div>
       <StyledDialog
         open={show}
         onClose={handleClose}
@@ -89,7 +86,6 @@ const CollabButton = ({ docId, fileName, email }) => {
             </p>
           </DialogContentText>
           <StyledTextField
-            autoFocus
             margin="dense"
             id="email"
             label="Email Address"
@@ -117,12 +113,12 @@ const CollabButton = ({ docId, fileName, email }) => {
               padding: '0 5%',
             }}
           >
-            <StyledDialogButton onClick={handleClose}>
-              Cancel
-            </StyledDialogButton>
-            <StyledDialogButton onClick={handleSubmit} autoFocus>
-              Submit
-            </StyledDialogButton>
+            <div onClick={handleClose}>
+              <StyledDialogButton>Cancel</StyledDialogButton>
+            </div>
+            <div onClick={handleSubmit}>
+              <StyledDialogButton>Submit</StyledDialogButton>
+            </div>
           </div>
         </DialogActions>
       </StyledDialog>

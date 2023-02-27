@@ -176,7 +176,7 @@ function ChangePasswordButton() {
               display: 'flex',
               justifyContent: 'space-between',
               width: '100%',
-              padding: ' 0 3% 3% 3%',
+              padding: '5%',
             }}
           >
             <StyledDialogButton

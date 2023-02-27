@@ -153,7 +153,9 @@ const AccountPage = () => {
                       }}
                     >
                       <ChangePasswordButton />
+                      <br />
                       <ChangeEmailButton />
+                      <br />
                       <DeleteAccountButton
                         userId={searchParams.get('userId')}
                         userEmail={userEmail}

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { CheckOrientation } from '../utils/CheckOrientation.jsx';
+import { CheckDevice } from '../utils/CheckDevice.jsx';
 import LoginPage from './loginPage.jsx';
 import checkAuth from '../utils/checkAuth.js';
 import DocList from '../components/dashboard/docList/docList.jsx';
@@ -12,6 +14,9 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const searchParams = new URLSearchParams(window.location.search);
+
+  const isVertical = CheckOrientation();
+  const isMobile = CheckDevice();
 
   useEffect(() => {
     const check = async () => {
@@ -59,7 +64,11 @@ const Dashboard = () => {
           <NavBar />
           <div
             style={{
-              marginTop: '15vh',
+              marginTop: isVertical
+                ? 'max(100px, 15vh)'
+                : !isVertical && isMobile
+                ? 100
+                : '20vh',
               width: '100%',
               display: 'flex',
               justifyContent: 'center',

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { DialogActions, DialogContent } from '@mui/material';
+import { CheckOrientation } from '../../utils/CheckOrientation.jsx';
+import { CheckDevice } from '../../utils/CheckDevice.jsx';
 import StyledButton from './styled/styledButton.jsx';
 import StyledDialog from '../shared/styledDialog.jsx';
 import StyledTextField from '../shared/styledTextField.jsx';
@@ -10,6 +13,9 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const isVertical = CheckOrientation();
+  const isMobile = CheckDevice();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +54,8 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
   return (
     <>
       <StyledButton
+        variant="contained"
+        color="primary"
         onClick={() => setOpen(true)}
         style={{
           margin: 0,
@@ -62,7 +70,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
           setOpen(false);
         }}
       >
-        <div
+        <DialogContent
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -71,18 +79,22 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
             padding: '3%',
           }}
         >
-          <p>
-            Please enter your username and password to remove your account from
-            our database. This will delete any documents that you have authored,
-            including documents that others have access to.{' '}
-            <b
-              style={{
-                color: 'red',
-              }}
-            >
-              THIS CANNOT BE UNDONE.
-            </b>
-          </p>
+          <article
+            style={{ paddingTop: !isVertical && isMobile ? '160px' : '' }}
+          >
+            <p>
+              Please enter your username and password to remove your account
+              from our database. This will delete any documents that you have
+              authored, including documents that others have access to.{' '}
+              <b
+                style={{
+                  color: 'red',
+                }}
+              >
+                THIS CANNOT BE UNDONE.
+              </b>
+            </p>
+          </article>
           <form
             onSubmit={handleSubmit}
             style={{
@@ -111,38 +123,38 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
             {error && (
               <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>
             )}
-            <section
+          </form>
+        </DialogContent>
+        <DialogActions
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            width: '100%',
+          }}
+        >
+          <div style={buttonContainer}>
+            <StyledButton
+              type="submit"
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-                width: '100%',
+                height: '100%',
               }}
             >
-              <div style={buttonContainer}>
-                <StyledButton
-                  type="submit"
-                  style={{
-                    height: '100%',
-                  }}
-                >
-                  Submit
-                </StyledButton>
-              </div>
-              <div style={buttonContainer}>
-                <StyledButton
-                  onClick={() => setOpen(false)}
-                  style={{
-                    height: '100%',
-                  }}
-                >
-                  Cancel
-                </StyledButton>
-              </div>
-            </section>
-          </form>
-        </div>
+              Submit
+            </StyledButton>
+          </div>
+          <div style={buttonContainer}>
+            <StyledButton
+              onClick={() => setOpen(false)}
+              style={{
+                height: '100%',
+              }}
+            >
+              Cancel
+            </StyledButton>
+          </div>
+        </DialogActions>
       </StyledDialog>
     </>
   );

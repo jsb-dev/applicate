@@ -1,10 +1,10 @@
 import React from 'react';
-import { CheckOrientation } from '../../utils/CheckOrientation.jsx';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Button from '@mui/material/Button';
 import styled from '@emotion/styled';
 
 const StyledButton = (props) => {
-  const isVertical = CheckOrientation();
+  const isNarrow = useMediaQuery('(max-width: 800px)');
 
   const StyledButton = styled(Button)({
     borderRadius: '1.5rem',
@@ -17,7 +17,7 @@ const StyledButton = (props) => {
       boxShadow: '0px 0px 12px 5px #fff',
       transition: 'all 0.2s ease-in-out',
     },
-    padding: isVertical ? '1.3rem' : '1.6rem',
+    padding: isNarrow ? '1.2rem' : '1.5rem',
   });
 
   return (
@@ -38,8 +38,7 @@ const StyledButton = (props) => {
             src={props.image}
             style={{
               objectFit: 'cover',
-              width: isVertical ? '1.3rem' : '1.6rem',
-              height: isVertical ? '1.3rem' : '1.6rem',
+              width: isNarrow ? '1.2rem' : '1.5rem',
             }}
           />
         )}

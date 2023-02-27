@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { CheckOrientation } from '../../../../utils/CheckOrientation.jsx';
+import { CheckDevice } from '../../../../utils/CheckDevice.jsx';
 import StyledButton from '../../../shared/styledButton.jsx';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -18,8 +20,9 @@ const ShowCollaboratorsButton = ({
   const [show, setShow] = useState(false);
   const [collaboratorEmails, setCollaboratorEmails] = useState([]);
 
-  const isMobile = useMediaQuery('(max-width: 600px)');
-  const isTablet = useMediaQuery('(max-width: 960px)');
+  const isVertical = CheckOrientation();
+  const isMobile = CheckDevice();
+  const isNarrow = useMediaQuery('(max-width: 600px)');
 
   const handleShow = () => {
     setShow(true);
@@ -51,13 +54,9 @@ const ShowCollaboratorsButton = ({
 
   return (
     <>
-      <StyledButton
-        onClick={handleShow}
-        style={{
-          backgroundImage: `url(${UsersIcon})`,
-          backgroundSize: isTablet ? '70%' : '50%',
-        }}
-      />
+      <div onClick={handleShow}>
+        <StyledButton image={UsersIcon} />
+      </div>
       <StyledDialog
         open={show}
         onClose={handleClose}
@@ -105,7 +104,7 @@ const ShowCollaboratorsButton = ({
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      height: isMobile ? '8vh' : isTablet ? '4vh' : '6vh',
+                      height: isMobile ? '8vh' : '6vh',
                     }}
                   >
                     {collaborator.length > 15

@@ -52,12 +52,9 @@ const LeaveButton = ({ docId, fileName, email, setDocuments }) => {
 
   return (
     <>
-      <StyledButton
-        onClick={handleClick}
-        style={{
-          backgroundImage: `url(${ExitIcon})`,
-        }}
-      />
+      <div onClick={handleClick}>
+        <StyledButton image={ExitIcon} />
+      </div>
       <StyledDialog
         open={confirmOpen}
         onClose={handleCancel}

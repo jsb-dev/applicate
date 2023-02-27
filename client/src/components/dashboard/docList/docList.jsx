@@ -227,8 +227,8 @@ function DocList({ userId }) {
               justifyContent: 'space-between',
               height: '20%',
               alignItems: 'center',
-              padding: '1rem',
-              width: '110%',
+              padding: isMobile ? '0.5rem' : '1rem',
+              width: '100%',
               marginBottom: '1rem',
             }}
           >
