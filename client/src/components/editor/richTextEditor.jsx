@@ -14,7 +14,9 @@ const RichTextEditor = ({ content, docId }) => {
 
   const { REACT_APP_API_URL, ENDPOINT } = env;
 
-  const socket = io(ENDPOINT, { transports: ['websocket'] });
+  const socket = io(`${ENDPOINT}`, {
+    withCredentials: true,
+  });
 
   const editorRef = useRef(null);
 
