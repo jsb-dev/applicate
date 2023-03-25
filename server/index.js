@@ -30,6 +30,7 @@ const server = app.listen(PORT, () => {
 const corsOptions = {
   origin: process.env.CLIENT_URL,
   optionsSuccessStatus: 200,
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
@@ -37,6 +38,8 @@ const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
     origin: process.env.CLIENT_URL,
+    methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 
