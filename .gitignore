@@ -1,11 +1,7 @@
 #dotenv
-/server/.env
-/server/database/.env
+client.env
+server.env
+root.env
 
-#node_modules
+#node 
 node_modules
-/client/node_modules
-/server/node_modules
-
-#misc
-/client/attributes.txt
