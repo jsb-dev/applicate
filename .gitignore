@@ -1,7 +1,5 @@
 #dotenv
-client.env
-server.env
-root.env
+.env
 
 #node 
 node_modules

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import env from 'react-dotenv';
 import { Grid } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { CheckOrientation } from '../../../utils/CheckOrientation.jsx';
 import { CheckDevice } from '../../../utils/CheckDevice.jsx';
 import { Tooltip } from '@mui/material';
 import NewDocButton from './parts/newDocButton.jsx';
@@ -20,14 +20,15 @@ function DocList({ userId }) {
   const [show, setShow] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('dateModifiedNewest');
 
-  const isVertical = CheckOrientation();
+  const { REACT_APP_API_URL } = env;
+
   const isMobile = CheckDevice();
   const isNarrow = useMediaQuery('(max-width: 600px)');
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     try {
-      fetch(`/api/documents`, {
+      fetch(`${REACT_APP_API_URL}utils/documents`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import StyledButton from '../../../shared/styledButton.jsx';
 import ExitIcon from '../../../../assets/icons/exit.png';
 import DialogActions from '@mui/material/DialogActions';
@@ -13,13 +14,15 @@ const LeaveButton = ({ docId, fileName, email, setDocuments }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [error, setError] = useState(null);
 
+  const { REACT_APP_API_URL } = env;
+
   const handleClick = () => {
     setConfirmOpen(true);
   };
 
   const handleConfirm = async () => {
     try {
-      const response = await fetch('document/unshare', {
+      const response = await fetch(`${REACT_APP_API_URL}document/unshare`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

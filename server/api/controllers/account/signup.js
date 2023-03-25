@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import validator from 'validator';
-import User from '../../database/models/user.js';
+import User from '../../../database/models/user.js';
 
 const signupController = async (req, res) => {
   const { email, password } = req.body;

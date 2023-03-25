@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import User from '../../database/models/user.js';
+import User from '../../../database/models/user.js';
 
-const resetPassController = async (req, res) => {
+const resetPasswordController = async (req, res) => {
   const { auth, newPassword } = req.body;
 
   dotenv.config();
@@ -66,4 +66,4 @@ const resetPassController = async (req, res) => {
   }
 };
 
-export default resetPassController;
+export default resetPasswordController;

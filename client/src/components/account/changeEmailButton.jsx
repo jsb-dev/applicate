@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import {
   DialogActions,
   DialogContent,
@@ -21,12 +22,14 @@ function ChangeEmailButton() {
     error: '',
   });
 
+  const { REACT_APP_API_URL } = env;
+
   const handleEmailChange = async () => {
     if (emailData.newEmail !== emailData.confirmEmail) {
       setEmailData({ ...emailData, error: 'Emails do not match' });
       return;
     }
-    const response = await fetch('/account/email', {
+    const response = await fetch(`${REACT_APP_API_URL}account/email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import checkAuth from '../utils/checkAuth.js';
+import checkAuth from '../utils/checkAuth';
 import LoginPage from './loginPage.jsx';
 import LoadingSpinner from '../components/global/loadingSpinner.jsx';
 import NavBar from '../components/global/navBar/navBar.jsx';

@@ -1,5 +1,5 @@
-import User from '../../database/models/user.js';
-import Document from '../../database/models/document.js';
+import User from '../../../database/models/user.js';
+import Document from '../../../database/models/document.js';
 
 const loadController = async (req, res) => {
   try {

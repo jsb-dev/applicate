@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import StyledButton from '../../../shared/styledButton.jsx';
 import DeleteIcon from '../../../../assets/icons/delete.png';
 import DialogActions from '@mui/material/DialogActions';
@@ -13,6 +14,8 @@ const DeleteDocButton = ({ docId, fileName, setDocuments }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [error, setError] = useState(null);
 
+  const { REACT_APP_API_URL } = env;
+
   const handleClick = () => {
     setConfirmOpen(true);
   };
@@ -20,7 +23,7 @@ const DeleteDocButton = ({ docId, fileName, setDocuments }) => {
   const handleConfirm = async () => {
     const userId = localStorage.getItem('userId');
     try {
-      const response = await fetch('/document/delete', {
+      const response = await fetch(`${REACT_APP_API_URL}document/delete`, {
         method: 'POST',
         body: JSON.stringify({ docId, userId }),
         headers: {

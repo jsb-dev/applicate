@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { CheckOrientation } from '../../../../utils/CheckOrientation.jsx';
+import env from 'react-dotenv';
 import { CheckDevice } from '../../../../utils/CheckDevice.jsx';
 import StyledButton from '../../../shared/styledButton.jsx';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import RemoveCollaboratorButton from './removeCollaboratorButton.jsx';
 import UsersIcon from '../../../../assets/icons/users.png';
 import StyledDialog from '../../../shared/styledDialog.jsx';
@@ -20,9 +19,9 @@ const ShowCollaboratorsButton = ({
   const [show, setShow] = useState(false);
   const [collaboratorEmails, setCollaboratorEmails] = useState([]);
 
-  const isVertical = CheckOrientation();
+  const { REACT_APP_API_URL } = env;
+
   const isMobile = CheckDevice();
-  const isNarrow = useMediaQuery('(max-width: 600px)');
 
   const handleShow = () => {
     setShow(true);
@@ -33,7 +32,7 @@ const ShowCollaboratorsButton = ({
   };
 
   useEffect(() => {
-    fetch('api/collaborators', {
+    fetch(`${REACT_APP_API_URL}utils/collaborators`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,4 +1,4 @@
-import Document from '../../database/models/document.js';
+import Document from '../../../database/models/document.js';
 
 const saveController = async (req, res) => {
   const { docId, json } = req.body;

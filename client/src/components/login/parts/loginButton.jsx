@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import StyledButton from '../styled/styledButton';
 import StyledDialog from '../../shared/styledDialog';
 import StyledDialogButton from '../../shared/styledDialogButton';
@@ -10,6 +11,8 @@ import StyledAlert from '../../shared/styledAlert';
 const LoginButton = ({ email, password }) => {
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
+
+  const { REACT_APP_API_URL } = env;
 
   const handleClose = () => {
     setOpen(false);
@@ -24,7 +27,7 @@ const LoginButton = ({ email, password }) => {
     }
 
     try {
-      const response = await fetch('/account/login', {
+      const response = await fetch(`${REACT_APP_API_URL}account/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

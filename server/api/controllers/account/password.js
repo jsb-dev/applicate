@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import User from '../../database/models/user.js';
+import User from '../../../database/models/user.js';
 import dotenv from 'dotenv';
 
 const passwordController = async (req, res) => {

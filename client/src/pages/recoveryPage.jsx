@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import env from 'react-dotenv';
 import LoginPage from './loginPage.jsx';
 import ResetPasswordCard from '../components/recovery/resetPasswordCard.jsx';
 import NavBar from '../components/global/navBar/navBar.jsx';
@@ -7,11 +8,13 @@ import Footer from '../components/global/footer.jsx';
 const RecoveryPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const { REACT_APP_API_URL } = env;
+
   const searchParams = new URLSearchParams(window.location.search);
   const auth = searchParams.get('auth');
 
   useEffect(() => {
-    fetch('/account/resetAuth', {
+    fetch(`${REACT_APP_API_URL}account/resetAuth`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

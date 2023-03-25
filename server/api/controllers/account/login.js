@@ -1,4 +1,4 @@
-import User from '../../database/models/user.js';
+import User from '../../../database/models/user.js';
 import bcrypt from 'bcryptjs';
 
 const loginController = async (req, res) => {

@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import validator from 'validator';
-import User from '../../database/models/user.js';
-import Document from '../../database/models/document.js';
+import User from '../../../database/models/user.js';
+import Document from '../../../database/models/document.js';
 
 const emailController = async (req, res) => {
   const { newEmail, password } = req.body;

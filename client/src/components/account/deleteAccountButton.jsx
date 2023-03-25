@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import { DialogActions, DialogContent } from '@mui/material';
 import { CheckOrientation } from '../../utils/CheckOrientation.jsx';
 import { CheckDevice } from '../../utils/CheckDevice.jsx';
@@ -14,6 +15,8 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { REACT_APP_API_URL } = env;
+
   const isVertical = CheckOrientation();
   const isMobile = CheckDevice();
 
@@ -24,7 +27,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
     }
 
     try {
-      const response = await fetch('/account/delete', {
+      const response = await fetch(`${REACT_APP_API_URL}account/delete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, password }),

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CheckOrientation } from '../utils/CheckOrientation.jsx';
 import { CheckDevice } from '../utils/CheckDevice.jsx';
 import LoginPage from './loginPage.jsx';
-import checkAuth from '../utils/checkAuth.js';
+import checkAuth from '../utils/checkAuth';
 import DocList from '../components/dashboard/docList/docList.jsx';
 import NavBar from '../components/global/navBar/navBar.jsx';
 import Footer from '../components/global/footer.jsx';

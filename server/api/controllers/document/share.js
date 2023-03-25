@@ -1,5 +1,5 @@
-import Document from '../../database/models/document.js';
-import User from '../../database/models/user.js';
+import Document from '../../../database/models/document.js';
+import User from '../../../database/models/user.js';
 import validator from 'validator';
 
 const shareController = async (req, res) => {

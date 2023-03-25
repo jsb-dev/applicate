@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import StyledButton from '../../../shared/styledButton.jsx';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -15,8 +16,11 @@ const CollabButton = ({ docId, fileName, email }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
 
-  const handleShow = () => setShow(true);
+  const { REACT_APP_API_URL } = env;
 
+  const user = localStorage.getItem('userId');
+
+  const handleShow = () => setShow(true);
   const handleChange = (event) => setValue(event.target.value);
 
   const handleClose = () => {
@@ -36,8 +40,7 @@ const CollabButton = ({ docId, fileName, email }) => {
       return;
     }
 
-    const user = localStorage.getItem('userId');
-    fetch('/document/share', {
+    fetch(`${REACT_APP_API_URL}document/share`, {
       method: 'POST',
       body: JSON.stringify({ docId, user, value }),
       headers: {

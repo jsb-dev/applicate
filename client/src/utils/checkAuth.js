@@ -1,9 +1,13 @@
+import env from 'react-dotenv';
+
 async function checkAuth() {
+  const { REACT_APP_API_URL } = env;
+
   const token = localStorage.getItem('authToken');
   if (!token) {
     return false;
   }
-  const response = await fetch('http://localhost:5000/auth', {
+  const response = await fetch(`${REACT_APP_API_URL}auth`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,

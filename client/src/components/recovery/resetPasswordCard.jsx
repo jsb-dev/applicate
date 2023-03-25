@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import { Link } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import StyledCard from '../shared/styledCard.jsx';
@@ -13,6 +14,8 @@ const ResetPasswordCard = ({ auth }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+
+  const { REACT_APP_API_URL } = env;
 
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 960px)');
@@ -33,7 +36,7 @@ const ResetPasswordCard = ({ auth }) => {
       return;
     }
 
-    fetch('/account/resetPass', {
+    fetch(`${REACT_APP_API_URL}account/resetPassword`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

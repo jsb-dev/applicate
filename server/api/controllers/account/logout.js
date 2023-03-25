@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import User from '../../database/models/user.js';
+import User from '../../../database/models/user.js';
 
 const logoutController = async (req, res) => {
   const token = req.headers.authorization.split(' ')[1];

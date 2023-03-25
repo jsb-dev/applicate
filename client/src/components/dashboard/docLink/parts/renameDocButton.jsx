@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import StyledButton from '../../../shared/styledButton.jsx';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -15,8 +16,9 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
 
-  const handleShow = () => setShow(true);
+  const { REACT_APP_API_URL } = env;
 
+  const handleShow = () => setShow(true);
   const handleChange = (event) => setValue(event.target.value);
 
   const handleClose = () => {
@@ -31,7 +33,7 @@ const RenameDocButton = ({ docId, author, fileName, setDocuments }) => {
       return;
     }
 
-    fetch('/document/rename', {
+    fetch(`${REACT_APP_API_URL}document/rename`, {
       method: 'POST',
       body: JSON.stringify({ docId, author, value }),
       headers: {

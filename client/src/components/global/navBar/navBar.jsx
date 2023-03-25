@@ -5,7 +5,7 @@ import { CheckDevice } from '../../../utils/CheckDevice.jsx';
 import CloseIcon from '@mui/icons-material/Close';
 import StyledAppBar from './styled/styledAppBar.jsx';
 import StyledLink from './styled/styledLink.jsx';
-import checkAuth from '../../../utils/checkAuth.js';
+import checkAuth from '../../../utils/checkAuth';
 import LogoutButton from './parts/logoutButton.jsx';
 import AccountButton from './parts/accountButton.jsx';
 import StyledButton from './styled/styledButton.jsx';

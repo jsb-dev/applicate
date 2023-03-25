@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import User from '../../database/models/user.js';
+import User from '../../../database/models/user.js';
 
 const Document = mongoose.model('Document');
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import StyledButton from '../styled/styledButton';
 import StyledDialog from '../../shared/styledDialog';
 import StyledDialogButton from '../../shared/styledDialogButton';
@@ -11,6 +12,8 @@ const SignupButton = ({ email, password }) => {
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
 
+  const { REACT_APP_API_URL } = env;
+
   const handleSignup = async () => {
     if (!email || !password) {
       setError('Please enter an email and password');
@@ -18,7 +21,7 @@ const SignupButton = ({ email, password }) => {
       return;
     }
     try {
-      const response = await fetch('/account/signup', {
+      const response = await fetch(`${REACT_APP_API_URL}account/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

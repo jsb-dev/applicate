@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import checkAuth from '../utils/checkAuth.js';
+import env from 'react-dotenv';
+import checkAuth from '../utils/checkAuth';
 import RichTextEditor from '../components/editor/richTextEditor.jsx';
 import LoadingSpinner from '../components/global/loadingSpinner.jsx';
 
@@ -8,6 +9,9 @@ const EditorPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [docId, setDocId] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const { REACT_APP_API_URL } = env;
+
   const searchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
@@ -17,7 +21,7 @@ const EditorPage = () => {
       setDocId(searchParams.get('docId'));
 
       if (docId) {
-        const response = await fetch('/document/load', {
+        const response = await fetch(`${REACT_APP_API_URL}document/load`, {
           method: 'POST',
           body: JSON.stringify({ docId }),
           headers: {

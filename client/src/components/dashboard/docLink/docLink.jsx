@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CheckOrientation } from '../../../utils/CheckOrientation.jsx';
 import { CheckDevice } from '../../../utils/CheckDevice.jsx';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -35,7 +34,6 @@ const DocLink = ({
   const href = `/editor?${searchParams.toString()}`;
 
   const isMobile = CheckDevice();
-  const isVertical = CheckOrientation();
   const isNarrow = useMediaQuery('(max-width: 600px)');
 
   const email = localStorage.getItem('userEmail');

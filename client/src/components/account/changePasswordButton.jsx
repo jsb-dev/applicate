@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import {
   DialogActions,
   DialogContent,
@@ -21,6 +22,8 @@ function ChangePasswordButton() {
     error: '',
   });
 
+  const { REACT_APP_API_URL } = env;
+
   const handlePasswordChange = async () => {
     if (passwordData.newPassword !== passwordData.confirmPassword) {
       setPasswordData({ ...passwordData, error: 'Passwords do not match' });
@@ -39,7 +42,7 @@ function ChangePasswordButton() {
       return;
     }
 
-    const response = await fetch('/account/password', {
+    const response = await fetch(`${REACT_APP_API_URL}account/password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

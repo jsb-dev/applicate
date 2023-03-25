@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import formatDate from '../../utils/formatDate.js';
-import Document from '../../database/models/document.js';
-import User from '../../database/models/user.js';
+import Document from '../../../database/models/document.js';
+import User from '../../../database/models/user.js';
 
 const createController = async (req, res) => {
   const value = req.body.value;

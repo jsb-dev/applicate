@@ -1,5 +1,6 @@
-import { DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import React, { useState } from 'react';
+import env from 'react-dotenv';
+import { DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { Tooltip } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AddIcon from '../../../../assets/icons/add.png';
@@ -13,6 +14,8 @@ function NewDocButton({ addDocument }) {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
+
+  const { REACT_APP_API_URL } = env;
 
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 960px)');
@@ -35,7 +38,7 @@ function NewDocButton({ addDocument }) {
 
     const token = localStorage.getItem('authToken');
 
-    fetch('/document/create', {
+    fetch(`${REACT_APP_API_URL}document/create`, {
       method: 'POST',
       body: JSON.stringify({ value }),
       headers: {

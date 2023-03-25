@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import validator from 'validator';
 import dotenv from 'dotenv';
-import User from '../../database/models/user.js';
+import User from '../../../database/models/user.js';
 import sendEmail from '../../utils/sendEmail.js';
 
 const recoverController = async (req, res) => {

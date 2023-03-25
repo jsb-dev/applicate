@@ -8,7 +8,7 @@ import emailController from '../controllers/account/email.js';
 import contactController from '../controllers/account/contact.js';
 import recoverController from '../controllers/account/recover.js';
 import resetAuthController from '../controllers/account/resetAuth.js';
-import resetPassController from '../controllers/account/resetPass.js';
+import resetPasswordController from '../controllers/account/resetPassword.js';
 import deleteController from '../controllers/account/delete.js';
 
 dotenv.config();
@@ -23,7 +23,7 @@ accountRouter.post('/email', emailController);
 accountRouter.post('/contact', contactController);
 accountRouter.post('/recover', recoverController);
 accountRouter.post('/resetAuth', resetAuthController);
-accountRouter.post('/resetPass', resetPassController);
+accountRouter.post('/resetPass', resetPasswordController);
 accountRouter.post('/delete', deleteController);
 
 export default accountRouter;

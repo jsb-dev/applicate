@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-import User from '../../database/models/user.js';
-import Document from '../../database/models/document.js';
+import User from '../../../database/models/user.js';
+import Document from '../../../database/models/document.js';
 
 const deleteController = async (req, res) => {
   const { userId, password } = req.body;

@@ -5,6 +5,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
+import env from 'react-dotenv';
 import StyledDialog from '../../shared/styledDialog';
 import StyledDialogButton from '../../shared/styledDialogButton';
 import StyledTextField from '../../shared/styledTextField';
@@ -15,6 +16,8 @@ const ForgotPasswordLink = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+
+  const { REACT_APP_API_URL } = env;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,7 +37,7 @@ const ForgotPasswordLink = () => {
     }
 
     try {
-      const response = await fetch('/account/recover', {
+      const response = await fetch(`${REACT_APP_API_URL}account/recover`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

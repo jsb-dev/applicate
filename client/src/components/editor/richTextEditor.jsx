@@ -1,25 +1,26 @@
-import './styles.scss';
+import React, { useRef, useEffect } from 'react';
+import env from 'react-dotenv';
 import { BubbleMenu, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import io from 'socket.io-client';
-import React, { useRef, useEffect } from 'react';
 import BoldIcon from '../../assets/icons/bold.png';
 import ItalicIcon from '../../assets/icons/italic.png';
 import StrikethroughIcon from '../../assets/icons/strikethrough.png';
 import MenuBar from './menuBar.jsx';
-
-const ENDPOINT = 'http://localhost:3000';
-const userId = localStorage.getItem('userId');
-const userEmail = localStorage.getItem('userEmail');
-
-const socket = io(ENDPOINT);
+import './styles.scss';
 
 const RichTextEditor = ({ content, docId }) => {
+  const userId = localStorage.getItem('userId');
+
+  const { REACT_APP_API_URL, ENDPOINT } = env;
+
+  const socket = io(ENDPOINT);
+
   const editorRef = useRef(null);
 
   useEffect(() => {
-    socket.emit('setup', userId, userEmail);
-    socket.emit('access document', userId, docId);
+    socket.emit('setup', userId);
+    socket.emit('access document', docId);
   });
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const RichTextEditor = ({ content, docId }) => {
     content: content,
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
-      fetch('/document/save', {
+      fetch(`${REACT_APP_API_URL}document/save`, {
         method: 'POST',
         body: JSON.stringify({ docId, json }),
         headers: {

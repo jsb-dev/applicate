@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import env from 'react-dotenv';
 import {
   Button,
   Card,
@@ -20,6 +21,8 @@ function ContactCard() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
+  const { REACT_APP_API_URL } = env;
+
   const token = localStorage.getItem('authToken');
 
   const isMobile = useMediaQuery('(max-width: 600px)');
@@ -34,7 +37,7 @@ function ContactCard() {
     }
 
     try {
-      const response = await fetch('/contact/enquiry', {
+      const response = await fetch(`${REACT_APP_API_URL}contact/enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
