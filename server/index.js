@@ -27,6 +27,12 @@ const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
