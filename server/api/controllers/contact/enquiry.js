@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 
 const enquiryController = (req, res) => {
   dotenv.config();
+
+  const SMTP_USER = process.env.SMTP_USER;
+
   const { userEmail, subject, description } = req.body;
 
   try {
@@ -16,10 +19,10 @@ const enquiryController = (req, res) => {
     }
 
     sendEmail(
-      process.env.SMTP_USER,
-      process.env.SMTP_USER,
+      SMTP_USER,
+      SMTP_USER,
       subject,
-      '',
+      'User Query: \n',
       '<p>' + description + '</p><br /><p>From: ' + userEmail + '</p>'
     );
 

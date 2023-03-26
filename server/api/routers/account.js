@@ -23,7 +23,7 @@ accountRouter.post('/email', emailController);
 accountRouter.post('/contact', contactController);
 accountRouter.post('/recover', recoverController);
 accountRouter.post('/resetAuth', resetAuthController);
-accountRouter.post('/resetPass', resetPasswordController);
+accountRouter.post('/resetPassword', resetPasswordController);
 accountRouter.post('/delete', deleteController);
 
 export default accountRouter;

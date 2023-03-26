@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import env from 'react-dotenv';
 import { Link } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Button from '@mui/material/Button';
 import StyledCard from '../shared/styledCard.jsx';
 import StyledTextField from '../shared/styledTextField.jsx';
-import StyledButton from '../shared/styledButton.jsx';
 import StyledDialog from '../shared/styledDialog.jsx';
 import LogoImg from '../../assets/images/applicateLogo.png';
 import StyledAlert from '../shared/styledAlert.jsx';
@@ -23,6 +23,11 @@ const ResetPasswordCard = ({ auth }) => {
   const buttonStyles = {
     width: '40%',
     height: '20%',
+    color: 'white',
+    border: '2px solid white',
+    borderRadius: '0.5rem',
+    textDecoration: 'none',
+    backgroundColor: 'rgba(0,0,0,0.3)',
   };
 
   const handleSubmit = () => {
@@ -107,19 +112,20 @@ const ResetPasswordCard = ({ auth }) => {
             width: '100%',
           }}
         >
-          <StyledButton style={buttonStyles} onClick={handleSubmit}>
+          <Button style={buttonStyles} onClick={handleSubmit}>
             Submit
-          </StyledButton>
-          <StyledButton style={buttonStyles}>
+          </Button>
+          <Button style={buttonStyles}>
             <Link
               to="/"
               style={{
                 textDecoration: 'none',
+                color: 'white',
               }}
             >
               Cancel
             </Link>
-          </StyledButton>
+          </Button>
         </div>
       </StyledCard>
       <StyledDialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
@@ -142,22 +148,17 @@ const ResetPasswordCard = ({ auth }) => {
               justifyContent: 'center',
             }}
           >
-            <StyledButton
-              style={{
-                width: isMobile ? '80%' : '60%',
-                height: '20%',
-                padding: isMobile ? '5%' : '2%',
-              }}
-            >
+            <Button style={buttonStyles}>
               <Link
                 to="/"
                 style={{
                   textDecoration: 'none',
+                  color: 'white',
                 }}
               >
                 Go to Login Page
               </Link>
-            </StyledButton>
+            </Button>
           </div>
         </div>
       </StyledDialog>

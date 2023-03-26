@@ -66,7 +66,12 @@ const LeaveButton = ({ docId, fileName, email, setDocuments }) => {
       >
         <DialogTitle id="alert-dialog-title">{'Delete Document'}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText
+            id="alert-dialog-description"
+            style={{
+              color: 'white',
+            }}
+          >
             Would you like to remove yourself as a collaborator from "{fileName}
             "?
           </DialogContentText>
