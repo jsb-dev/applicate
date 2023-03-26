@@ -28,7 +28,7 @@ const server = app.listen(PORT, () => {
 });
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: true,
   optionsSuccessStatus: 200,
   credentials: true,
 };
@@ -37,7 +37,7 @@ app.use(cors(corsOptions));
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: process.env.CLIENT_URL,
+    origin: true,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Access-Control-Allow-Origin'],
     credentials: true,
