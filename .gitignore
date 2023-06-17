@@ -1,6 +1,6 @@
 #dotenv
 .env
-client/env.js
+env.js
 
 #node 
 node_modules
