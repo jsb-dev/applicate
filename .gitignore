@@ -1,5 +1,6 @@
 #dotenv
 .env
+env.js
 
 #node 
 node_modules
