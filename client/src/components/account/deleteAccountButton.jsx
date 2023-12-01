@@ -20,8 +20,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
   const isVertical = CheckOrientation();
   const isMobile = CheckDevice();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (email !== userEmail) {
       return setError('Incorrect email');
     }
@@ -60,9 +59,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
         variant="contained"
         color="primary"
         onClick={() => setOpen(true)}
-        style={{
-          margin: 0,
-        }}
+        style={{ margin: 0 }}
       >
         Delete Account
       </StyledButton>
@@ -126,38 +123,38 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
             {error && (
               <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>
             )}
+            <DialogActions
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
+                width: '100%',
+              }}
+            >
+              <div style={buttonContainer}>
+                <StyledButton
+                  type="submit"
+                  style={{
+                    height: '100%',
+                  }}
+                >
+                  Submit
+                </StyledButton>
+              </div>
+              <div style={buttonContainer}>
+                <StyledButton
+                  onClick={() => setOpen(false)}
+                  style={{
+                    height: '100%',
+                  }}
+                >
+                  Cancel
+                </StyledButton>
+              </div>
+            </DialogActions>
           </form>
         </DialogContent>
-        <DialogActions
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'space-evenly',
-            width: '100%',
-          }}
-        >
-          <div style={buttonContainer}>
-            <StyledButton
-              type="submit"
-              style={{
-                height: '100%',
-              }}
-            >
-              Submit
-            </StyledButton>
-          </div>
-          <div style={buttonContainer}>
-            <StyledButton
-              onClick={() => setOpen(false)}
-              style={{
-                height: '100%',
-              }}
-            >
-              Cancel
-            </StyledButton>
-          </div>
-        </DialogActions>
       </StyledDialog>
     </>
   );

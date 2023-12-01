@@ -4,6 +4,8 @@ import checkAuth from '../utils/checkAuth';
 import RichTextEditor from '../components/editor/richTextEditor.jsx';
 import LoadingSpinner from '../components/global/loadingSpinner.jsx';
 
+const searchParams = new URLSearchParams(window.location.search);
+
 const EditorPage = () => {
   const [content, setContent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -11,8 +13,6 @@ const EditorPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const { REACT_APP_API_URL } = env;
-
-  const searchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
     async function fetchAndUpdate() {
@@ -47,7 +47,7 @@ const EditorPage = () => {
     }
 
     fetchAndUpdate();
-  }, [docId, isAuthenticated]);
+  }, [REACT_APP_API_URL, docId, isAuthenticated]);
 
   if (
     searchParams.get('docId') === null ||

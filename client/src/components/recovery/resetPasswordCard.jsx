@@ -80,6 +80,7 @@ const ResetPasswordCard = ({ auth }) => {
         >
           <img
             src={LogoImg}
+            alt="Applicate logo"
             style={{
               width: isTablet ? '30%' : '15%',
             }}

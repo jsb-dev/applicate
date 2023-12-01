@@ -49,7 +49,7 @@ const ShowCollaboratorsButton = ({
           console.error(error);
         }
       });
-  }, [collaborators]);
+  }, [collaborators, REACT_APP_API_URL]);
 
   return (
     <>

@@ -29,7 +29,7 @@ const RecoveryPage = () => {
           return <LoginPage />;
         }
       });
-  }, []);
+  }, [REACT_APP_API_URL, auth]);
 
   return (
     <>

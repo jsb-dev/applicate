@@ -3,7 +3,6 @@ import { Button } from '@mui/material';
 
 const StyledButton = styled(Button)({
   // Desktop View
-  width: 150,
   background: '#0dc9de',
   color: '#263436',
   fontSize: '0.7rem',

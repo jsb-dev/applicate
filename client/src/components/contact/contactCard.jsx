@@ -28,11 +28,27 @@ function ContactCard() {
   const isMobile = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 900px)');
 
+  const validateEmail = (email) => {
+    return email.includes('@') && email.includes('.');
+  };
+
+  const validateInput = () => {
+    if (!userEmail || !validateEmail(userEmail)) {
+      return 'Please provide a valid email address.';
+    }
+    if (!subject) {
+      return 'Please provide a subject for your query.';
+    }
+    if (!description) {
+      return 'Please provide a brief description.';
+    }
+    return '';
+  };
+
   const handleSubmit = async () => {
-    if (!subject || !description || !userEmail) {
-      setError(
-        'Please provide an email, subject and description for your query'
-      );
+    const validationError = validateInput();
+    if (validationError) {
+      setError(validationError);
       return;
     }
 
@@ -49,15 +65,14 @@ function ContactCard() {
       const res = await response.json();
 
       if (res.success) {
-        console.log(res);
-        setError('');
+        setMessage("Thanks! We'll be in touch soon");
         setSubject('');
         setDescription('');
         setUserEmail('');
-        setMessage("Thanks! We'll be in touch soon");
+      } else {
+        setError(res.message || 'An error occurred. Please try again later.');
       }
-    } catch (error) {
-      setMessage('');
+    } catch (err) {
       setError(
         'There was a problem sending your message. Please try again later.'
       );
@@ -132,11 +147,14 @@ function ContactCard() {
               rows={8}
             />
           </div>
-          {error && <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>}
-          {message && (
-            <StyledAlert style={{ color: 'green' }}>{message}</StyledAlert>
-          )}
         </section>
+        {error ? (
+          <StyledAlert style={{ color: 'red' }}>{error}</StyledAlert>
+        ) : (
+          message && (
+            <StyledAlert style={{ color: 'green' }}>{message}</StyledAlert>
+          )
+        )}
       </CardContent>
       <CardActions>
         <Button

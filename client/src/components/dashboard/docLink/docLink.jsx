@@ -61,6 +61,7 @@ const DocLink = ({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '100%',
+    backgroundColor: '#fff',
   };
 
   const infoTagStyles = {
@@ -70,6 +71,7 @@ const DocLink = ({
 
   const infoTagImg = {
     width: '10%',
+    maxWidth: 100,
     margin: '1rem',
   };
 
@@ -102,7 +104,7 @@ const DocLink = ({
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
-        PaperProps={{
+        sx={{
           style: {
             overflow: 'hidden',
             backgroundColor: 'rgba(0,0,0,0.85)',
@@ -149,26 +151,23 @@ const DocLink = ({
             onClick={handleClose}
             style={{
               position: 'absolute',
-              right: '1.2rem',
-              top: '1.8rem',
-              fontSize: '1rem',
-              fontWeight: 'bold',
+              right: 0,
+              top: '5%',
+              padding: 1,
+              fontSize: '1.5rem',
               color: '#161a19',
-              boxShadow: '0 0 0.5rem 0.2rem rgba(0,0,0,0.85)',
-              borderRadius: '0.5rem',
-              padding: '1.2rem',
+              transform: 'translateX(10%)',
             }}
           >
-            CLOSE
+            X
           </Button>
         </section>
         <section
           style={{
-            height: '6rem',
-            backgroundColor: '#161a19',
+            height: '5rem',
             borderBottomLeftRadius: '1rem',
             borderBottomRightRadius: '1rem',
-            padding: '0 1.8rem',
+            padding: 0,
           }}
         >
           {email === author ? (

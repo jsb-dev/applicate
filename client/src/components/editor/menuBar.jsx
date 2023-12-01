@@ -58,16 +58,6 @@ const MenuBar = ({ editor }) => {
   const formatMenu = useMenu();
   const headerSizeMenu = useMenu();
 
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleDialogOpen = () => {
-    setIsDialogOpen(true);
-  };
-
-  const handleDialogClose = () => {
-    setIsDialogOpen(false);
-  };
-
   const isTablet = useMediaQuery('(max-width:960px)');
 
   if (!editor) {

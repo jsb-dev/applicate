@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Toolbar, Typography, IconButton, Drawer } from '@mui/material';
+import {
+  Toolbar,
+  Typography,
+  IconButton,
+  Drawer,
+  Container,
+} from '@mui/material';
 import { CheckOrientation } from '../../../utils/CheckOrientation.jsx';
 import { CheckDevice } from '../../../utils/CheckDevice.jsx';
 import CloseIcon from '@mui/icons-material/Close';
@@ -64,7 +70,7 @@ function NavBar() {
                 }}
               />
             </Typography>
-            <Typography
+            <Container
               style={{
                 flexGrow: 0.5,
                 display: 'flex',
@@ -119,7 +125,7 @@ function NavBar() {
                   </div>
                 </>
               )}
-            </Typography>
+            </Container>
           </Toolbar>
         </StyledAppBar>
       </div>
@@ -170,7 +176,7 @@ function NavBar() {
       <div>
         <StyledAppBar style={{ transform: transformValue }}>
           <Toolbar>
-            <Typography
+            <Container
               style={{
                 flexGrow: 1,
                 display: 'flex',
@@ -190,7 +196,7 @@ function NavBar() {
                   }}
                 />
               </div>
-            </Typography>
+            </Container>
             <IconButton onClick={toggleDrawer(true)}>
               <MenuIcon fontSize="large" />
             </IconButton>

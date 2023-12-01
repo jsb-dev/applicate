@@ -52,7 +52,7 @@ function DocList({ userId }) {
       setDocuments([]);
       setAllDocs([]);
     };
-  }, [userId]);
+  }, [REACT_APP_API_URL, userId]);
 
   const addDocument = (document) => {
     setDocuments([document, ...documents]);

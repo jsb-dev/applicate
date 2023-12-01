@@ -36,6 +36,7 @@ const StyledButton = (props) => {
         ) : (
           <img
             src={props.image}
+            alt="Button icon"
             style={{
               objectFit: 'cover',
               width: isNarrow ? '1.2rem' : '1.5rem',

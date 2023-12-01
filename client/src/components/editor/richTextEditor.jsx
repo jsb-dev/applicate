@@ -1,11 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import env from 'react-dotenv';
-import { BubbleMenu, EditorContent, Editor } from '@tiptap/react';
+import { EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import io from 'socket.io-client';
-import BoldIcon from '../../assets/icons/bold.png';
-import ItalicIcon from '../../assets/icons/italic.png';
-import StrikethroughIcon from '../../assets/icons/strikethrough.png';
 import MenuBar from './menuBar.jsx';
 import './styles.scss';
 
@@ -55,40 +52,11 @@ const RichTextEditor = ({ content, docId }) => {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [socket]);
 
   return (
     <div ref={editorRef} id="editor">
       <MenuBar editor={editor} />
-
-      {editor && (
-        <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
-          <button
-            onClick={() => editor.chain().focus().toggleBold().run()}
-            className={editor.isActive('bold') ? 'is-active' : ''}
-            style={{
-              backgroundImage: `url(${BoldIcon})`,
-              boxShadow: '0 0 0 1px #000',
-            }}
-          />
-          <button
-            onClick={() => editor.chain().focus().toggleItalic().run()}
-            className={editor.isActive('italic') ? 'is-active' : ''}
-            style={{
-              backgroundImage: `url(${ItalicIcon})`,
-              boxShadow: '0 0 0 1px #000',
-            }}
-          />
-          <button
-            onClick={() => editor.chain().focus().toggleStrike().run()}
-            className={editor.isActive('strike') ? 'is-active' : ''}
-            style={{
-              backgroundImage: `url(${StrikethroughIcon})`,
-              boxShadow: '0 0 0 1px #000',
-            }}
-          />
-        </BubbleMenu>
-      )}
       <EditorContent editor={editor} />
     </div>
   );
