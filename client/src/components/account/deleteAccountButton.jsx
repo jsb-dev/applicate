@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import env from 'react-dotenv';
+import { useNavigate } from 'react-router-dom';
 import { DialogActions, DialogContent } from '@mui/material';
 import { CheckOrientation } from '../../utils/CheckOrientation.jsx';
 import { CheckDevice } from '../../utils/CheckDevice.jsx';
@@ -14,6 +15,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const { REACT_APP_API_URL } = env;
 
@@ -36,6 +38,7 @@ const DeleteAccountButton = ({ userId, userEmail }) => {
         return setError(data.message);
       }
       logoutUser();
+      navigate('/');
     } catch (error) {
       setError(error.message);
     }

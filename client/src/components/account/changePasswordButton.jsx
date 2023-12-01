@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import env from 'react-dotenv';
 import {
   DialogActions,
@@ -21,6 +22,7 @@ function ChangePasswordButton() {
     confirmPassword: '',
     error: '',
   });
+  const navigate = useNavigate();
 
   const { REACT_APP_API_URL } = env;
 
@@ -65,6 +67,7 @@ function ChangePasswordButton() {
       });
       setOpenPasswordDialog(false);
       logoutUser();
+      navigate('/');
     } else {
       setPasswordData({ ...passwordData, error: res.message });
     }

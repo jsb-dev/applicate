@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import env from 'react-dotenv';
 import {
   DialogActions,
@@ -21,6 +22,7 @@ function ChangeEmailButton() {
     confirmEmail: '',
     error: '',
   });
+  const navigate = useNavigate();
 
   const { REACT_APP_API_URL } = env;
 
@@ -52,6 +54,7 @@ function ChangeEmailButton() {
       });
       setOpenEmailDialog(false);
       logoutUser();
+      navigate('/');
     } else {
       setEmailData({ ...emailData, error: res.message });
     }
