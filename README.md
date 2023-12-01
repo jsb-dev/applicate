@@ -79,4 +79,4 @@ Move into the server directory then `npm install`. Use `npmn start` to boot the 
 **Jacob Booth**
 
 - [Email](mailto:jsb-dev@outlook.com)
-- [YourGitHubProfile](https://github.com/jsb-dev)
+- [Github](https://github.com/jsb-dev)
