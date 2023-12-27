@@ -135,8 +135,6 @@ function NavBar() {
   // Mobile View
   function MobileNavbar() {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [lastScrollTop, setLastScrollTop] = useState(0);
-    const [transformValue, setTransformValue] = useState('translateY(0)');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const check = async () => {
@@ -147,20 +145,7 @@ function NavBar() {
 
     useEffect(() => {
       check();
-      const handleScroll = () => {
-        const currentScrollTop = window.scrollY;
-        if (currentScrollTop > lastScrollTop) {
-          setTransformValue('translateY(-100%)');
-        } else {
-          setTransformValue('translateY(0)');
-        }
-        setLastScrollTop(currentScrollTop);
-      };
-      window.addEventListener('scroll', handleScroll);
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, [lastScrollTop]);
+    }, []);
 
     const toggleDrawer = (open) => (event) => {
       if (
@@ -174,11 +159,12 @@ function NavBar() {
 
     return (
       <div>
-        <StyledAppBar style={{ transform: transformValue }}>
+        <StyledAppBar>
           <Toolbar>
             <Container
               style={{
                 flexGrow: 1,
+                padding: 0,
                 display: 'flex',
                 justifyContent: 'space-between',
               }}
@@ -186,13 +172,19 @@ function NavBar() {
               <div
                 style={{
                   height: '100%',
+                  width: 0,
+                  padding: 0,
+                  margin: 0,
                 }}
               >
                 <img
                   src={LogoImg}
                   alt="The applicate Logo"
                   style={{
-                    width: '10%',
+                    width: 50,
+                    height: 'auto',
+                    padding: 0,
+                    margin: 0,
                   }}
                 />
               </div>

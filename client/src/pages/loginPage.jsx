@@ -42,7 +42,7 @@ const LoginPage = () => {
           <div
             style={{
               display: 'flex',
-              flexDirection: isMobile ? 'column' : 'row',
+              flexDirection: isMobile ? 'column-reverse' : 'row',
               alignItems: 'center',
               justifyContent: 'space-around',
               paddingTop: isVertical
@@ -107,9 +107,9 @@ const LoginPage = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: isVertical
-                  ? '90%'
+                  ? '80%'
                   : !isVertical && isMobile
-                  ? '90%'
+                  ? '80%'
                   : '50%',
                 padding: '5%',
               }}

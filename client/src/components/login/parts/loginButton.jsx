@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import env from 'react-dotenv';
 import StyledButton from '../styled/styledButton';
 import StyledDialog from '../../shared/styledDialog';
@@ -9,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import StyledAlert from '../../shared/styledAlert';
 
 const LoginButton = ({ email, password }) => {
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -26,38 +28,33 @@ const LoginButton = ({ email, password }) => {
       return;
     }
 
-    try {
-      const response = await fetch(`${REACT_APP_API_URL}account/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+    const response = await fetch(`${REACT_APP_API_URL}account/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-      if (!response.ok) {
-        setError(response.message);
-        setOpen(true);
-      }
-
-      const data = await response.json();
-      if (!data.success) {
-        setError(data.message);
-        setOpen(true);
-        return;
-      }
-
-      localStorage.setItem('authToken', data.token);
-      localStorage.setItem('userEmail', data.user.email);
-      const userId = data.user._id;
-      localStorage.setItem('userId', data.user._id);
-      const searchParams = new URLSearchParams();
-      searchParams.set('userId', userId);
-      const href = `/dashboard?${searchParams.toString()}`;
-      window.location.href = href;
-    } catch (error) {
-      console.error(error);
+    if (!response.ok) {
+      const errorData = await response.json();
+      setError(errorData.message || 'An error occurred');
+      setOpen(true);
+      return;
     }
+
+    const data = await response.json();
+    if (!data.success) {
+      setError(data.message);
+      setOpen(true);
+      return;
+    }
+
+    localStorage.setItem('authToken', data.token);
+    localStorage.setItem('userEmail', data.user.email);
+    const userId = data.user._id;
+    localStorage.setItem('userId', userId);
+    navigate(`/dashboard?userId=${userId}`);
   };
 
   return (
@@ -72,8 +69,8 @@ const LoginButton = ({ email, password }) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">Whoops!</DialogTitle>
-        <DialogContent>
-          {error && (
+        {error && (
+          <DialogContent>
             <StyledAlert
               style={{
                 color: 'red',
@@ -81,8 +78,8 @@ const LoginButton = ({ email, password }) => {
             >
               {error}
             </StyledAlert>
-          )}
-        </DialogContent>
+          </DialogContent>
+        )}
         <DialogActions>
           <StyledDialogButton onClick={handleClose}>Close</StyledDialogButton>
         </DialogActions>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CheckOrientation } from '../utils/CheckOrientation.jsx';
 import { CheckDevice } from '../utils/CheckDevice.jsx';
 import LoginPage from './loginPage.jsx';
@@ -9,11 +10,11 @@ import Footer from '../components/global/footer.jsx';
 import LoadingSpinner from '../components/global/loadingSpinner.jsx';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const searchParams = new URLSearchParams(window.location.search);
 
   const isVertical = CheckOrientation();
   const isMobile = CheckDevice();
@@ -30,16 +31,21 @@ const Dashboard = () => {
     // eslint-disable-next-line
   }, []);
 
-  if (!searchParams.get('userId')) {
-    try {
-      const localStorageUserId = localStorage.getItem('userId');
-      if (localStorageUserId) {
-        return (window.location.href = `/dashboard?userId=${localStorageUserId}`);
+  useEffect(() => {
+    if (!searchParams.get('userId')) {
+      try {
+        const localStorageUserId = localStorage.getItem('userId');
+        if (localStorageUserId) {
+          navigate(`/dashboard?userId=${localStorageUserId}`);
+        } else {
+          navigate('/');
+        }
+      } catch {
+        navigate('/');
       }
-    } catch {
-      return (window.location.href = '/');
     }
-  }
+    // eslint-disable-next-line
+  }, [searchParams]);
 
   if (isLoading) {
     return (

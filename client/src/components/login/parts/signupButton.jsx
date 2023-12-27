@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import env from 'react-dotenv';
 import StyledButton from '../styled/styledButton';
 import StyledDialog from '../../shared/styledDialog';
@@ -9,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import StyledAlert from '../../shared/styledAlert';
 
 const SignupButton = ({ email, password }) => {
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -20,39 +22,35 @@ const SignupButton = ({ email, password }) => {
       setOpen(true);
       return;
     }
-    try {
-      const response = await fetch(`${REACT_APP_API_URL}account/signup`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      if (!response.ok) {
-        setError(response.message);
-        setOpen(true);
-      }
 
-      const data = await response.json();
-      if (!data.success) {
-        setError(data.message);
-        setOpen(true);
-        return;
-      }
+    const response = await fetch(`${REACT_APP_API_URL}account/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-      localStorage.setItem('authToken', data.token);
-      localStorage.setItem('userEmail', data.user.email);
-      const userId = data.user._id;
-      localStorage.setItem('userId', data.user._id);
-      const searchParams = new URLSearchParams();
-      searchParams.set('userId', userId);
-      const href = `/dashboard?${searchParams.toString()}`;
-      window.location.href = href;
-    } catch (error) {
-      console.error(error);
-      setError(error);
+    if (!response.ok) {
+      const errorData = await response.json();
+      setError(errorData.message || 'An error occurred');
       setOpen(true);
+      return;
     }
+
+    const data = await response.json();
+    if (!data.success) {
+      setError(data.message);
+      setOpen(true);
+      return;
+    }
+
+    localStorage.setItem('authToken', data.token);
+    localStorage.setItem('userEmail', data.user.email);
+    const userId = data.user._id;
+    localStorage.setItem('userId', userId);
+
+    navigate(`/dashboard?userId=${userId}`);
   };
 
   const handleClose = () => {
