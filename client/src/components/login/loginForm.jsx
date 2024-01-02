@@ -110,7 +110,7 @@ const LoginForm = () => {
             >
               Use of this website is subject to our{' '}
               <a
-                href="https://www.gdprprivacynotice.com/live.php?token=k5heGT0TqmZ3N4FaNVPuboGKGFM7quPt"
+                href="https://www.gdprprivacynotice.com/live.php?token=JL5LtXje7rnXKVj4ayg3UlXBugtzYnRY"
                 style={{
                   color: 'white',
                   textDecoration: 'underline',
