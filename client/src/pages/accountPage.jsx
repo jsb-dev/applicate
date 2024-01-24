@@ -68,7 +68,7 @@ const AccountPage = () => {
   }
 
   return (
-    <>
+    <div className="page-container">
       {isAuthenticated ? (
         <>
           <NavBar />
@@ -171,7 +171,7 @@ const AccountPage = () => {
       ) : (
         <LoginPage />
       )}
-    </>
+    </div>
   );
 };
 

@@ -6,7 +6,6 @@ import {
   Drawer,
   Container,
 } from '@mui/material';
-import { CheckOrientation } from '../../../utils/CheckOrientation.jsx';
 import { CheckDevice } from '../../../utils/CheckDevice.jsx';
 import CloseIcon from '@mui/icons-material/Close';
 import StyledAppBar from './styled/styledAppBar.jsx';
@@ -19,7 +18,6 @@ import LogoImg from '../../../assets/images/applicateLogo.png';
 import MenuIcon from '@mui/icons-material/Menu';
 
 function NavBar() {
-  const isVertical = CheckOrientation();
   const isMobile = CheckDevice();
 
   // Desktop View
@@ -198,7 +196,7 @@ function NavBar() {
           <div
             style={{
               background: '#182021',
-              minHeight: isVertical ? '100vh' : '',
+              height: '100dvh',
               maxWidth: '80vw',
             }}
           >

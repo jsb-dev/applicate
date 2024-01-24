@@ -6,7 +6,7 @@ import ContactCard from '../components/contact/contactCard.jsx';
 
 const AboutPage = () => {
   return (
-    <>
+    <div className="page-container">
       <NavBar />
       <section
         style={{
@@ -41,7 +41,7 @@ const AboutPage = () => {
         </div>
       </section>
       <Footer />
-    </>
+    </div>
   );
 };
 

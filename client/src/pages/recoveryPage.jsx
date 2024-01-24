@@ -32,7 +32,7 @@ const RecoveryPage = () => {
   }, [REACT_APP_API_URL, auth]);
 
   return (
-    <>
+    <div className="page-container">
       {isAuthenticated ? (
         <div
           style={{
@@ -54,7 +54,7 @@ const RecoveryPage = () => {
       ) : (
         <LoginPage />
       )}
-    </>
+    </div>
   );
 };
 

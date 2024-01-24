@@ -23,7 +23,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className="page-container">
       <NavBar />
       <section
         style={{

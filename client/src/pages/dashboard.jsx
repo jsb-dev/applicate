@@ -64,7 +64,7 @@ const Dashboard = () => {
   }
 
   return (
-    <>
+    <div className="page-container">
       {isAuthenticated ? (
         <div>
           <NavBar />
@@ -88,7 +88,7 @@ const Dashboard = () => {
       ) : (
         <LoginPage />
       )}
-    </>
+    </div>
   );
 };
 

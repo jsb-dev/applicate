@@ -59,6 +59,7 @@ const EditorPage = () => {
 
   return (
     <div
+      className="page-container"
       style={{
         display: 'flex',
         alignItems: 'center',
